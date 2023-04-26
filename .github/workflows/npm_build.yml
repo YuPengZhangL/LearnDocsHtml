@@ -23,7 +23,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-			# Setup Node.js environment
+      # Setup Node.js environment
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
@@ -31,7 +31,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: subdir/package-lock.json
       
-			# Runs a single command using the runners shell
+      # Runs a single command using the runners shell
       - name: Run a one-line script
         run: npm run build
 
