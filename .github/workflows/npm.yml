@@ -19,7 +19,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -29,12 +28,21 @@ jobs:
           node-version: 16
           cache: 'npm'
       - run: npm install
-      - run: npm run
-
+      - run: npm run build dev
+      - name: Push dir to Git
+        uses: 'liziwl/git-push-action@master'
+        with:
+          git_token_holder: 'yupengzhangl'
+          git_token: '${{ secrets.GITHUB_TOKEN }}'
+          commit_user: 'yupengzhangl'
+          commit_email: '252964846@qq.com'
+          branch: 'master'
+          commit_message: 'Psuh by action bot ${{ github.sha }}'
+          push_dir: 'docs/.vuepress/dist/'
+          repository_url: 'github.com/YuPengZhangL/LearnDocsHtml.git'
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
