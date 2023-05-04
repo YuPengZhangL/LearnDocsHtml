@@ -31,15 +31,15 @@ jobs:
       - run: npm install
       - run: npm run build dev
       - name: Push dir to Git
-      - uses: liziwl/git-push-action@master
+        uses: 'liziwl/git-push-action@master'
         with:
           git_token_holder: 'yupengzhangl'
           git_token: '${{ secrets.VuepressToken }}'
           commit_user: 'yupengzhang'
           commit_email: '252964846@qq.com'
           commit_message: 'Psuh by action bot'
-          push_dir: 'docs/.vuepress/dist'
-          repository_url: 'https://github.com/YuPengZhangL/LearnDocsHtml.git'
+          push_dir: 'docs/.vuepress/dist/'
+          repository_url: 'github.com/YuPengZhangL/LearnDocsHtml.git'
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
