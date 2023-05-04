@@ -35,7 +35,7 @@ jobs:
         with:
           git_token_holder: 'yupengzhangl'
           git_token: '${{ secrets.GITHUB_TOKEN }}'
-          commit_user: 'yupengzhang'
+          commit_user: 'yupengzhangl'
           commit_email: '252964846@qq.com'
           commit_message: 'Psuh by action bot'
           push_dir: 'docs/.vuepress/dist/'
