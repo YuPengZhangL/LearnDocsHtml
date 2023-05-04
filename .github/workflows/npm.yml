@@ -37,7 +37,7 @@ jobs:
           commit_user: 'yupengzhangl'
           commit_email: '252964846@qq.com'
           branch: 'main'
-          commit_message: 'Psuh by action bot ${{ github.sha }'
+          commit_message: 'Psuh by action bot ${{ github.sha }}'
           push_dir: 'docs/.vuepress/dist/'
           repository_url: 'github.com/YuPengZhangL/LearnDocsHtml.git'
       # Runs a single command using the runners shell
