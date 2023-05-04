@@ -28,7 +28,8 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - run: npm run build
+      - run: npm install
+      - run: npm run
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
