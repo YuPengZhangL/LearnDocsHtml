@@ -34,7 +34,7 @@ jobs:
         uses: 'liziwl/git-push-action@master'
         with:
           git_token_holder: 'yupengzhangl'
-          git_token: '${{ secrets.GIT_TOKEN }}'
+          git_token: '${{ secrets.GITHUB_TOKEN }}'
           commit_user: 'yupengzhang'
           commit_email: '252964846@qq.com'
           commit_message: 'Psuh by action bot'
