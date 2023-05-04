@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-nprogress": "^1.8.2",
+    "vuepress": "^1.8.2",
+    "vuepress-auto-sidebar-doumjun": "^1.0.1"
+  },
+  "dependencies": {
+    "markdown-it-disable-url-encode": "^1.0.1"
+  }
+}
