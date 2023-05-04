@@ -20,13 +20,14 @@ const {
 	 
 } = settings
 module.exports = {
-	base: process.env.NODE_ENV === 'development' ? '/' : '/myhelm_chart/',
+	base: process.env.NODE_ENV === 'development' ? '/' : '/LearnDocsHtml/',
 	title: 'YupengZ个人文档',
 	description: '开源技术资料整理',
 	themeConfig: {
 		searchMaxSuggestions: 10,
 		sidebarDepth: 8, // 将同时提取markdown中h2 标题，显示在侧边栏上。
 		displayAllHeaders: true,
+		archive: true,
 		lastUpdated: 'Last Updated', // 文档更新时间：每个文件git最后提交的时间
 		logo: '/logo.jpg',
 		nav: [ 
