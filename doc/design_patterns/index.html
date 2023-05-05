@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>常用的设计模式学习记录 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/34.fe242440.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="常用的设计模式学习记录"><a href="#常用的设计模式学习记录" class="header-anchor">#</a> 常用的设计模式学习记录</h3> <div class="language-text line-numbers-mode"><pre class="language-text"><code>├─代理模式
+│      proxy.py
+│      test.txt
+│
+├─单例模式
+│      singleton.py
+│
+├─外观模式
+│      facade.py
+│
+├─工厂模式
+│      abstract_factory.py
+│      factory.py
+│      factory_method.py
+│
+├─建造者模式
+│      builder.py
+│
+├─桥模式
+│      bridge.py
+│
+├─模板方法模式
+│      template_method.py
+│
+├─策略模式
+│      strategy.py
+│
+├─组合模式
+│      combination.py
+│
+├─观察者模式
+│      observer_pattern.py
+│
+├─责任链模式
+│      chain_responsibility.py
+│
+└─适配器模式
+        adapter.py
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br></div></div><h4 id="常见概念"><a href="#常见概念" class="header-anchor">#</a> 常见概念</h4> <ol><li><p>设计模式</p> <ul><li>设计模式是对软件设计中普遍存在或反复出向的各种问题所提出的解决方案。每一个设计模式系统地被命名、解释和评价了面向对象系统中一个重要和重复出现的设计。</li></ul></li> <li><p>设计模式的分类</p> <ul><li>创建型模式：工厂方法模式、抽象工厂模式、创建者模式、原型模式、单例模式。隐藏底层模块的逻辑，关注怎么创建对象。</li> <li>结构型模式：适配器模式、桥模式、组合模式、装饰模式、外观模式、享元模式、代理模式。类之间如何协同工作，应该组成什么结构。</li> <li>行为型模式：解释器模式、责任链模式、命令模式、迭代器模式、中介者模式、备忘录模式、观察者模式、状态模式、策略模式、访问者模式、模板方法模式。关注行为，也就是方法，应该怎样某些行为。</li></ul></li> <li><p>面向对象</p> <ul><li>设计模式解决的就是面向对象中的问题。需要指导面向对象的三大特性是 封装、继承和多态 ，封装是把数据和方法封装到类中，继承是类之间复用代码，</li> <li>多态在Python中默认支持的，Python是一种多态的语言。</li></ul></li> <li><p>接口</p> <ul><li>接口是若干抽象方法的集合。接口的作用是限制实现接口的类必须按照接口给定的调用方式实现这些方法，对高层模块隐藏了类的内部实现。案例如下：</li></ul> <div class="language-python line-numbers-mode"><pre class="language-python"><code><span class="token comment">#!/usr/bin/env python</span>
+<span class="token comment"># -*- encoding: utf-8 -*-</span>
+<span class="token triple-quoted-string string">'''
+@File    :   interface.py
+@Time    :   2022/09/12 21:21:05
+@Author  :   scliang 
+@Desc    :   None
+'''</span>
+
+<span class="token comment"># here put the import lib</span>
+<span class="token comment"># 引入抽象类</span>
+<span class="token keyword">from</span> abc <span class="token keyword">import</span> ABCMeta<span class="token punctuation">,</span> abstractmethod
+<span class="token keyword">import</span> re
+
+<span class="token keyword">class</span> <span class="token class-name">Payment</span><span class="token punctuation">(</span>metaclass<span class="token operator">=</span>ABCMeta<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># abstract class</span>
+    <span class="token decorator annotation punctuation">@abstractmethod</span>
+    <span class="token keyword">def</span> <span class="token function">pay</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>money<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+
+<span class="token comment"># 实现抽象类</span>
+<span class="token keyword">class</span> <span class="token class-name">AliPay</span><span class="token punctuation">(</span>Payment<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">pay</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>money<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;支付宝支付%d&quot;</span> <span class="token operator">%</span>money<span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">WechatPay</span><span class="token punctuation">(</span>Payment<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">pay</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> money<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;微信支付%d元&quot;</span> <span class="token operator">%</span> money<span class="token punctuation">)</span>
+
+<span class="token comment"># 直接实例化一个抽象类会直接报错</span>
+<span class="token comment"># p = Payment()</span>
+<span class="token comment"># print(&quot;abstract method:&quot;,p)</span>
+<span class="token triple-quoted-string string">'''
+Traceback (most recent call last):
+File &quot;F:\GoProjects\src\MyPractiseNotes\设计模式\interface.py&quot;, line 33, in &lt;module&gt;
+    p = Payment()
+TypeError: Can't instantiate abstract class Payment with abstract method pay
+'''</span>
+
+<span class="token comment"># 可以实例化抽象类的实现类</span>
+p <span class="token operator">=</span> AliPay<span class="token punctuation">(</span><span class="token punctuation">)</span>
+p<span class="token punctuation">.</span>pay<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+PS F:\GoProjects\src\MyPractiseNotes\设计模式&gt; python .\interface.py
+支付宝支付100
+&quot;&quot;&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br></div></div></li></ol> <h4 id="面向对象的三大特性"><a href="#面向对象的三大特性" class="header-anchor">#</a> 面向对象的三大特性</h4> <ul><li>继承</li> <li>封装</li> <li>多态</li></ul> <h4 id="创建型模式"><a href="#创建型模式" class="header-anchor">#</a> 创建型模式</h4> <ul><li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/factory_method.py" target="_blank" rel="noopener noreferrer">工厂方法模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/abstract_factory.py" target="_blank" rel="noopener noreferrer">抽象工厂模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/builder.py" target="_blank" rel="noopener noreferrer">建造者模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>原型模式</li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/singleton.py" target="_blank" rel="noopener noreferrer">单例模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h4 id="结构型模式"><a href="#结构型模式" class="header-anchor">#</a> 结构型模式</h4> <ul><li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/adapter.py" target="_blank" rel="noopener noreferrer">适配器模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E6%A1%A5%E6%A8%A1%E5%BC%8F/bridge.py" target="_blank" rel="noopener noreferrer">桥模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/combination.py" target="_blank" rel="noopener noreferrer">组合模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>装饰模式</li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/facade.py" target="_blank" rel="noopener noreferrer">外观模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>享元模式</li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/proxy.py" target="_blank" rel="noopener noreferrer">代理模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h4 id="行为型模式"><a href="#行为型模式" class="header-anchor">#</a> 行为型模式</h4> <ul><li>解释器模式</li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/chain_responsibility.py" target="_blank" rel="noopener noreferrer">责任链模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>命令模式</li> <li>迭代器模式</li> <li>中介者模式</li> <li>备忘录模式</li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/observer_pattern.py" target="_blank" rel="noopener noreferrer">观察者模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>状态模式</li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/strategy.py" target="_blank" rel="noopener noreferrer">策略模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>访问者模式</li> <li><a href="https://github.com/scliang-strive/MyPractiseNotes/blob/master/design_patterns/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/template_method.py" target="_blank" rel="noopener noreferrer">模板方法模式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/34.fe242440.js" defer></script>
+  </body>
+</html>

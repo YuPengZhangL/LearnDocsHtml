@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>mysql 中的主从复制 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/24.b6ba552b.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/mysql/1.1 mysql 的系统结构.html" class="sidebar-link">mysql 体系结构图</a></li><li><a href="/LearnDocsHtml/doc/mysql/1.2 mysql 的存储引擎.html" class="sidebar-link">1. 存储引擎</a></li><li><a href="/LearnDocsHtml/doc/mysql/2.1 mysql 中的索引.html" class="sidebar-link">mysql 中索引语法以及分类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.2 mysql 中的索引结构.html" class="sidebar-link">mysql 中的索引结构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.3 sql 分析工具.html" class="sidebar-link">sql性能分析</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.4 索引使用原则.html" class="sidebar-link">索引使用原则</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/3.1 sql 优化.html" class="sidebar-link">SQL 优化</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.1 mysql 中的视图.html" class="sidebar-link">mysql 中的视图</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.2 mysql 中的存储过程.html" class="sidebar-link">mysql 中的存储过程</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.3 mysql 中触发器.html" class="sidebar-link">mysql 中的触发器</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.1 mysql 锁的基本概念.html" class="sidebar-link">mysql 中的锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.2 mysql 中的表锁.html" class="sidebar-link">表级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.3 mysql 中的行锁.html" class="sidebar-link">行级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.1 mysql 中InnoDB的架构.html" class="sidebar-link">mysql 中InnoDB 架构详解</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.2 mysql 中的事务.html" class="sidebar-link">mysql 中事务</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.3 mysql 中事务的MVCC.html" class="sidebar-link">mysql 事务中的MVCC</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.1 mysql 中的日志.html" class="sidebar-link">mysql 中的日志</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.2 mysql 中的主从复制.html" class="active sidebar-link">mysql 中的主从复制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.3 mysql 中的分库分表.html" class="sidebar-link">mysql 中的分库分表</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.4 mysql 中的读写分离.html" class="sidebar-link">mysql 中的读写分离</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="mysql-中的主从复制"><a href="#mysql-中的主从复制" class="header-anchor">#</a> mysql 中的主从复制</h3> <h4 id="_1-主从复制的介绍"><a href="#_1-主从复制的介绍" class="header-anchor">#</a> 1. 主从复制的介绍</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+主从复制至少需要两台服务器,一台作为主库,一台作为从库.
+主库: Master
+从库: Slave
+
+1) MySQL 的主从复制又叫 Replication、AB 复制。至少需要两个 MySQL 服务（可以是同一台机器，也可以是不同机器之间进行）。
+
+    比如A服务器做主服务器，B服务器做从服务器，在A服务器上进行数据的更新，通过 binlog 日志记录同步到B服务器上，并重新执行(也叫重做)同步过来的 binlog 数据，从而达到两台服务器数据一致。
+
+2) MySQL 数据库的主从复制方案，与使用 scp/rsync 等命令进行的文件级别复制类似，都是数据的远程传输。
+
+    只不过 MySQL 的主从复制是其自带的功能，无需借助第三方工具，而且MySQL的主从复制并不是数据库磁盘上的文件直接拷贝，而是通过逻辑的 binlog 日志复制到要同步的服务器本地，然后由本地的线程读取日志里面的 SQL 语句，重新应用到 MySQL 数据库中。
+
+3) mysql 支持一台主库同时向多态从库复制，从库也可以同时作为其他从服务器的主库，形成一个链式结构.
+
+
+
+作用：
+    1. 可以实时灾备，用于故障切换(主库出现问题，可以快速切换到从库提供服务)
+    2. 读写分离，提供查询服务，实现负载均衡(降低主库的访问压力)
+    3. 数据热备，避免影响业务(在从库中执行数据备份，不影响主库提供服务)
+
+*/</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h4 id="_2-主从复制的原理"><a href="#_2-主从复制的原理" class="header-anchor">#</a> 2. 主从复制的原理</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+主从复制主要有三步，其中和前边所讲的bin log 有关:
+    1) Master 主库在事务提交时，会将数据变更记录到binlog中;
+    2) Slave 从库会有一个IOThread的线程定时读取Master的binlog，写入到Slave从库的中继日志Relay log中;
+    3) Slave 会有一个SQLThread的线程对中继日志(Relay log)进行重做，从而改变自己的数据，使主从数据一致;
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><strong>主从复制原理图</strong> <img src="/LearnDocsHtml/assets/img/主从复制示意图.ef161706.png" alt="image"></p> <h4 id="_3-主从复制的搭建流程"><a href="#_3-主从复制的搭建流程" class="header-anchor">#</a> 3. 主从复制的搭建流程</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+1) 服务器的准备，关闭防火墙或者开放指定端口，保证服务器mysql正常运行(可以使用 'systemctl status msyqld' 查看)
+
+准备好服务器，至少需要两台，开放服务器端口
+    A) firewall-cmd --zone=public --add-port=3306/tcp -premanent
+    B) firewall-cmd reload
+or
+    A) systemctl stop firewalld
+    B) systemctl disable firewalld
+
+2) 修改服务器的配置文件
+/etc/my.con
+
+[mysqld]
+server-id = 1
+# 1 代表只读，0代表读写
+read-only=0
+#要生成二进制日志文件 主服务器一定要开启
+log-bin = mysql-bin
+
+3) 创建访问用户
+*/</span>
+<span class="token comment"># 1 创建用户</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">create</span> <span class="token keyword">user</span> <span class="token string">'$username'</span><span class="token variable">@'%'</span> identified <span class="token keyword">by</span> <span class="token string">'$password'</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 2 设置用户权限</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">grant</span> <span class="token keyword">replication</span> slave<span class="token punctuation">,</span><span class="token keyword">replication</span> client <span class="token keyword">on</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">to</span> <span class="token string">'$username'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 3 刷新权限</span>
+mysql<span class="token operator">&gt;</span> flush <span class="token keyword">privileges</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 4 查看用户权限</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> grants <span class="token keyword">for</span> <span class="token string">'$username'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">/*
+4) 开启主从同步
+*/</span>
+<span class="token comment"># 从库关联主库</span>
+mysql<span class="token operator">&gt;</span> change master <span class="token keyword">to</span> master_host<span class="token operator">=</span><span class="token string">'$master_host'</span><span class="token punctuation">,</span>master_user<span class="token operator">=</span><span class="token string">'$master_user'</span><span class="token punctuation">,</span>master_password<span class="token operator">=</span><span class="token string">'$master_password'</span><span class="token punctuation">,</span>master_log_file<span class="token operator">=</span><span class="token string">'$bin_log_file'</span><span class="token punctuation">,</span>master_log_pos<span class="token operator">=</span>$bin_log_index<span class="token punctuation">;</span>
+
+<span class="token comment"># 启动主从复制</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">start</span> slave<span class="token punctuation">;</span>
+
+
+<span class="token comment"># 查看从库状态</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> slave <span class="token keyword">status</span> \G<span class="token punctuation">;</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> <span class="token number">1.</span> <span class="token keyword">row</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+               Slave_IO_State: Waiting <span class="token keyword">for</span> master <span class="token keyword">to</span> send event
+                  Master_Host: <span class="token number">172.17</span><span class="token number">.0</span><span class="token number">.2</span>
+                  Master_User: slave
+                  Master_Port: <span class="token number">3306</span>
+                Connect_Retry: <span class="token number">60</span>
+              Master_Log_File: mysql<span class="token operator">-</span>bin<span class="token punctuation">.</span><span class="token number">000001</span>
+          Read_Master_Log_Pos: <span class="token number">769</span>
+               Relay_Log_File: f2229f66966b<span class="token operator">-</span>relay<span class="token operator">-</span>bin<span class="token punctuation">.</span><span class="token number">000002</span>
+                Relay_Log_Pos: <span class="token number">320</span>
+        Relay_Master_Log_File: mysql<span class="token operator">-</span>bin<span class="token punctuation">.</span><span class="token number">000001</span>
+        <span class="token comment">-- 这两个参数正常表示主从服务正常</span>
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br></div></div><p><strong>下面使用docker创建主从服务</strong></p> <ul><li><strong>Master</strong></li></ul> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># Master</span>
+
+<span class="token comment"># 创建Master容器配置</span>
+<span class="token comment"># 创建宿主机挂载配置目录</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> <span class="token operator">~</span><span class="token punctuation">]</span><span class="token comment"># mkdir mysql_test</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> <span class="token operator">~</span><span class="token punctuation">]</span><span class="token comment"># cd mysql_test/</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment"># mkdir -p master/conf master/data master/logs</span>
+
+
+<span class="token comment"># 指定镜像版本启动docker容器</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment">#  docker run --name mysql-master -p 3310:3306 -v /root/mysql_test/master/conf:/etc/mysql/conf.d -v /root/mysql_test/master/data:/var/lib/mysql -v /root/mysql_test/master/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7 </span>
+
+<span class="token comment"># 查看docker容器是否可以进入mysql</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment"># docker exec -it mysql-master bash</span>
+Emulate Docker CLI <span class="token keyword">using</span> podman<span class="token punctuation">.</span> <span class="token keyword">Create</span> <span class="token operator">/</span>etc<span class="token operator">/</span>containers<span class="token operator">/</span>nodocker <span class="token keyword">to</span> quiet msg<span class="token punctuation">.</span>
+bash<span class="token operator">-</span><span class="token number">4.2</span><span class="token comment"># mysql -uroot -p123456</span>
+
+<span class="token comment"># --------配置/etc/mysql/conf.d/my.cnf,没有创建一个--------------</span>
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+server<span class="token operator">-</span>id <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token comment"># 1 代表只读，0代表读写</span>
+<span class="token keyword">read</span><span class="token operator">-</span>only<span class="token operator">=</span><span class="token number">0</span>
+<span class="token comment">#要生成二进制日志文件 主服务器一定要开启</span>
+log<span class="token operator">-</span>bin <span class="token operator">=</span> mysql<span class="token operator">-</span>bin
+<span class="token comment"># 指定同步的数据库,不指定则全部同步</span>
+<span class="token comment"># binlog-do-db=$db_name</span>
+<span class="token comment"># 如果从数据库有写入操作，也需要更新binlog</span>
+<span class="token comment"># log-slave-updates</span>
+
+<span class="token comment"># 配置文件修改完成重新启动mysql</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment"># docker restart mysql-master</span>
+
+<span class="token comment"># ------------创建主服务器复制用户及相关权限-------------------</span>
+
+<span class="token comment"># 1 创建用户</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">create</span> <span class="token keyword">user</span> <span class="token string">'slave'</span><span class="token variable">@'%'</span> identified <span class="token keyword">by</span> <span class="token string">'123456'</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+<span class="token comment"># 2 设置用户权限</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">grant</span> <span class="token keyword">replication</span> slave<span class="token punctuation">,</span><span class="token keyword">replication</span> client <span class="token keyword">on</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">to</span> <span class="token string">'slave'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+<span class="token comment"># 3 刷新权限</span>
+mysql<span class="token operator">&gt;</span> flush <span class="token keyword">privileges</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+<span class="token comment"># 4 查看用户权限</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> grants <span class="token keyword">for</span> <span class="token string">'slave'</span><span class="token variable">@'%'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------------------------------------------+</span>
+<span class="token operator">|</span> Grants <span class="token keyword">for</span> slave@<span class="token operator">%</span>                                                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------------------------------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">GRANT</span> <span class="token keyword">REPLICATION</span> SLAVE<span class="token punctuation">,</span> <span class="token keyword">REPLICATION</span> CLIENT <span class="token keyword">ON</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">TO</span> <span class="token string">'slave'</span><span class="token variable">@'%'</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------------------------------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">#--------------------查看master对应的ip，slave会用到------------------------------------</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> <span class="token operator">~</span><span class="token punctuation">]</span><span class="token comment"># docker inspect mysql-master</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ <span class="token string">&quot;Networks&quot;</span>: {
+    <span class="token string">&quot;bridge&quot;</span>: {
+        <span class="token string">&quot;IPAMConfig&quot;</span>: <span class="token boolean">null</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;Links&quot;</span>: <span class="token boolean">null</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;Aliases&quot;</span>: <span class="token boolean">null</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;NetworkID&quot;</span>: <span class="token string">&quot;898ecd79eef9bfbc6fbe347f72da2784ccdfff92998af06a464601391d75bec2&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;EndpointID&quot;</span>: <span class="token string">&quot;8ce221372a3c9e697c42cdecbbb4fe50c24b067b45c17204af6756c3204058ee&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;Gateway&quot;</span>: <span class="token string">&quot;172.17.0.1&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;IPAddress&quot;</span>: <span class="token string">&quot;172.17.0.2&quot;</span><span class="token punctuation">,</span><span class="token comment"># 地址</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br></div></div><ul><li><strong>Slave</strong></li></ul> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment"># Slave</span>
+
+<span class="token comment"># 创建挂载目录</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> <span class="token operator">~</span><span class="token punctuation">]</span><span class="token comment"># cd mysql_test/</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment"># mkdir -p slave/data slave/conf slave/logs</span>
+
+<span class="token comment"># 创建slave从库容器</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment"># docker run --name mysql-slave  -p 3333:3306 -v /root/mysql_test/slave/conf:/etc/mysql/conf.d -v /root/mysql_test/slave/data:/var/lib/mysql -v /root/mysql_test/slave/logs:/var/log/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7 </span>
+
+<span class="token comment"># 查看是否可以正常进入容器，如果启动失败，可以查看使用docker logs -f $container_name日志原因</span>
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment"># docker exec -it mysql-slave bash</span>
+Emulate Docker CLI <span class="token keyword">using</span> podman<span class="token punctuation">.</span> <span class="token keyword">Create</span> <span class="token operator">/</span>etc<span class="token operator">/</span>containers<span class="token operator">/</span>nodocker <span class="token keyword">to</span> quiet msg<span class="token punctuation">.</span>
+bash<span class="token operator">-</span><span class="token number">4.2</span><span class="token comment"># mysql -uroot -p123456</span>
+
+
+<span class="token comment"># --------配置/etc/mysql/conf.d/my.cnf,没有创建一个--------------</span>
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+server<span class="token operator">-</span>id <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token comment">#要生成二进制日志文件 主服务器一定要开启</span>
+log<span class="token operator">-</span>bin <span class="token operator">=</span> mysql<span class="token operator">-</span>bin
+
+
+<span class="token punctuation">[</span>root<span class="token variable">@iZ2ze58f53sxjm9z7mgn5xZ</span> mysql_test<span class="token punctuation">]</span><span class="token comment"># docker restart mysql-slave bash</span>
+
+<span class="token comment"># 关联主从库</span>
+mysql<span class="token operator">&gt;</span> change master <span class="token keyword">to</span> master_host<span class="token operator">=</span><span class="token string">'172.17.0.2'</span><span class="token punctuation">,</span>master_user<span class="token operator">=</span><span class="token string">'slave'</span><span class="token punctuation">,</span>master_password<span class="token operator">=</span><span class="token string">'123456'</span><span class="token punctuation">,</span>master_log_file<span class="token operator">=</span><span class="token string">'mysql-bin.000001'</span><span class="token punctuation">,</span>master_log_pos<span class="token operator">=</span><span class="token number">769</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected<span class="token punctuation">,</span> <span class="token number">2</span> <span class="token keyword">warnings</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment"># 启动主从复制</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">start</span> slave<span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment"># 查看从库状态</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> slave <span class="token keyword">status</span> \G<span class="token punctuation">;</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> <span class="token number">1.</span> <span class="token keyword">row</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+               Slave_IO_State: Waiting <span class="token keyword">for</span> master <span class="token keyword">to</span> send event
+                  Master_Host: <span class="token number">172.17</span><span class="token number">.0</span><span class="token number">.2</span>
+                  Master_User: slave
+                  Master_Port: <span class="token number">3306</span>
+                Connect_Retry: <span class="token number">60</span>
+              Master_Log_File: mysql<span class="token operator">-</span>bin<span class="token punctuation">.</span><span class="token number">000001</span>
+          Read_Master_Log_Pos: <span class="token number">769</span>
+               Relay_Log_File: f2229f66966b<span class="token operator">-</span>relay<span class="token operator">-</span>bin<span class="token punctuation">.</span><span class="token number">000002</span>
+                Relay_Log_Pos: <span class="token number">320</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><h4 id="_4-主从复制测试"><a href="#_4-主从复制测试" class="header-anchor">#</a> 4. 主从复制测试</h4> <p><strong>Master</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 查询原有的数据</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> <span class="token keyword">databases</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
+<span class="token operator">|</span> sys                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token number">4</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 创建一个数据库</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">create</span> <span class="token keyword">database</span> my_test<span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 创建成功</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> <span class="token keyword">databases</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> my_test            <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
+<span class="token operator">|</span> sys                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><p><strong>Slave</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 查看从库的原本数据库</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> <span class="token keyword">databases</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
+<span class="token operator">|</span> sys                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token number">4</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- master创建成功之后查看,成功同步过来</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> <span class="token keyword">databases</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> <span class="token keyword">Database</span>           <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> information_schema <span class="token operator">|</span>
+<span class="token operator">|</span> my_test            <span class="token operator">|</span>
+<span class="token operator">|</span> mysql              <span class="token operator">|</span>
+<span class="token operator">|</span> performance_schema <span class="token operator">|</span>
+<span class="token operator">|</span> sys                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h4 id="_5-切换主从"><a href="#_5-切换主从" class="header-anchor">#</a> 5. 切换主从</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+1) SHOW PROCESSLIST; 检查slave是否已经应用完从Master读取过来的在relay log中的操作，如果未应用完不能stop slave，否则会造成数据会有丢失
+*/</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SHOW</span> PROCESSLIST<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+-------------+-----------+------+---------+------+--------------------------------------------------------+------------------+</span>
+<span class="token operator">|</span> Id <span class="token operator">|</span> <span class="token keyword">User</span>        <span class="token operator">|</span> Host      <span class="token operator">|</span> db   <span class="token operator">|</span> Command <span class="token operator">|</span> <span class="token keyword">Time</span> <span class="token operator">|</span> State                                                  <span class="token operator">|</span> Info             <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+-------------+-----------+------+---------+------+--------------------------------------------------------+------------------+</span>
+<span class="token operator">|</span>  <span class="token number">5</span> <span class="token operator">|</span> root        <span class="token operator">|</span> localhost <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> Query   <span class="token operator">|</span>    <span class="token number">0</span> <span class="token operator">|</span> <span class="token keyword">starting</span>                                               <span class="token operator">|</span> <span class="token keyword">SHOW</span> PROCESSLIST <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">6</span> <span class="token operator">|</span> system <span class="token keyword">user</span> <span class="token operator">|</span>           <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token keyword">Connect</span> <span class="token operator">|</span>  <span class="token number">152</span> <span class="token operator">|</span> Waiting <span class="token keyword">for</span> master <span class="token keyword">to</span> send event                       <span class="token operator">|</span> <span class="token boolean">NULL</span>             <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">7</span> <span class="token operator">|</span> system <span class="token keyword">user</span> <span class="token operator">|</span>           <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token keyword">Connect</span> <span class="token operator">|</span>  <span class="token number">152</span> <span class="token operator">|</span> Slave has <span class="token keyword">read</span> <span class="token keyword">all</span> relay log<span class="token punctuation">;</span> waiting <span class="token keyword">for</span> more updates <span class="token operator">|</span> <span class="token boolean">NULL</span>             <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+-------------+-----------+------+---------+------+--------------------------------------------------------+------------------+</span>
+<span class="token number">3</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 停止slave</span>
+mysql<span class="token operator">&gt;</span> stop slave<span class="token punctuation">;</span>
+
+<span class="token comment">-- 重新reset slave 为master</span>
+mysql<span class="token operator">&gt;</span> reset master<span class="token punctuation">;</span>
+
+<span class="token comment">-- 将其他slave的master设置为当前服务结点</span>
+
+<span class="token comment">-- 停止其他的slave</span>
+mysql<span class="token operator">&gt;</span> stop slave<span class="token punctuation">;</span>
+
+<span class="token comment">-- 更改关联</span>
+mysq<span class="token operator">&gt;</span> change master <span class="token keyword">to</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><h4 id="_6-主从集群中的错误"><a href="#_6-主从集群中的错误" class="header-anchor">#</a> 6. 主从集群中的错误</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+1)  Error 'Character set '#255' is not a compiled character set and is not specified in the '/usr/share/mysql/charsets/Index.xml' file' on query. Default database: 'my_test'. Query: 'DROP TABLE `t` /* generated by server *\/'
+
+该错误可能是从库的数据库版本比主库，导致复制过来的binlog解析不成功
+*/</span>
+
+<span class="token comment">/*
+2) Coordinator stopped because there were error(s) in the worker(s). The most recent failure being: Worker 1 failed executing transaction 'ANONYMOUS' at master log mysql-bin.000001, end_log_pos 1269. See error log and/or performance_schema.replication_applier_status_by_worker table for more details about this failure or others, if any.
+
+复制过来的binlog在主库中找不到记录，也就是最后关联设置的master_log_pos太靠前了，然后执行删除或者什么其他操作，导致找不到对应需要同步的数据
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/mysql/7.1 mysql 中的日志.html" class="prev">
+        mysql 中的日志
+      </a></span> <span class="next"><a href="/LearnDocsHtml/doc/mysql/7.3 mysql 中的分库分表.html">
+        mysql 中的分库分表
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/24.b6ba552b.js" defer></script>
+  </body>
+</html>

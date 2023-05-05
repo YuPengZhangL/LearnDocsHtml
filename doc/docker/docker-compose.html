@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker-compose | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/36.1f916d97.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/docker/docker-compose.html" aria-current="page" class="active sidebar-link">Docker-compose</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#docker-compose" class="sidebar-link">Docker-compose</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_1-什么是docker-compose" class="sidebar-link">1. 什么是docker-compose</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_2-docker-compose-的安装" class="sidebar-link">2. Docker-compose 的安装</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_3-docker-compose-的基本使用" class="sidebar-link">3. docker-compose 的基本使用</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_4-docker-compose-搭建kafka集群案例" class="sidebar-link">4. docker-compose 搭建kafka集群案例</a></li></ul></li></ul></li><li><a href="/LearnDocsHtml/doc/docker/docker.html" class="sidebar-link">Docker</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_1-虚拟化技术" class="sidebar-link">1. 虚拟化技术</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-docker-的概念及组成" class="sidebar-link">2. docker 的概念及组成</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-1-docker-的组成" class="sidebar-link">2.1 docker 的组成</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-2-docker-run的流程是什么" class="sidebar-link">2.2 docker run的流程是什么？</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-3-docker的工作原理" class="sidebar-link">2.3 docker的工作原理</a></li></ul></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-docker-镜像加载" class="sidebar-link">3. docker 镜像加载</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-1-unionfs-联合文件系统" class="sidebar-link">3.1 UnionFS （联合文件系统）</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-2-docker镜像加载原理" class="sidebar-link">3.2 Docker镜像加载原理</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-3-dockerfile" class="sidebar-link">3.3 Dockerfile</a></li></ul></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_4-docker-详细思维导图" class="sidebar-link">4. Docker 详细思维导图</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="docker-compose"><a href="#docker-compose" class="header-anchor">#</a> Docker-compose</h2> <h3 id="_1-什么是docker-compose"><a href="#_1-什么是docker-compose" class="header-anchor">#</a> 1. 什么是docker-compose</h3> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。
+
+Compose 使用的三个步骤：
+
+    1) 使用 Dockerfile 定义应用程序的环境。
+    2) 使用 docker-compose.yml 定义构成应用程序的服务，这样它们可以在隔离环境中一起运行。
+    3) 最后，执行 docker-compose up 命令来启动并运行整个应用程序。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h3 id="_2-docker-compose-的安装"><a href="#_2-docker-compose-的安装" class="header-anchor">#</a> 2. Docker-compose 的安装</h3> <p><strong>linux</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># Linux 上我们可以从 Github 上下载它的二进制包来使用，最新发行的版本地址：https://github.com/docker/compose/releases</span>
+
+<span class="token comment"># 1. 下载二进制包</span>
+<span class="token comment"># 不同的版本更换v2.2.2即可</span>
+<span class="token function">sudo</span> <span class="token function">curl</span> <span class="token parameter variable">-L</span> <span class="token string">&quot;https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-s</span><span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> <span class="token parameter variable">-m</span><span class="token variable">)</span></span>&quot;</span> <span class="token parameter variable">-o</span> /usr/local/bin/docker-compose
+
+<span class="token comment"># 2. 添加执行权限</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+
+<span class="token comment"># 3. 创建软连接,如果第一步直接下载到/usr/bin/docker-compose 目录下的，则可以省略该步骤</span>
+<span class="token function">sudo</span> <span class="token function">ln</span> <span class="token parameter variable">-s</span> /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+<span class="token comment"># 4. 检查安装是否成功</span>
+<span class="token function">docker-compose</span> version
+<span class="token function">docker-compose</span> version <span class="token number">1.25</span>.1, build a82fef07
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><strong>macos &amp; windowns</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># Mac和Windows 的 Docker 桌面版和 Docker Toolbox 已经包括 Compose 和其他 Docker 应用程序,，所以 Mac 用户不需要单独安装 docker-compose</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_3-docker-compose-的基本使用"><a href="#_3-docker-compose-的基本使用" class="header-anchor">#</a> 3. docker-compose 的基本使用</h3> <h4 id="_3-1-docker-compose-yaml"><a href="#_3-1-docker-compose-yaml" class="header-anchor">#</a> 3.1 docker-compose.yaml</h4> <blockquote><p>创建一个docker-compose.yml文件</p></blockquote> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;mysql:8.0&quot;</span>  <span class="token comment"># 指定镜像</span>
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+     <span class="token punctuation">-</span> <span class="token string">&quot;6379:6379&quot;</span>  <span class="token comment"># 端口映射</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><blockquote><p>启动&amp;停止docker-compose</p></blockquote> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 下述操作，如果文件名为docker-compose.yml，那可以不用指定-f $file_name 参数</span>
+
+<span class="token comment"># 1. 直接执行</span>
+<span class="token function">docker-compose</span> up
+
+<span class="token comment"># 2. 后台执行</span>
+<span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span>
+
+<span class="token comment"># 3. 如果文件名称不叫docker-compose，这可以指定文件名</span>
+<span class="token function">docker-compose</span> <span class="token parameter variable">-f</span> <span class="token variable">$file_name</span> up
+
+<span class="token comment"># 4. 停止容器</span>
+<span class="token function">docker-compose</span> <span class="token parameter variable">-f</span> <span class="token variable">$file_name</span> down <span class="token comment"># 终止compose，彻底终止，包括compose的资源也会被清楚</span>
+
+<span class="token function">docker-compose</span>  <span class="token parameter variable">-f</span> <span class="token variable">$file_name</span> stop <span class="token comment"># 停止当前compose，可以通过start再次启动，回到stop之前的状态</span>
+
+<span class="token comment"># 5. 重启compose</span>
+<span class="token function">docker-compose</span> <span class="token parameter variable">-f</span> <span class="token variable">$file_name</span> restart <span class="token comment"># 知识重启compose</span>
+
+<span class="token comment"># 也可以使用down之后在up</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p><strong>docker-compose 常见参数选项</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 1. 指定本 yml 依从的 compose 哪个版本制定的。</span>
+version 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 2. 添加或删除容器拥有的宿主机的内核功能。</span>
+cap_add:
+  - ALL <span class="token comment"># 开启全部权限</span>
+cap_drop:
+  - SYS_PTRACE <span class="token comment"># 关闭 ptrace权限</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 3. cgroup_parent 为容器指定父 cgroup 组，意味着将继承该组的资源限制</span>
+cgroup_parent: m-executor-abcd
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 4. command 覆盖容器启动的默认命令</span>
+command: <span class="token punctuation">[</span><span class="token string">&quot;bash&quot;</span>, <span class="token string">&quot;echo hello&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 5. container_name 指定自定义容器名称，而不是生成的默认名称</span>
+container_name: my_redis
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 6. depends_on 设置依赖关系:</span>
+    <span class="token function">docker-compose</span> up   <span class="token comment"># 以依赖性顺序启动服务。在以下示例中，先启动 db 和 redis ，才会启动 web。</span>
+    <span class="token function">docker-compose</span> up SERVICE  <span class="token comment">#自动包含 SERVICE 的依赖项。在以下示例中，docker-compose up web 还将创建并启动 db 和 redis</span>
+    <span class="token function">docker-compose</span> stop   <span class="token comment">#按依赖关系顺序停止服务。在以下示例中，web 在 db 和 redis 之前停止。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 7. endpoint_mode：访问集群服务的方式。</span>
+    <span class="token comment"># Docker 集群服务一个对外的虚拟 ip。所有的请求都会通过这个虚拟 ip 到达集群服务内部的机器。</span>
+    endpoint_mode: vip  
+    <span class="token comment"># DNS 轮询（DNSRR）。所有的请求会自动轮询获取到集群 ip 列表中的一个 ip 地址。</span>
+    endpoint_mode: dnsrr   
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 8. 在服务上设置标签。可以用容器上的 labels（跟 deploy 同级的配置） 覆盖 deploy 下的 labels。</span>
+labels
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 9. mode：指定服务提供的模式。</span>
+    <span class="token comment"># 复制服务，复制指定服务到集群的机器上。</span>
+    replicated 
+    <span class="token comment">#全局服务，服务将部署至集群的每个节点</span>
+    global  
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 10. 暴露端口，但不映射到宿主机，只被连接的服务访问</span>
+expose  
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 11. 指定容器运行的镜像</span>
+image   
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 12. restart  # 重启策略</span>
+    no：是默认的重启策略，在任何情况下都不会重启容器。
+    always：容器总是重新启动。
+    on-failure：在容器非正常退出时（退出状态非0），才会重启容器。
+    unless-stopped：在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 13将主机的数据卷或着文件挂载到容器里。</span>
+volumes 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><strong>更多的参数选项直接使用docker-compose --help即可查看</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker-compose --help</span>
+Define and run multi-container applications with Docker.
+
+Usage:
+  <span class="token function">docker-compose</span> <span class="token punctuation">[</span>-f <span class="token operator">&lt;</span>arg<span class="token operator">&gt;</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token punctuation">[</span>COMMAND<span class="token punctuation">]</span> <span class="token punctuation">[</span>ARGS<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+  <span class="token function">docker-compose</span> -h<span class="token operator">|</span>--help
+
+Options:
+  -f, <span class="token parameter variable">--file</span> FILE             Specify an alternate compose <span class="token function">file</span>
+                              <span class="token punctuation">(</span>default: docker-compose.yml<span class="token punctuation">)</span>
+  -p, --project-name NAME     Specify an alternate project name
+                              <span class="token punctuation">(</span>default: directory name<span class="token punctuation">)</span>
+  <span class="token parameter variable">--verbose</span>                   Show <span class="token function">more</span> output
+  --log-level LEVEL           Set log level <span class="token punctuation">(</span>DEBUG, INFO, WARNING, ERROR, CRITICAL<span class="token punctuation">)</span>
+  --no-ansi                   Do not print ANSI control characters
+  -v, <span class="token parameter variable">--version</span>               Print version and <span class="token builtin class-name">exit</span>
+  -H, <span class="token parameter variable">--host</span> HOST             Daemon socket to connect to
+
+  <span class="token parameter variable">--tls</span>                       Use TLS<span class="token punctuation">;</span> implied by <span class="token parameter variable">--tlsverify</span>
+  <span class="token parameter variable">--tlscacert</span> CA_PATH         Trust certs signed only by this CA
+  <span class="token parameter variable">--tlscert</span> CLIENT_CERT_PATH  Path to TLS certificate <span class="token function">file</span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="_4-docker-compose-搭建kafka集群案例"><a href="#_4-docker-compose-搭建kafka集群案例" class="header-anchor">#</a> 4. docker-compose 搭建kafka集群案例</h3> <div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&quot;3.7&quot;</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">zookeeper</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> zk
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/zookeeper
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./data<span class="token punctuation">:</span>/data
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 2181<span class="token punctuation">:</span><span class="token number">2181</span>
+
+  <span class="token key atrule">kafka1</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka1
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/kafka
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 9092<span class="token punctuation">:</span><span class="token number">9092</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">KAFKA_BROKER_ID</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//8.141.175.100<span class="token punctuation">:</span><span class="token number">9092</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_HOST_NAME</span><span class="token punctuation">:</span> 8.141.175.100          <span class="token comment"># 如果设置，则就作为broker 的hostname发往producer、consumers以及其他brokers</span>
+<span class="token comment">#      KAFKA_CREATE_TOPICS: &quot;myTopic:3&quot; #kafka启动后初始化一个有3个partition(分区)0个副本名叫myTopic的topic</span>
+      <span class="token key atrule">KAFKA_ZOOKEEPER_CONNECT</span><span class="token punctuation">:</span> zk<span class="token punctuation">:</span><span class="token number">2181</span>          <span class="token comment"># zookeeper集群连接地址</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_PORT</span><span class="token punctuation">:</span> <span class="token number">9092</span>            <span class="token comment"># 此端口将给与producers、consumers、以及其他brokers，它会在建立连接时用到</span>
+      <span class="token key atrule">KAFKA_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//0.0.0.0<span class="token punctuation">:</span><span class="token number">9092</span>
+      <span class="token key atrule">KAFKA_HEAP_OPTS</span><span class="token punctuation">:</span> <span class="token string">&quot;-Xmx256M -Xms128M&quot;</span>
+      <span class="token key atrule">ALLOW_PLAINTEXT_LISTENER</span><span class="token punctuation">:</span> <span class="token string">'true'</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./kafka1<span class="token punctuation">-</span>logs<span class="token punctuation">:</span>/kafka
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> zookeeper
+  <span class="token key atrule">kafka2</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka2
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/kafka
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 9093<span class="token punctuation">:</span><span class="token number">9093</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">KAFKA_BROKER_ID</span><span class="token punctuation">:</span> <span class="token number">2</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//8.141.175.100<span class="token punctuation">:</span><span class="token number">9093</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_HOST_NAME</span><span class="token punctuation">:</span> 8.141.175.100
+      <span class="token comment"># KAFKA_CREATE_TOPICS: &quot;myTopic:3&quot; #kafka启动后初始化一个有3个partition(分区)0个副本名叫myTopic的topic</span>
+      <span class="token key atrule">KAFKA_ZOOKEEPER_CONNECT</span><span class="token punctuation">:</span> zk<span class="token punctuation">:</span><span class="token number">2181</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_PORT</span><span class="token punctuation">:</span> <span class="token number">9093</span>
+      <span class="token key atrule">KAFKA_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//0.0.0.0<span class="token punctuation">:</span><span class="token number">9093</span>
+      <span class="token key atrule">KAFKA_HEAP_OPTS</span><span class="token punctuation">:</span> <span class="token string">&quot;-Xmx256M -Xms128M&quot;</span>
+      <span class="token key atrule">ALLOW_PLAINTEXT_LISTENER</span><span class="token punctuation">:</span> <span class="token string">'true'</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./kafka2<span class="token punctuation">-</span>logs<span class="token punctuation">:</span>/kafka
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> zookeeper
+  <span class="token key atrule">kafka3</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka3
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/kafka
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 9094<span class="token punctuation">:</span><span class="token number">9094</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">KAFKA_BROKER_ID</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//8.141.175.100<span class="token punctuation">:</span><span class="token number">9094</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_HOST_NAME</span><span class="token punctuation">:</span> 8.141.175.100
+      <span class="token comment"># KAFKA_CREATE_TOPICS: &quot;myTopic:3&quot; #kafka启动后初始化一个有3个partition(分区)0个副本名叫myTopic的topic</span>
+      <span class="token key atrule">KAFKA_ZOOKEEPER_CONNECT</span><span class="token punctuation">:</span> zk<span class="token punctuation">:</span><span class="token number">2181</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_PORT</span><span class="token punctuation">:</span> <span class="token number">9094</span>
+      <span class="token key atrule">KAFKA_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//0.0.0.0<span class="token punctuation">:</span><span class="token number">9094</span>
+      <span class="token key atrule">KAFKA_HEAP_OPTS</span><span class="token punctuation">:</span> <span class="token string">&quot;-Xmx256M -Xms128M&quot;</span>
+      <span class="token key atrule">ALLOW_PLAINTEXT_LISTENER</span><span class="token punctuation">:</span> <span class="token string">'true'</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./kafka3<span class="token punctuation">-</span>logs<span class="token punctuation">:</span>/kafka
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> zookeeper
+
+<span class="token comment"># 启动：</span>
+docker<span class="token punctuation">-</span>compose <span class="token punctuation">-</span>f $docker<span class="token punctuation">-</span>compose<span class="token punctuation">-</span>file<span class="token punctuation">-</span>name up <span class="token punctuation">-</span>d
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/LearnDocsHtml/doc/docker/docker.html">
+        Docker
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/36.1f916d97.js" defer></script>
+  </body>
+</html>

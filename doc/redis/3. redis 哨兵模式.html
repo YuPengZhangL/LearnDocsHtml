@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redis 哨兵架构 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/28.f2857d64.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link router-link-active">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link router-link-active">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/redis/1. redis 的事务机制.html" class="sidebar-link">Redis 的事务机制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/2. redis 的主从复制.html" class="sidebar-link">Redis 的主从复制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/3. redis 哨兵模式.html" class="active sidebar-link">Redis 哨兵架构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/4. redis 的集群搭建以及槽.html" class="sidebar-link">Redis 集群搭建以及槽</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html" class="sidebar-link">Redis 的「内存淘汰策略」和「过期删除策略」</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html#redis-的「内存淘汰策略」和「过期删除策略」" class="sidebar-link">Redis 的「内存淘汰策略」和「过期删除策略」</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html#_1-过期删除策略" class="sidebar-link">1. 过期删除策略</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html#_2-内存淘汰策略" class="sidebar-link">2. 内存淘汰策略</a></li></ul></li></ul></li><li><a href="/LearnDocsHtml/doc/redis/cache.html" class="sidebar-link">缓存技术(Cache)</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="redis-哨兵架构"><a href="#redis-哨兵架构" class="header-anchor">#</a> Redis 哨兵架构</h3> <h4 id="_1-redis-哨兵模式介绍"><a href="#_1-redis-哨兵模式介绍" class="header-anchor">#</a> 1.  redis 哨兵模式介绍</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 哨兵模式是Redis的高可用方式，哨兵节点是特殊的redis服务，不提供读写服务，主要用来监控redis实例节点。
+
+2) 哨兵架构下client端第一次从哨兵找出redis的主节点，后续就直接访问redis的主节点，不会每次都通过sentinel代理访问redis的主节点，当redis的主节点挂掉时，哨兵会第一时间感知到，并且在slave节点中重新选出来一个新的master，然后将新的master信息通知给client端，从而实现高可用。这里面redis的client端一般都实现了订阅功能，订阅sentinel发布的节点变动消息
+
+3) Sentinel 哨兵是redis官方提供的高可用方案，它可以用来监听多个redis实例的运行情况.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>哨兵原理示意图</strong> <img src="/LearnDocsHtml/assets/img/哨兵模式.8090422e.png" alt="iamge"></p> <h5 id="_1-1-哨兵的功能与作用"><a href="#_1-1-哨兵的功能与作用" class="header-anchor">#</a> 1.1 哨兵的功能与作用</h5> <p><strong>监控(monitoring)</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Sentinel 会不断的检查集群中的Master和Slave是否正常运行.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><strong>提醒(Notifation)</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>当redis集群中被监听的某个redis服务器出现问题时，Sentinel会通过API向管理员或者其他应用程序发送通知.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><strong>自动故障转移(Automatic failover)</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 当一个Master不能正常工作时，Sintinel会开始一次自动故障转移操作，它会将失效的Master的其中一个Slave升级为新的Master，并让失效的其他Slave改为复制新的Master
+2) 当客户端尝试连接失效的Master时，集群会向客户端返回新的Master地址，保证集群可以使用新的Master替代失效的Master.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="_1-2-哨兵工作原理"><a href="#_1-2-哨兵工作原理" class="header-anchor">#</a> 1.2 哨兵工作原理</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 在redis sentinel中，一共有3个定时任务，通过这些任务，来发现新增节点和节点的状态。
+    A) 每10秒每个sentinel节点对master节点和slave节点执行info操作
+    B) 每2秒每个sentinel节点通过master节点的channel (sentinel:hello）交换信息
+    C) 每1秒每个sentintel节点对master节点和slave节点以及其余的sentinel节点执行ping操作
+
+2) 主观下线(SDOWN)︰当前sentintel节点认为某个redis节点不可用。
+    A) 如果一个实例(instance)）距离最后一次有效回复PING命令的时间超过down-after-miliseconds所指定的值，那么这个实例会被Sentinel标记为主观下线。
+    B) 如果一个主服务器被标记为主观下线，那么正在监视这个主服务器的所有Sentinel节点，要以每秒一次的频率确认主服务器的确进入了主观下线状态。
+
+3) 客观下线(ODOWN)一定数量sentinel节点认为某个redis节点不可用。
+    A) 如果一个主服务器被标记为主观下线，并且有足够数量的Sentinel (至少要达到配置文件指定的数量)在指定的时间范围内同意这—判断，那么这个主服务器被标记为客观下线。
+    B) 在一般情况下，每个Sentinel会以每10秒一次的频率，向它已知的所有主服务器和从服务器发送INFO命令。当一个主服务器被Sentinel标记为客观下线时，Sentinel向下线主服务器的所有从服务器发送INFO命令的频率，会从10秒一次改为每秒一次。
+    C) Sentinel和其他Sentinel协商主节点的状态，如果主节点处于ODOWN状态，则投票自动选出新的主节点。将剩余的从节点指向新的主节点进行数据复制。
+
+4) 当没有足够数量的sentinel同意主服务器下线时，主服务器的客观下线状态就会被移除。当主服务器重新向Sentinel的PING命令返回有效回复时，主服务器的主观下线状态就会被移除。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h5 id="_1-3-故障转移流程"><a href="#_1-3-故障转移流程" class="header-anchor">#</a> 1.3 故障转移流程</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 哨兵内部领导者选举
+    A) 每个做主观下线的sentinel节点向其他sentinel节点发送上面那条命令，要求将它设置为领导者
+    B) 收到命令的sentinel节点如果还没有同意过其他的sentinel发送的命令(还未投过票)，那么就会同意，否则拒绝
+    C) 如果该sentinel节点发现自己的票数已经过半且达到了quorum的值，就会成为领导者
+    D) 如果这个过程出现多个sentinel成为领导者，则会等待一段时间重新选举
+ 
+2) Master选举
+    A) 选择slave-priority最高的slave节点
+    B) 选择复制偏移量最大的节点
+    C) 选runld最小的(启动最早)
+
+3) 状态更换
+    A) 选举出新的master节点，其余的节点变更为新的master节点的slave节点
+    B) 原有的master节点重新上线，成为新的master节点的slave节点
+
+4) 通知客户端
+    A) 当所有节点配置结束后，sentinel会通知客户端节点变更信息
+    B) 客户端连接新的Master
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h5 id="_1-4-哨兵模式搭建"><a href="#_1-4-哨兵模式搭建" class="header-anchor">#</a> 1.4 哨兵模式搭建</h5> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 需要保证原本三个主从同步容器相互配置节点的连接信息即 配置文件设置</span>
+requirepass masterpassword <span class="token comment"># 设定密码</span>
+masterauth <span class="token operator">&lt;</span>master-password<span class="token operator">&gt;</span>
+
+
+<span class="token comment"># 一个稳健的RedisSentinel集群，应该使用至少三个Sentinel实例，并且保证将这些实例放到不同的机器上，甚至不同的物理区域</span>
+<span class="token comment"># 启动命令 redis-sentinel /opt/sxt/redis /conf/sentine1.conf</span>
+<span class="token comment">#设置哨兵的接口</span>
+port <span class="token number">20600</span>
+
+<span class="token comment">#sentine1 monitor关键字</span>
+<span class="token comment"># master 给主从服务器集群起一个名字(监控主服务器，从服务器的信息也就获取了)主服务器的IP和端口</span>
+<span class="token comment"># 2主服务器失效的统计数，超过2票就认为失效</span>
+sentinel monitor redis-master <span class="token number">172.17</span>.0.2 <span class="token number">20601</span> <span class="token number">2</span>
+
+<span class="token comment"># 设置主服务器密码</span>
+sentinel auth-pass redis-master <span class="token number">123456</span>
+
+<span class="token comment"># 主服务器下线超过10秒就进行切换（默认30S)</span>
+sentinel down-after-milliseconds redis-master <span class="token number">1000</span>
+
+<span class="token comment"># 故障转移超时时间</span>
+sentinel failover-timeout redis-master <span class="token number">180000</span>
+
+<span class="token comment"># 故障转移时，允许有多少个s7ave同时对新的master进行同步,这个数字越小，完成failover所需的时间就越长</span>
+
+sentine1 para77e1-s yncs redis-master <span class="token number">1</span>
+<span class="token comment">#关闭安全校验</span>
+protected-mode <span class="token function">yes</span>
+                
+
+<span class="token comment">#----------------配置文件修改完成-----------------</span>
+<span class="token comment"># 启动三个sentinel容器,将配置文件copy进容器里边去</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker run -it --name sentinel1  -d -p 20600:20600 redis /bin/bash</span>
+725d76dea8cb8f75574608b203788ac4a9108b38766ff8243aa9646e1e38c95f
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker run -it --name sentinel2  -d -p 20601:20600 redis /bin/bash</span>
+f5c304024473374815af250142a2a994d42619b8212986188cf66d6c5529a1b2
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker run -it --name sentinel3  -d -p 20602:20600 redis /bin/bash</span>
+4ee51bd3cc3e9d2b26521a783c61742345b087fd3b55d9f4f886b239fb54c611
+
+<span class="token comment"># copy sentinel.conf</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker cp sentinel.conf sentinel1:/data/</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker cp sentinel.conf sentinel2:/data/</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker cp sentinel.conf sentinel3:/data/</span>
+
+<span class="token comment"># 进入三个哨兵容器启动哨兵</span>
+root@725d76dea8cb:/data<span class="token comment"># redis-sentinel sentinel.conf </span>
+<span class="token number">53</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">13</span>:43:49.149 <span class="token comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
+<span class="token number">53</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">13</span>:43:49.149 <span class="token comment"># Redis version=7.0.4, bits=64, commit=00000000, modified=0, pid=53, just started</span>
+<span class="token number">53</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">13</span>:43:49.149 <span class="token comment"># Configuration loaded</span>
+<span class="token number">53</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">13</span>:43:49.150 * monotonic clock: POSIX clock_gettime
+                _._                                                  
+           _.-`<span class="token variable"><span class="token variable">`</span>__ <span class="token string">''</span>-._                                             
+      _.-<span class="token variable">`</span></span><span class="token variable"><span class="token variable">`</span>    <span class="token variable">`</span></span><span class="token builtin class-name">.</span>  <span class="token variable"><span class="token variable">`</span>_.  <span class="token string">''</span>-._           Redis <span class="token number">7.0</span>.4 <span class="token punctuation">(</span>00000000/0<span class="token punctuation">)</span> <span class="token number">64</span> bit
+  .-<span class="token variable">`</span></span><span class="token variable"><span class="token variable">`</span> .-<span class="token variable">`</span></span>`<span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">.</span>  <span class="token variable">`</span></span>`<span class="token variable"><span class="token variable">`</span><span class="token punctuation">\</span>/    _.,_ <span class="token string">''</span>-._                                  
+ <span class="token punctuation">(</span>    '      ,       .-<span class="token variable">`</span></span>  <span class="token operator">|</span> <span class="token variable"><span class="token variable">`</span>,    <span class="token punctuation">)</span>     Running <span class="token keyword">in</span> sentinel mode   <span class="token comment">#可以看到是哨兵模式</span>
+ <span class="token operator">|</span><span class="token variable">`</span></span>-._<span class="token variable"><span class="token variable">`</span>-<span class="token punctuation">..</span>.-<span class="token variable">`</span></span> __<span class="token punctuation">..</span>.-.`<span class="token variable"><span class="token variable">`</span>-._<span class="token operator">|</span>'<span class="token variable">`</span></span> _.-<span class="token string">'|     Port: 20600
+ |    `-._   `._    /     _.-'</span>    <span class="token operator">|</span>     PID: <span class="token number">53</span>
+
+
+
+<span class="token comment"># 所有哨兵启动完成之后测试，停止掉redis-master容器会看到一下信息</span>
+
+<span class="token comment"># 原本其中的slave结点无法写</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> <span class="token builtin class-name">set</span> t1 v1
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> READONLY You can't <span class="token function">write</span> against a <span class="token builtin class-name">read</span> only replica.
+
+<span class="token comment"># 停止掉master之后哨兵会出现以下信息</span>
+
+<span class="token number">19</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">14</span>:03:52.350 * +slave slave <span class="token number">172.17</span>.0.2:6379 <span class="token number">172.17</span>.0.2 <span class="token number">6379</span> @ redis-master <span class="token number">172.17</span>.0.4 <span class="token number">6379</span>
+<span class="token number">19</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">14</span>:03:52.354 * Sentinel new configuration saved on disk
+<span class="token number">19</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">14</span>:03:53.353 <span class="token comment"># +sdown slave 172.17.0.2:6379 172.17.0.2 6379 @ redis-master 172.17.0.4 6379</span>
+
+
+<span class="token comment"># 之后会重新挑选一个slave为新的master，可以进行写操作</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>&gt;</span> <span class="token builtin class-name">set</span> t1 v1
+OK
+
+
+<span class="token comment"># 重新启动原来的master</span>
+<span class="token number">20</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">14</span>:13:38.711 <span class="token comment"># -sdown slave 172.17.0.2:6379 172.17.0.2 6379 @ redis-master 172.17.0.4 6379</span>
+<span class="token number">20</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">14</span>:17:52.892 <span class="token comment"># +sdown slave 172.17.0.2:6379 172.17.0.2 6379 @ redis-master 172.17.0.4 6379</span>
+<span class="token number">20</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">14</span>:18:34.347 * +reboot slave <span class="token number">172.17</span>.0.2:6379 <span class="token number">172.17</span>.0.2 <span class="token number">6379</span> @ redis-master <span class="token number">172.17</span>.0.4 <span class="token number">6379</span>
+<span class="token number">20</span>:X <span class="token number">16</span> Sep <span class="token number">2022</span> <span class="token number">14</span>:18:34.410 <span class="token comment"># -sdown slave 172.17.0.2:6379 172.17.0.2 6379 @ redis-master 172.17.0.4 6379</span>
+
+
+<span class="token comment"># 修改现在新的master数据同步成功</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/redis/2. redis 的主从复制.html" class="prev">
+        Redis 的主从复制
+      </a></span> <span class="next"><a href="/LearnDocsHtml/doc/redis/4. redis 的集群搭建以及槽.html">
+        Redis 集群搭建以及槽
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/28.f2857d64.js" defer></script>
+  </body>
+</html>

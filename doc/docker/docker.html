@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link router-link-active">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/docker/docker-compose.html" class="sidebar-link">Docker-compose</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#docker-compose" class="sidebar-link">Docker-compose</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_1-什么是docker-compose" class="sidebar-link">1. 什么是docker-compose</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_2-docker-compose-的安装" class="sidebar-link">2. Docker-compose 的安装</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_3-docker-compose-的基本使用" class="sidebar-link">3. docker-compose 的基本使用</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker-compose.html#_4-docker-compose-搭建kafka集群案例" class="sidebar-link">4. docker-compose 搭建kafka集群案例</a></li></ul></li></ul></li><li><a href="/LearnDocsHtml/doc/docker/docker.html" aria-current="page" class="active sidebar-link">Docker</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_1-虚拟化技术" class="sidebar-link">1. 虚拟化技术</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-docker-的概念及组成" class="sidebar-link">2. docker 的概念及组成</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-1-docker-的组成" class="sidebar-link">2.1 docker 的组成</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-2-docker-run的流程是什么" class="sidebar-link">2.2 docker run的流程是什么？</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_2-3-docker的工作原理" class="sidebar-link">2.3 docker的工作原理</a></li></ul></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-docker-镜像加载" class="sidebar-link">3. docker 镜像加载</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-1-unionfs-联合文件系统" class="sidebar-link">3.1 UnionFS （联合文件系统）</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-2-docker镜像加载原理" class="sidebar-link">3.2 Docker镜像加载原理</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_3-3-dockerfile" class="sidebar-link">3.3 Dockerfile</a></li></ul></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/docker/docker.html#_4-docker-详细思维导图" class="sidebar-link">4. Docker 详细思维导图</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="docker"><a href="#docker" class="header-anchor">#</a> Docker</h1> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Docker是基于Go语言实现的云开源项目。 Docker的主要目标是“Build，Ship and Run Any App , Anywhere”，也就是通过对应用组件的封装、分发、部署、运行等生命周期的管理，使用户的APP（可以是一个WEB应用或数据库应用等等）及其运行 环境能够做到“一次封装，到处运行”。 
+Linux 容器技术的出现就解决了这样一个问题，而 Docker 就是在它的基础上发展过来的。
+将应用运行在 Docker 容器上面，而 Docker 容器在任何操作系统上都是一致的，这就实现了跨平台、跨服务器。只需 要一次配置好环境，换到别的机子上就可以一键部署好，大大简化了操作
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="_1-虚拟化技术"><a href="#_1-虚拟化技术" class="header-anchor">#</a> 1. 虚拟化技术</h2> <p><strong>虚拟机</strong></p> <blockquote><p>虚拟机（virtual machine）就是带环境安装的一种解决方案。 它可以在一种操作系统里面运行另一种操作系统，比如在Windows 系统里面运行Linux 系统。应用程序 对此毫无感知，因为虚拟机看上去跟真实系统一模一样，而对于底层系统来说，虚拟机就是一个普通文 件，不需要了就删掉，对其他部分毫无影响。这类虚拟机完美的运行了另一套系统，能够使应用程序， 操作系统和硬件三者之间的逻辑不变。</p></blockquote> <div class="language-text line-numbers-mode"><pre class="language-text"><code>缺点：
+    1 、资源占用多
+    2 、冗余步骤多
+    3 、启动慢
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><strong>容器</strong></p> <blockquote><p>Linux 容器（Linux Containers，缩 写为 LXC）。 Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。有了容器，就可以将软件运行所需的 所有资源打包到一个隔离的容器中。容器与虚拟机不同，不需要捆绑一整套操作系统，只需要软件工作 所需的库资源和设置。系统因此而变得高效轻量并保证部署在任何环境中的软件都能始终如一地运行</p></blockquote> <h2 id="_2-docker-的概念及组成"><a href="#_2-docker-的概念及组成" class="header-anchor">#</a> 2. docker 的概念及组成</h2> <blockquote><p>Docker 本身是一个容器运行载体或称之为管理引擎。我们把应用程序和配置依赖打包好形成一个 可交付的运行环境，这个打包好的运行环境就似乎 image镜像文件。只有通过这个镜像文件才能生 成 Docker 容器。image 文件可以看作是容器的模板。Docker 根据 image 文件生成容器的实例。 同一个 image 文件，可以生成多个同时运行的容器实例</p></blockquote> <h3 id="_2-1-docker-的组成"><a href="#_2-1-docker-的组成" class="header-anchor">#</a> 2.1 docker 的组成</h3> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1. image(镜像) 
+    Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很多容器。 
+
+2. 容器(container)
+    Docker 利用容器（Container）独立运行的一个或一组应用。容器是用镜像创建的运行实例。 
+    它可以被启动、开始、停止、删除。每个容器都是相互隔离的，保证安全的平台。 
+    可以把容器看做是一个简易版的 Linux 环境（包括root用户权限、进程空间、用户空间和网络空间等） 和运行在其中的应用程序。。 
+    容器的定义和镜像几乎一模一样，也是一堆层的统一视角，唯一区别在于容器的最上面那一层是可读可写 的。
+
+3. 仓库(repository)
+    仓库（Repository）是集中存放镜像文件的场所。 
+    仓库(Repository)和仓库注册服务器（Registry）是有区别的。仓库注册服务器上往往存放着多个仓 库，每个仓库中又包含了多个镜像，每个镜像有不同的标签（tag）。 
+    仓库分为公开仓库（Public）和私有仓库（Private）两种形式。 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h3 id="_2-2-docker-run的流程是什么"><a href="#_2-2-docker-run的流程是什么" class="header-anchor">#</a> 2.2 docker run的流程是什么？</h3> <div class="language-text line-numbers-mode"><pre class="language-text"><code>case: 
+    docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+检查本地镜像是否存在
+    TRUE： 直接以该镜像生成容器实例
+    FALSE： 去docker仓库中拉取镜像，如果docker仓库不存在，则会直接报错
+            如果docker存在拉取该镜像生产容器实例
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h3 id="_2-3-docker的工作原理"><a href="#_2-3-docker的工作原理" class="header-anchor">#</a> 2.3 docker的工作原理</h3> <blockquote><p>Docker是一个Client-Server结构的系统，Docker守护进程运行在主机上， 然后通过Socket连接从客户 端访问，守护进程从客户端接受命令并管理运行在主机上的容器,容器是一个运行时环境.</p></blockquote> <blockquote><p><img src="/LearnDocsHtml/assets/img/docker底层原理.bc26ca94.png" alt="image"></p></blockquote> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1、docker有着比虚拟机更少的抽象层。由于docker不需要Hypervisor实现硬件资源虚拟化,运行在 docker容器上的程序直接使用的都是实际物理机的硬件资源。
+
+2、docker利用的是宿主机的内核,而不需要Guest OS。因此,当新建一个容器时,docker不需要和虚拟机一样重新加载一个操作系统内核。
+仍而避免引寻、加载操作系统内核返个比较费时费资源的过程,当新建 一个虚拟机时,虚拟机软件需要加载Guest OS,返个新建过程是分钟级别的。而docker由于直接利用宿主 机的操作系统,则省略了返个过程,因此新建一个docker容器只需要几秒钟
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="_3-docker-镜像加载"><a href="#_3-docker-镜像加载" class="header-anchor">#</a> 3. docker 镜像加载</h2> <blockquote><p>镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含 运行某个软件所需的所有内容，包括代码、运行时、库、环境变量和配置文件</p></blockquote> <h3 id="_3-1-unionfs-联合文件系统"><a href="#_3-1-unionfs-联合文件系统" class="header-anchor">#</a> 3.1 UnionFS （联合文件系统）</h3> <blockquote><p>UnionFS（联合文件系统）：Union文件系统（UnionFS）是一种分层、轻量级并且高性能的文件系统， 它支持对文件系统的修改作为一次提交来一层层的叠加，同时可以将不同目录挂载到同一个虚拟文件系 统下(unite several directories into a single virtual filesystem)。Union 文件系统是 Docker 镜像的基 础。镜像可以通过分层来进行继承，基于基础镜像（没有父镜像），可以制作各种具体的应用镜像。 特性：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件 系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录</p></blockquote> <h3 id="_3-2-docker镜像加载原理"><a href="#_3-2-docker镜像加载原理" class="header-anchor">#</a> 3.2 Docker镜像加载原理</h3> <blockquote><ol><li>docker的镜像实际上由一层一层的文件系统组成，这种层级的文件系统UnionFS。</li> <li>bootfs(boot file system)主要包含bootloader和kernel, bootloader主要是引导加载kernel, Linux刚启
+动时会加载bootfs文件系统，在Docker镜像的最底层是bootfs。</li> <li>当boot加载完成之后整个内核就都在内存中了，此时内存的使用权已由bootfs转交给内核，此时系统也会卸载bootfs。 rootfs (root file system) ，在bootfs之上。</li></ol></blockquote> <p><strong>镜像分层</strong> <img src="/LearnDocsHtml/assets/img/镜像分层.0f075a74.png" alt="image"></p> <h3 id="_3-3-dockerfile"><a href="#_3-3-dockerfile" class="header-anchor">#</a> 3.3 Dockerfile</h3> <blockquote><p>dockerfile是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本。</p></blockquote> <div class="language-text line-numbers-mode"><pre class="language-text"><code>FROM # 基础镜像，当前新镜像是基于哪个镜像的
+MAINTAINER # 镜像维护者的姓名混合邮箱地址,官方已经不在推荐用了
+RUN  # 容器构建时需要运行的命令
+EXPOSE # 当前容器对外保留出的端口
+WORKDIR  # 指定在创建容器后，终端默认登录的进来工作目录，一个落脚点
+ENV  # 用来在构建镜像过程中设置环境变量
+ADD  # 将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包
+COPY # 类似ADD，拷贝文件和目录到镜像中！
+VOLUME # 容器数据卷，用于数据保存和持久化工作
+CMD  # 指定一个容器启动时要运行的命令，dockerFile中可以有多个CMD指令，但只有最后一个生效！
+ENTRYPOINT # 指定一个容器启动时要运行的命令！和CMD一样
+ONBUILD  # 当构建一个被继承的DockerFile时运行命令，父镜像在被子镜像继承后，父镜像的
+ONBUILD被触发
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="_4-docker-详细思维导图"><a href="#_4-docker-详细思维导图" class="header-anchor">#</a> 4. Docker 详细思维导图</h2> <p><img src="/LearnDocsHtml/assets/img/docker.cb6918b2.png" alt="image"></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/docker/docker-compose.html" class="prev">
+        Docker-compose
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/11.3e7a30f5.js" defer></script>
+  </body>
+</html>

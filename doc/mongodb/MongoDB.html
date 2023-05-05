@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MongoDB | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link router-link-active">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link router-link-active">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/mongodb/MongoDB.html" aria-current="page" class="active sidebar-link">MongoDB</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/mongodb/MongoDB.html#mongodb" class="sidebar-link">MongoDB</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/mongodb/MongoDB.html#基于docker启动mongo" class="sidebar-link">基于docker启动mongo</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/mongodb/MongoDB.html#mongodb-常用操作" class="sidebar-link">mongoDB 常用操作</a></li></ul></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="mongodb"><a href="#mongodb" class="header-anchor">#</a> MongoDB</h2> <blockquote><p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</p> <p>MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。</p></blockquote> <p><strong>特点</strong></p> <ul><li>MongoDB 是一个面向文档存储的数据库，操作起来比较简单和容易。</li> <li>如果负载的增加（需要更多的存储空间和更强的处理能力） ，它可以分布在计算机网络中的其他节点上这就是所谓的分片。</li> <li>MongoDB 支持丰富的查询表达式。查询指令使用JSON形式的标记，可轻易查询文档中内嵌的对象及数组。</li> <li>MongoDB 使用update()命令可以实现替换完成的文档（数据）或者一些指定的数据字段。</li> <li>MongoDB 中的Map/reduce主要是用来对数据进行批量处理和聚合操作。</li> <li>Map和Reduce，Map函数调用emit(key,value)遍历集合中所有的记录，将key与value传给Reduce函数进行处理。</li> <li>Map函数和Reduce函数是使用Javascript编写的，并可以通过db.runCommand或mapreduce命令来执行MapReduce操作。</li> <li>GridFS是MongoDB中的一个内置功能，可以用于存放大量小文件。</li> <li>MongoDB 允许在服务端执行脚本，可以用Javascript编写某个函数，直接在服务端执行，也可以把函数的定义存储在服务端，下次直接调用即可。</li> <li>MongoDB 支持各种编程语言:RUBY，PYTHON，JAVA，C++，PHP，C#等多种语言</li></ul> <p><strong>mongodb概念解析</strong></p> <table><thead><tr><th style="text-align:center;">SQL术语/概念</th> <th style="text-align:center;">MongoDB术语/概念</th> <th style="text-align:center;">解释/说明</th></tr></thead> <tbody><tr><td style="text-align:center;">database</td> <td style="text-align:center;">database</td> <td style="text-align:center;">数据库</td></tr> <tr><td style="text-align:center;">table</td> <td style="text-align:center;">collection</td> <td style="text-align:center;">数据库表/集合</td></tr> <tr><td style="text-align:center;">row</td> <td style="text-align:center;">document</td> <td style="text-align:center;">数据记录行/文档</td></tr> <tr><td style="text-align:center;">column</td> <td style="text-align:center;">field</td> <td style="text-align:center;">数据字段/域</td></tr> <tr><td style="text-align:center;">index</td> <td style="text-align:center;">index</td> <td style="text-align:center;">索引</td></tr> <tr><td style="text-align:center;">table</td> <td style="text-align:center;">joins</td> <td style="text-align:center;">表连接,MongoDB不支持</td></tr> <tr><td style="text-align:center;">primary key</td> <td style="text-align:center;">primary key</td> <td style="text-align:center;">主键,MongoDB自动将_id字段设置为主键</td></tr></tbody></table> <h3 id="基于docker启动mongo"><a href="#基于docker启动mongo" class="header-anchor">#</a> 基于docker启动mongo</h3> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># --auth 需要密码才能访问容器服务</span>
+<span class="token operator">&gt;</span>$ <span class="token function">docker</span> run <span class="token parameter variable">-itd</span> <span class="token parameter variable">--name</span> mongo <span class="token parameter variable">-p</span> <span class="token number">27017</span>:27017 mongo <span class="token parameter variable">--auth</span>
+
+<span class="token operator">&gt;</span>$ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> mongo mongo admin
+<span class="token comment"># 创建一个名为 admin，密码为 admin的用户</span>
+<span class="token operator">&gt;</span>$  db.createUser<span class="token punctuation">(</span><span class="token punctuation">{</span> user:<span class="token string">'admin'</span>,pwd:<span class="token string">'admin'</span>,roles:<span class="token punctuation">[</span> <span class="token punctuation">{</span> role:<span class="token string">'userAdminAnyDatabase'</span>, db: <span class="token string">'admin'</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment"># 尝试使用上面创建的用户信息进行连接</span>
+<span class="token operator">&gt;</span>$ db.auth<span class="token punctuation">(</span><span class="token string">'admin'</span>, <span class="token string">'admin'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 查看用户</span>
+<span class="token operator">&gt;</span> show <span class="token function">users</span>
+<span class="token punctuation">{</span>
+        <span class="token string">&quot;_id&quot;</span> <span class="token builtin class-name">:</span> <span class="token string">&quot;admin.admin&quot;</span>,
+        <span class="token string">&quot;userId&quot;</span> <span class="token builtin class-name">:</span> UUID<span class="token punctuation">(</span><span class="token string">&quot;0a705d89-af5e-4075-9d89-536c696ab9ef&quot;</span><span class="token punctuation">)</span>,
+        <span class="token string">&quot;user&quot;</span> <span class="token builtin class-name">:</span> <span class="token string">&quot;admin&quot;</span>,
+        <span class="token string">&quot;db&quot;</span> <span class="token builtin class-name">:</span> <span class="token string">&quot;admin&quot;</span>,
+        <span class="token string">&quot;roles&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                        <span class="token string">&quot;role&quot;</span> <span class="token builtin class-name">:</span> <span class="token string">&quot;userAdminAnyDatabase&quot;</span>,
+                        <span class="token string">&quot;db&quot;</span> <span class="token builtin class-name">:</span> <span class="token string">&quot;admin&quot;</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>,
+        <span class="token string">&quot;mechanisms&quot;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+                <span class="token string">&quot;SCRAM-SHA-1&quot;</span>,
+                <span class="token string">&quot;SCRAM-SHA-256&quot;</span>
+        <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><h3 id="mongodb-常用操作"><a href="#mongodb-常用操作" class="header-anchor">#</a> mongoDB 常用操作</h3> <p><strong>database</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 创建database</span>
+<span class="token operator">&gt;</span> use mydb
+switched to db mydb
+<span class="token operator">&gt;</span> db
+mydb
+
+<span class="token comment"># 查看所有database</span>
+<span class="token operator">&gt;</span> show dbs
+admin   <span class="token number">0</span>.000GB
+config  <span class="token number">0</span>.000GB
+<span class="token builtin class-name">local</span>   <span class="token number">0</span>.000GB
+
+<span class="token comment"># 删除database</span>
+<span class="token operator">&gt;</span> db.<span class="token function-name function">dropDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> <span class="token string">&quot;ok&quot;</span> <span class="token builtin class-name">:</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><strong>collection</strong></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment"># 创建集合</span>
+<span class="token comment"># name: 要创建的集合名称</span>
+<span class="token comment"># options: 可选参数, 指定有关内存大小及索引的选项</span>
+db.createCollection<span class="token punctuation">(</span>name, options<span class="token punctuation">)</span>
+
+<span class="token operator">&gt;</span> use mydb
+switched to db mydb
+<span class="token comment"># 直接创建</span>
+<span class="token operator">&gt;</span> db.createCollection<span class="token punctuation">(</span><span class="token string">&quot;myCollection&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> <span class="token string">&quot;ok&quot;</span> <span class="token builtin class-name">:</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+
+<span class="token comment"># 指定参数创建</span>
+<span class="token operator">&gt;</span> db.createCollection<span class="token punctuation">(</span><span class="token string">&quot;myCollection1&quot;</span>, <span class="token punctuation">{</span> capped <span class="token builtin class-name">:</span> true, autoIndexId <span class="token builtin class-name">:</span> true, size <span class="token builtin class-name">:</span> 
+<span class="token punctuation">..</span>.    <span class="token number">6142800</span>, max <span class="token builtin class-name">:</span> <span class="token number">10000</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+        <span class="token string">&quot;note&quot;</span> <span class="token builtin class-name">:</span> <span class="token string">&quot;The autoIndexId option is deprecated and will be removed in a future release&quot;</span>,
+        <span class="token string">&quot;ok&quot;</span> <span class="token builtin class-name">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># 查看collection</span>
+<span class="token operator">&gt;</span> show collections
+myCollection
+
+<span class="token comment"># 在mongodb中，不需要创建collection，插入数据的时候会自动创建</span>
+<span class="token operator">&gt;</span> db.web.insert<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;web&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+WriteResult<span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token string">&quot;nInserted&quot;</span> <span class="token builtin class-name">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token operator">&gt;</span> show collections
+myCollection
+myCollection1
+web
+
+<span class="token comment"># 删除collection</span>
+<span class="token comment"># db.collection.drop()</span>
+<span class="token operator">&gt;</span> db.myCollection1.drop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token boolean">true</span>
+<span class="token operator">&gt;</span> show collections
+myCollection
+web
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><p><strong>插入文档(insert/save)</strong></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment"># db.COLLECTION_NAME.insert(document)</span>
+
+<span class="token operator">&gt;</span> db.web.insert<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;web&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+WriteResult<span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token string">&quot;nInserted&quot;</span> <span class="token builtin class-name">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用于向集合插入一个新文档</span>
+<span class="token operator">&gt;</span> db.collection.insertOne<span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>document<span class="token operator">&gt;</span>,
+    <span class="token punctuation">{</span> 
+        writeConcern: <span class="token operator">&lt;</span>document<span class="token operator">&gt;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span> 
+
+<span class="token comment"># 用于向集合插入一个多个文档</span>
+db.collection.insertMany<span class="token punctuation">(</span>
+    <span class="token punctuation">[</span> <span class="token operator">&lt;</span>document <span class="token operator"><span class="token file-descriptor important">1</span>&gt;</span> , <span class="token operator">&lt;</span>document <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span>, <span class="token punctuation">..</span>. <span class="token punctuation">]</span>,
+    <span class="token punctuation">{</span>
+        writeConcern: <span class="token operator">&lt;</span>document<span class="token operator">&gt;</span>,
+        ordered: <span class="token operator">&lt;</span>boolean<span class="token operator">&gt;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">)</span> 
+
+<span class="token comment"># document：要写入的文档</span>
+<span class="token comment"># writeConcern：写入策略，默认为 1，即要求确认写操作，0 是不要求</span>
+<span class="token comment"># ordered：指定是否按顺序写入，默认 true，按顺序写入</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p><strong>更新文档(update)</strong></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment"># update() 方法用于更新已存在的文档</span>
+db.collection.update<span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>query<span class="token operator">&gt;</span>, 
+    <span class="token operator">&lt;</span>update<span class="token operator">&gt;</span>,
+    <span class="token punctuation">{</span>
+        upsert: <span class="token operator">&lt;</span>boolean<span class="token operator">&gt;</span>,
+        multi: <span class="token operator">&lt;</span>boolean<span class="token operator">&gt;</span>, 
+        writeConcern: <span class="token operator">&lt;</span>document<span class="token operator">&gt;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># query : update的查询条件，类似sql update查询内where后面的。</span>
+<span class="token comment"># update : update的对象和一些更新的操作符（如$,$inc...）等，也可以理解为sql update查询内set后面的</span>
+<span class="token comment"># upsert : 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。</span>
+<span class="token comment"># multi : 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。</span>
+<span class="token comment"># writeConcern :可选，抛出异常的级别。</span>
+
+db.mycol.insertMany<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;c++&quot;</span>,
+    <span class="token string">&quot;age&quot;</span>:20
+<span class="token punctuation">}</span>,<span class="token punctuation">{</span>
+    <span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;python&quot;</span>,
+    <span class="token string">&quot;age&quot;</span>:25
+<span class="token punctuation">}</span>,<span class="token punctuation">{</span>
+    <span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;c&quot;</span>,
+    <span class="token string">&quot;age&quot;</span>:90
+<span class="token punctuation">}</span>,<span class="token punctuation">{</span>
+    <span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;java&quot;</span>,
+    <span class="token string">&quot;age&quot;</span>:35
+<span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+
+
+db.mycol.update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;python&quot;</span><span class="token punctuation">}</span>,<span class="token punctuation">{</span><span class="token variable">$set</span>:<span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;python3&quot;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+db.mycol.find<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span>
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305db8e6aef633eca11e8f&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">14</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;golang&quot;</span><span class="token punctuation">}</span>,
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305e3be6aef633eca11e90&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">20</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;c++&quot;</span><span class="token punctuation">}</span>,
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305e3be6aef633eca11e91&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">25</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;python3&quot;</span><span class="token punctuation">}</span>,
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305e3be6aef633eca11e92&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">90</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;c&quot;</span><span class="token punctuation">}</span>,
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305e3be6aef633eca11e93&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">35</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;java&quot;</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br></div></div><p><strong>删除文档</strong></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>db.collection.remove<span class="token punctuation">(</span>
+   <span class="token operator">&lt;</span>query<span class="token operator">&gt;</span>,
+   <span class="token punctuation">{</span>
+     justOne: <span class="token operator">&lt;</span>boolean<span class="token operator">&gt;</span>,
+     writeConcern: <span class="token operator">&lt;</span>document<span class="token operator">&gt;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+<span class="token comment"># query :（可选）删除的文档的条件。</span>
+<span class="token comment"># justOne : （可选）如果设为 true 或 1，则只删除一个文档，如果不设置该参数，或使用默认值 false，则删除所有匹配条件的文档。</span>
+<span class="token comment"># writeConcern :（可选）抛出异常的级别。</span>
+
+db.mycol.remove<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;java&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+db.mycol.find<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span>
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305db8e6aef633eca11e8f&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">14</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;golang&quot;</span><span class="token punctuation">}</span>,
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305e3be6aef633eca11e90&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">20</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;c++&quot;</span><span class="token punctuation">}</span>,
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305e3be6aef633eca11e91&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">25</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;python3&quot;</span><span class="token punctuation">}</span>,
+  <span class="token punctuation">{</span><span class="token string">&quot;_id&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token string">&quot;<span class="token variable">$oid</span>&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;63305e3be6aef633eca11e92&quot;</span><span class="token punctuation">}</span>,<span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">90</span>,<span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;c&quot;</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h4 id="查询文档"><a href="#查询文档" class="header-anchor">#</a> 查询文档</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>db.collection.find(query, projection)
+
+query ：可选，使用查询操作符指定查询条件
+projection ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>MongoDB 与 RDBMS Where 语句比较</p> <table><thead><tr><th style="text-align:center;">操作</th> <th style="text-align:center;">格式</th> <th style="text-align:center;">范例</th> <th style="text-align:center;">RDBMS中的类似语句</th></tr></thead> <tbody><tr><td style="text-align:center;">等于</td> <td style="text-align:center;">{key:value}</td> <td style="text-align:center;">db.col.find({&quot;name&quot;:&quot;tom1&quot;}).pretty()</td> <td style="text-align:center;">where name='tom1'</td></tr> <tr><td style="text-align:center;">小于</td> <td style="text-align:center;">{key:{$lt:value}}</td> <td style="text-align:center;">db.col.find({&quot;likes&quot;:{$lt:50}}).pretty()</td> <td style="text-align:center;">where likes &lt; 50</td></tr> <tr><td style="text-align:center;">小于或等于</td> <td style="text-align:center;">{key&gt;:{$lte:value}}</td> <td style="text-align:center;">db.col.find({&quot;likes&quot;:{$lte:50}}).pretty()</td> <td style="text-align:center;">where likes &lt;= 50</td></tr> <tr><td style="text-align:center;">大于</td> <td style="text-align:center;">{key:{$gt:value}}</td> <td style="text-align:center;">db.col.find({&quot;likes&quot;:{$gt:50}}).pretty()</td> <td style="text-align:center;">where likes &gt; 50</td></tr> <tr><td style="text-align:center;">大于或等于</td> <td style="text-align:center;">{key:{$gte:value}}</td> <td style="text-align:center;">db.col.find({&quot;likes&quot;:{$gte:50}}).pretty()</td> <td style="text-align:center;">where likes &gt;= 50</td></tr> <tr><td style="text-align:center;">不等于</td> <td style="text-align:center;">{key:{$ne:value}}</td> <td style="text-align:center;">db.col.find({&quot;likes&quot;:{$ne:50}}).pretty()</td> <td style="text-align:center;">where likes != 50</td></tr></tbody></table> <p><strong>and/or</strong></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment"># or</span>
+db.mycol.find<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token variable">$or</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;python3&quot;</span><span class="token punctuation">}</span>,
+        <span class="token punctuation">{</span><span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">90</span><span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># [</span>
+<span class="token comment">#   {&quot;_id&quot;: {&quot;$oid&quot;: &quot;63305e3be6aef633eca11e91&quot;},&quot;age&quot;: 25,&quot;name&quot;: &quot;python3&quot;},</span>
+<span class="token comment">#   {&quot;_id&quot;: {&quot;$oid&quot;: &quot;63305e3be6aef633eca11e92&quot;},&quot;age&quot;: 90,&quot;name&quot;: &quot;c&quot;}</span>
+<span class="token comment"># ]</span>
+
+<span class="token comment"># and + or</span>
+<span class="token comment"># age &gt; 30 and name == 'python3' or age=90</span>
+db.mycol.find<span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+        <span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token variable">$gt</span><span class="token builtin class-name">:</span> <span class="token number">30</span><span class="token punctuation">}</span>,
+        <span class="token variable">$or</span>:<span class="token punctuation">[</span>
+            <span class="token punctuation">{</span><span class="token string">&quot;name&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;python3&quot;</span><span class="token punctuation">}</span>,
+            <span class="token punctuation">{</span><span class="token string">&quot;age&quot;</span><span class="token builtin class-name">:</span> <span class="token number">90</span><span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+<span class="token comment"># [{&quot;_id&quot;: {&quot;$oid&quot;: &quot;63305e3be6aef633eca11e92&quot;},&quot;age&quot;: 90,&quot;name&quot;: &quot;c&quot;}]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/49.f0a75c7f.js" defer></script>
+  </body>
+</html>

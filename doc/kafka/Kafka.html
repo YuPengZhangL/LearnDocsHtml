@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kafka 的基本简介 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/20.183aa861.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link router-link-active">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link router-link-active">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/kafka/Kafka.html" aria-current="page" class="active sidebar-link">Kafka 的基本简介</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/Kafka.html#kafka-的基本简介" class="sidebar-link">Kafka 的基本简介</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/Kafka.html#_1-什么是-kafka" class="sidebar-link">1. 什么是 Kafka？</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/Kafka.html#_2-基于docker-compse启动kafak" class="sidebar-link">2. 基于docker-compse启动kafak</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/Kafka.html#_3-golang-操作kafka细节" class="sidebar-link">3. golang 操作kafka细节</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/Kafka.html#_4-kafka集群controller、rebalance和hw" class="sidebar-link">4. Kafka集群Controller、Rebalance和HW</a></li></ul></li></ul></li><li><a href="/LearnDocsHtml/doc/kafka/MQ.html" class="sidebar-link">MQ(Message Queue)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/MQ.html#mq-message-queue" class="sidebar-link">MQ(Message Queue)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/MQ.html#_1-什么是mq-消息队列" class="sidebar-link">1. 什么是MQ(消息队列)?</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/MQ.html#_2-mq-解决的优缺点" class="sidebar-link">2. MQ 解决的优缺点</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kafka/MQ.html#_3-mq的两种模式" class="sidebar-link">3. MQ的两种模式</a></li></ul></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="kafka-的基本简介"><a href="#kafka-的基本简介" class="header-anchor">#</a> Kafka 的基本简介</h2> <h3 id="_1-什么是-kafka"><a href="#_1-什么是-kafka" class="header-anchor">#</a> 1. 什么是 Kafka？</h3> <blockquote><p>Kafka是最初由Linkedin公司开发，是一个分布式、支持分区的（partition）、多副本的
+（replica），基于zookeeper协调的分布式消息系统，它的最大的特性就是可以实时的处理
+大量数据以满足各种需求场景：比如基于hadoop的批处理系统、低延迟的实时系统、
+Storm/Spark流式处理引擎，web/nginx日志、访问日志，消息服务等等，用scala语言编
+写，Linkedin于 2010 年贡献给了Apache基金会并成为顶级开源项目。</p></blockquote> <blockquote><p>Zookeeper 作为一个分布式的服务框架，主要用来解决分布式集群中应用系统的一致性问题。ZooKeeper提供的服务包括：分布式消息同步和协调机制、</p> <p>服务器节点动态上下线、统一配置管理、负载均衡、集群管理等</p></blockquote> <blockquote><p>kafka是一个分布式的，分区的消息(官方称之为commit log)服务。它提供一个消息系统应该
+具备的功能，但是确有着独特的设计。可以这样来说，Kafka借鉴了JMS规范的思想，但是确
+并 <code>没有完全遵循JMS规范。</code></p></blockquote> <p><strong>kafka 架构流程图</strong></p> <p><img src="/LearnDocsHtml/assets/img/kafka.81aa3673.png" alt="image"></p> <table><thead><tr><th style="text-align:center;">名称</th> <th style="text-align:center;">解释</th></tr></thead> <tbody><tr><td style="text-align:center;">Broker</td> <td style="text-align:center;">消息中间件处理节点，⼀个Kafka节点就是⼀个broker，⼀个或者多个Broker可以组成⼀个Kafka集群</td></tr> <tr><td style="text-align:center;">Topic</td> <td style="text-align:center;">Kafka根据topic对消息进⾏归类，发布到Kafka集群的每条消息都需要指定⼀个topic</td></tr> <tr><td style="text-align:center;">Producer</td> <td style="text-align:center;">消息⽣产者，向Broker发送消息的客户端</td></tr> <tr><td style="text-align:center;">Consumer</td> <td style="text-align:center;">消息消费者，从Broker读取消息的客户端</td></tr> <tr><td style="text-align:center;">ConsumerGroup</td> <td style="text-align:center;">每个Consumer属于⼀个特定的Consumer Group，⼀条消息可以被多个不同的Consumer Group消费，但是⼀个Consumer Group中只能有⼀个Consumer能够消费该消息</td></tr> <tr><td style="text-align:center;">Partition</td> <td style="text-align:center;">物理上的概念，⼀个topic可以分为多个partition，每个partition内部消息是有序的</td></tr> <tr><td style="text-align:center;">Replica</td> <td style="text-align:center;">副本，本质就是一个只能追加写消息的提交日志。Kafka 副本机制的定义，同一个分区下的所有副本保存有相同的消息序列，这些副本分散保存在不同的 Broker 上，从而能够对抗部分 Broker 宕机带来的数据不可用</td></tr> <tr><td style="text-align:center;">leader</td> <td style="text-align:center;">每个分区多个副本的主，也是处理生产者消费者消息的对象</td></tr> <tr><td style="text-align:center;">follower</td> <td style="text-align:center;">每个分区多个副本的从，实时从leader中同步数据，leader出现故障时，某个follower会成为新的leader，担任leader的任务</td></tr></tbody></table> <h3 id="_2-基于docker-compse启动kafak"><a href="#_2-基于docker-compse启动kafak" class="header-anchor">#</a> 2. 基于docker-compse启动kafak</h3> <p><strong>镜像拉取</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 1. 拉取镜像</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker pull wurstmeister/zookeeper</span>
+
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># docker pull wurstmeister/kafka</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><strong>docker-compose-kafka.yml 编写</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 安装docker-compose</span>
+<span class="token operator">&gt;</span><span class="token comment"># sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</span>
+
+<span class="token operator">&gt;</span><span class="token comment"># chmod +x /usr/local/bin/docker-compose</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><div class="language-yml line-numbers-mode"><pre class="language-yml"><code><span class="token comment"># 2. 编写docker-compose</span>
+<span class="token comment"># 搭建kafka集群</span>
+<span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&quot;3.7&quot;</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">zookeeper</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> zk
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/zookeeper
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./data<span class="token punctuation">:</span>/data
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 2181<span class="token punctuation">:</span><span class="token number">2181</span>
+
+  <span class="token key atrule">kafka1</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka1
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/kafka
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 9092<span class="token punctuation">:</span><span class="token number">9092</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">KAFKA_BROKER_ID</span><span class="token punctuation">:</span> <span class="token number">1</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//8.141.175.100<span class="token punctuation">:</span><span class="token number">9092</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_HOST_NAME</span><span class="token punctuation">:</span> 8.141.175.100          <span class="token comment"># 如果设置，则就作为broker 的hostname发往producer、consumers以及其他brokers</span>
+<span class="token comment">#      KAFKA_CREATE_TOPICS: &quot;myTopic:3&quot; #kafka启动后初始化一个有3个partition(分区)0个副本名叫myTopic的topic</span>
+      <span class="token key atrule">KAFKA_ZOOKEEPER_CONNECT</span><span class="token punctuation">:</span> zk<span class="token punctuation">:</span><span class="token number">2181</span>          <span class="token comment"># zookeeper集群连接地址</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_PORT</span><span class="token punctuation">:</span> <span class="token number">9092</span>            <span class="token comment"># 此端口将给与producers、consumers、以及其他brokers，它会在建立连接时用到</span>
+      <span class="token key atrule">KAFKA_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//0.0.0.0<span class="token punctuation">:</span><span class="token number">9092</span>
+      <span class="token key atrule">KAFKA_HEAP_OPTS</span><span class="token punctuation">:</span> <span class="token string">&quot;-Xmx256M -Xms128M&quot;</span>
+      <span class="token key atrule">ALLOW_PLAINTEXT_LISTENER</span><span class="token punctuation">:</span> <span class="token string">'true'</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./kafka1<span class="token punctuation">-</span>logs<span class="token punctuation">:</span>/kafka
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> zookeeper
+  <span class="token key atrule">kafka2</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka2
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/kafka
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 9093<span class="token punctuation">:</span><span class="token number">9093</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">KAFKA_BROKER_ID</span><span class="token punctuation">:</span> <span class="token number">2</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//8.141.175.100<span class="token punctuation">:</span><span class="token number">9093</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_HOST_NAME</span><span class="token punctuation">:</span> 8.141.175.100
+      <span class="token comment"># KAFKA_CREATE_TOPICS: &quot;myTopic:3&quot; #kafka启动后初始化一个有3个partition(分区)0个副本名叫myTopic的topic</span>
+      <span class="token key atrule">KAFKA_ZOOKEEPER_CONNECT</span><span class="token punctuation">:</span> zk<span class="token punctuation">:</span><span class="token number">2181</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_PORT</span><span class="token punctuation">:</span> <span class="token number">9093</span>
+      <span class="token key atrule">KAFKA_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//0.0.0.0<span class="token punctuation">:</span><span class="token number">9093</span>
+      <span class="token key atrule">KAFKA_HEAP_OPTS</span><span class="token punctuation">:</span> <span class="token string">&quot;-Xmx256M -Xms128M&quot;</span>
+      <span class="token key atrule">ALLOW_PLAINTEXT_LISTENER</span><span class="token punctuation">:</span> <span class="token string">'true'</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./kafka2<span class="token punctuation">-</span>logs<span class="token punctuation">:</span>/kafka
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> zookeeper
+  <span class="token key atrule">kafka3</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> kafka3
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> wurstmeister/kafka
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> 9094<span class="token punctuation">:</span><span class="token number">9094</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">KAFKA_BROKER_ID</span><span class="token punctuation">:</span> <span class="token number">3</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//8.141.175.100<span class="token punctuation">:</span><span class="token number">9094</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_HOST_NAME</span><span class="token punctuation">:</span> 8.141.175.100
+      <span class="token comment"># KAFKA_CREATE_TOPICS: &quot;myTopic:3&quot; #kafka启动后初始化一个有3个partition(分区)0个副本名叫myTopic的topic</span>
+      <span class="token key atrule">KAFKA_ZOOKEEPER_CONNECT</span><span class="token punctuation">:</span> zk<span class="token punctuation">:</span><span class="token number">2181</span>
+      <span class="token key atrule">KAFKA_ADVERTISED_PORT</span><span class="token punctuation">:</span> <span class="token number">9094</span>
+      <span class="token key atrule">KAFKA_LISTENERS</span><span class="token punctuation">:</span> PLAINTEXT<span class="token punctuation">:</span>//0.0.0.0<span class="token punctuation">:</span><span class="token number">9094</span>
+      <span class="token key atrule">KAFKA_HEAP_OPTS</span><span class="token punctuation">:</span> <span class="token string">&quot;-Xmx256M -Xms128M&quot;</span>
+      <span class="token key atrule">ALLOW_PLAINTEXT_LISTENER</span><span class="token punctuation">:</span> <span class="token string">'true'</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./kafka3<span class="token punctuation">-</span>logs<span class="token punctuation">:</span>/kafka
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> zookeeper
+
+<span class="token comment"># 启动：</span>
+docker<span class="token punctuation">-</span>compose <span class="token punctuation">-</span>f $docker<span class="token punctuation">-</span>compose<span class="token punctuation">-</span>file<span class="token punctuation">-</span>name up <span class="token punctuation">-</span>d
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br></div></div><p><strong>命令行详细操作</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code># 以下参数相互等价，启动容器时指定或者修改server.properties 配置文件
+# KAFKA_BROKER_ID=1                       kafka.borker.id=1                                   kafka在集群中的唯一标识
+# KAFKA_ZOOKEEPER_CONNECT                 zookeeper.connect=zookeeper:2181                    监听zookeeper的地址 
+# KAFKA_ADVERTISED_LISTENERS              advertised.listeners=PLAINTEXT://localhost:9092     kafka服务器的地址
+# KAFKA_DELETE_TOPIC_ENABLE               delete.topic.enable                                 是否可以删除主题
+
+# 3. 进入容器，启动kafka
+[root@iZ2ze58f53sxjm9z7mgn5xZ ~]# docker exec -it kafka bash
+4564
+root@254f27b7c46d:# cd /opt/kafka_2.18/bin
+
+
+# 4. 创建一个topic
+root@254f27b7c46d:/opt/kafka_2.13-2.8.1# ./bin/kafka-topics.sh --create --zookeeper zk:2181 --replication-factor 1 --partitions 1 --topic myTopic
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic myTopic.
+
+
+# 5. 运行生产者
+root@254f27b7c46d:/opt/kafka_2.13-2.8.1# ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic myTopic
+&gt; hello
+
+# 6. 运行消费者
+root@f18981b67d0c:/opt/kafka_2.13-2.8.1/bin# ./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic myTopic
+hello
+
+#-----------------------------------------------------------
+# 生产者发送消息，消费者可以看到
+# 7. 查看所有topic
+root@f18981b67d0c:/opt/kafka_2.13-2.8.1/bin# ./kafka-topics.sh --zookeeper zk:2181 --list
+myTopic
+
+# 8. 删除主题,需要先更改server.properties 中
+root@f18981b67d0c:/opt/kafka_2.13-2.8.1/bin# kafka-topics.sh  --delete --topic myTopic --zookeeper zk:2181
+
+
+# 如果停止服务提示没有ps指令,使用以下命令安装
+# apt-get update
+# apt-get  install  procps
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div><h3 id="_3-golang-操作kafka细节"><a href="#_3-golang-操作kafka细节" class="header-anchor">#</a> 3. golang 操作kafka细节</h3> <h4 id="_3-1-golang-客户端demo见code目录"><a href="#_3-1-golang-客户端demo见code目录" class="header-anchor">#</a> 3.1 golang 客户端demo见code目录</h4> <h4 id="_3-2-zookeeper的作用"><a href="#_3-2-zookeeper的作用" class="header-anchor">#</a> 3.2 zookeeper的作用</h4> <blockquote><p>kafak 集群中有一个broker会被选举为controller，负责管理集群broker的上下线，所有topic的分区副本和leader选举等任务，controller的管理工作依赖于zookeeper。</p></blockquote> <h4 id="_3-3-在同步发消息的场景下-生产者发送消息到broker上后-ack的3-种不同的选择"><a href="#_3-3-在同步发消息的场景下-生产者发送消息到broker上后-ack的3-种不同的选择" class="header-anchor">#</a> 3.3 在同步发消息的场景下：生产者发送消息到broker上后，ack的3 种不同的选择</h4> <ul><li><ol><li>acks=0： 表示producer不需要等待任何broker确认收到消息的回复，就可以继续发送下一条消息。性能最高，但是最容易丢消息。</li></ol></li> <li><ol start="2"><li>acks=1： 至少要等待leader已经成功将数据写入本地log，但是不需要等待所有follower是否成功写入。就可以继续发送下一条消息。这种情况下，如果follower没有成功备份数据，而此时leader又挂掉，则消息会丢失。</li></ol></li> <li><ol start="3"><li>acks=-1或all： 需要等待 min.insync.replicas(默认为 1 ，推荐配置大于等于2) 这个参数配置的副本个数都成功写入日志，这种策略会保证只要有一个备份存活就不会丢失数据。这是最强的数据保证。一般除非是金融级别，或跟钱打交道的场景才会使用这种配置。</li></ol></li></ul> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">const</span> <span class="token punctuation">(</span>
+	<span class="token comment">// NoResponse doesn't send any response, the TCP ACK is all you get.</span>
+	NoResponse RequiredAcks <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token comment">// WaitForLocal waits for only the local commit to succeed before responding.</span>
+	WaitForLocal RequiredAcks <span class="token operator">=</span> <span class="token number">1</span>
+	<span class="token comment">// WaitForAll waits for all in-sync replicas to commit before responding.</span>
+	<span class="token comment">// The minimum number of in-sync replicas is configured on the broker via</span>
+	<span class="token comment">// the `min.insync.replicas` configuration key.</span>
+	WaitForAll RequiredAcks <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token punctuation">)</span>
+
+config<span class="token punctuation">.</span>Producer<span class="token punctuation">.</span>RequiredAcks <span class="token operator">=</span> sarama<span class="token punctuation">.</span>WaitForAll
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h4 id="_3-4-自动提交offset"><a href="#_3-4-自动提交offset" class="header-anchor">#</a> 3.4 自动提交offset</h4> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token comment">// AutoCommit specifies configuration for commit messages automatically.</span>
+AutoCommit <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Whether or not to auto-commit updated offsets back to the broker.</span>
+  <span class="token comment">// (default enabled).</span>
+  Enable <span class="token builtin">bool</span>
+
+  <span class="token comment">// How frequently to commit updated offsets. Ineffective unless</span>
+  <span class="token comment">// auto-commit is enabled (default 1s)</span>
+  Interval time<span class="token punctuation">.</span>Duration
+<span class="token punctuation">}</span>
+
+	config<span class="token punctuation">.</span>Consumer<span class="token punctuation">.</span>Offsets<span class="token punctuation">.</span>AutoCommit<span class="token punctuation">.</span>Enable <span class="token operator">=</span> <span class="token boolean">true</span>
+	config<span class="token punctuation">.</span>Consumer<span class="token punctuation">.</span>Offsets<span class="token punctuation">.</span>AutoCommit<span class="token punctuation">.</span>Interval <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">Duration</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+
+<span class="token comment">/*
+消费者pull到消息后默认情况下，会自动向broker的_consumer_offsets主题提交当前主题-分区消费的偏移量。
+
+自动提交会丢消息： 因为如果消费者还没消费完pull下来的消息就自动提交了偏移量，那么此 时消费者挂了，于是下一个消费者会从已提交的offset的下一个位置开始消费消息。之前未被消费的消息就丢失掉了
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h3 id="_4-kafka集群controller、rebalance和hw"><a href="#_4-kafka集群controller、rebalance和hw" class="header-anchor">#</a> 4. Kafka集群Controller、Rebalance和HW</h3> <h5 id="_1-controller"><a href="#_1-controller" class="header-anchor">#</a> 1.Controller</h5> <ul><li>Kafka集群中的broker在zk中创建临时序号节点，序号最小的节点（最先创建的节点）将作为集群的controller，负责管理整个集群中的所有分区和副本的状态：
+<ul><li>当某个分区的leader副本出现故障时，由控制器负责为该分区选举新的leader副本。</li> <li>当检测到某个分区的ISR集合发生变化时，由控制器负责通知所有broker更新其元数据信息。</li> <li>当使用kafka-topics.sh脚本为某个topic增加分区数量时，同样还是由控制器负责让新分区被其他节点感知到。</li></ul></li></ul> <h5 id="_2-rebalance机制"><a href="#_2-rebalance机制" class="header-anchor">#</a> 2.Rebalance机制</h5> <p>前提是：消费者没有指明分区消费。当消费组里消费者和分区的关系发生变化，那么就会触发rebalance机制。</p> <p>这个机制会重新调整消费者消费哪个分区。</p> <p>在触发rebalance机制之前，消费者消费哪个分区有三种策略：</p> <ul><li>range：通过公示来计算某个消费者消费哪个分区</li> <li>轮询：大家轮着消费</li> <li>sticky：在触发了rebalance后，在消费者消费的原分区不变的基础上进行调整。</li></ul> <h5 id="_3-hw和leo"><a href="#_3-hw和leo" class="header-anchor">#</a> 3.HW和LEO</h5> <blockquote><p>HW俗称高水位，HighWatermark的缩写，取一个partition对应的ISR中最小的LEO(log-end-offset)作为HW，consumer最多只能消费到HW所在的位置。另外每个replica都有HW,leader和follower各自负责更新自己的HW的状态。对于leader新写入的消息，consumer不能立刻消费，leader会等待该消息被所有ISR中的replicas同步后更新HW，此时消息才能被consumer消费。这样就保证了如果leader所在的broker失效，该消息仍然可以从新选举的leader中获取。</p></blockquote> <h4 id="_5-kafka线上问题优化"><a href="#_5-kafka线上问题优化" class="header-anchor">#</a> 5. Kafka线上问题优化</h4> <h5 id="_1-如何防止消息丢失"><a href="#_1-如何防止消息丢失" class="header-anchor">#</a> 1.如何防止消息丢失</h5> <ul><li>发送方： ack是 1 或者-1/all 可以防止消息丢失，如果要做到99.9999%，ack设成all，把min.insync.replicas配置成分区备份数</li> <li>消费方：把自动提交改为手动提交。</li></ul> <h5 id="_2-如何防止消息的重复消费"><a href="#_2-如何防止消息的重复消费" class="header-anchor">#</a> 2.如何防止消息的重复消费</h5> <blockquote><p>一条消息被消费者消费多次。如果为了消息的不重复消费，而把生产端的重试机制关闭、消费端的手动提交改成自动提交，这样反而会出现消息丢失，那么可以直接在防止消息丢失的手段上再加上消费消息时的幂等性保证，就能解决消息的重复消费问题。</p></blockquote> <h5 id="幂等性如何保证"><a href="#幂等性如何保证" class="header-anchor">#</a> 幂等性如何保证：</h5> <ul><li>mysql 插入业务id作为主键，主键是唯一的，所以一次只能插入一条</li> <li>使用redis或zk的分布式锁（主流的方案）</li></ul> <h5 id="_3-如何做到顺序消费rocketmq"><a href="#_3-如何做到顺序消费rocketmq" class="header-anchor">#</a> 3.如何做到顺序消费RocketMQ</h5> <ul><li>发送方：在发送时将ack不能设置 0 ，关闭重试，使用同步发送，等到发送成功再发送下一条。确保消息是顺序发送的。</li> <li>接收方：消息是发送到一个分区中，只能有一个消费组的消费者来接收消息。因此，kafka的顺序消费会牺牲掉性能。</li></ul> <h5 id="_4-解决消息积压问题"><a href="#_4-解决消息积压问题" class="header-anchor">#</a> 4.解决消息积压问题</h5> <blockquote><p>消息积压会导致很多问题，比如磁盘被打满、生产端发消息导致kafka性能过慢，就容易出现服务雪崩，就需要有相应的手段：</p></blockquote> <ul><li>方案一：在一个消费者中启动多个线程，让多个线程同时消费。——提升一个消费者的消费能力（增加分区增加消费者）。</li> <li>方案二：如果方案一还不够的话，这个时候可以启动多个消费者，多个消费者部署在不同的服务器上。其实多个消费者部署在同一服务器上也可以提高消费能力——充分利用服务器的cpu资源。</li> <li>方案三：让一个消费者去把收到的消息往另外一个topic上发，另一个topic设置多个分区和多个消费者 ，进行具体的业务消费。</li></ul> <h5 id="_5-延迟队列"><a href="#_5-延迟队列" class="header-anchor">#</a> 5.延迟队列</h5> <p>延迟队列的应用场景：在订单创建成功后如果超过 30 分钟没有付款，则需要取消订单，此时可用延时队列来实现</p> <ul><li><p>创建多个topic，每个topic表示延时的间隔</p> <ul><li>topic_5s: 延时5s执行的队列</li> <li>topic_1m: 延时 1 分钟执行的队列</li> <li>topic_30m: 延时 30 分钟执行的队列</li></ul></li> <li><p>消息发送者发送消息到相应的topic，并带上消息的发送时间</p></li> <li><p>消费者订阅相应的topic，消费时轮询消费整个topic中的消息</p> <ul><li>如果消息的发送时间，和消费的当前时间超过预设的值，比如 30 分钟</li> <li>如果消息的发送时间，和消费的当前时间没有超过预设的值，则不消费当前的offset及之后的offset的所有消息都消费</li> <li>下次继续消费该offset处的消息，判断时间是否已满足预设值</li></ul></li></ul> <h5 id="_6-生产者消息重复"><a href="#_6-生产者消息重复" class="header-anchor">#</a> 6. 生产者消息重复</h5> <blockquote><p><strong>启动kafka的幂等性</strong></p></blockquote> <p>个生产者producer都有一个唯一id，producer每发送一条数据都会带上一个sequence，当消息落盘，sequence就会递增1。只需判断当前消息的sequence是否大于当前最大sequence，大于就代表此条数据没有落盘过，可以正常消费；不大于就代表落盘过，这个时候重发的消息会被服务端拒掉从而避免消息重复。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/LearnDocsHtml/doc/kafka/MQ.html">
+        MQ(Message Queue)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/20.183aa861.js" defer></script>
+  </body>
+</html>

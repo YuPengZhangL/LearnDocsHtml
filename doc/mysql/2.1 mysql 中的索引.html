@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>mysql 中索引语法以及分类 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/17.04907854.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/mysql/1.1 mysql 的系统结构.html" class="sidebar-link">mysql 体系结构图</a></li><li><a href="/LearnDocsHtml/doc/mysql/1.2 mysql 的存储引擎.html" class="sidebar-link">1. 存储引擎</a></li><li><a href="/LearnDocsHtml/doc/mysql/2.1 mysql 中的索引.html" class="active sidebar-link">mysql 中索引语法以及分类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.2 mysql 中的索引结构.html" class="sidebar-link">mysql 中的索引结构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.3 sql 分析工具.html" class="sidebar-link">sql性能分析</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.4 索引使用原则.html" class="sidebar-link">索引使用原则</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/3.1 sql 优化.html" class="sidebar-link">SQL 优化</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.1 mysql 中的视图.html" class="sidebar-link">mysql 中的视图</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.2 mysql 中的存储过程.html" class="sidebar-link">mysql 中的存储过程</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.3 mysql 中触发器.html" class="sidebar-link">mysql 中的触发器</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.1 mysql 锁的基本概念.html" class="sidebar-link">mysql 中的锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.2 mysql 中的表锁.html" class="sidebar-link">表级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.3 mysql 中的行锁.html" class="sidebar-link">行级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.1 mysql 中InnoDB的架构.html" class="sidebar-link">mysql 中InnoDB 架构详解</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.2 mysql 中的事务.html" class="sidebar-link">mysql 中事务</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.3 mysql 中事务的MVCC.html" class="sidebar-link">mysql 事务中的MVCC</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.1 mysql 中的日志.html" class="sidebar-link">mysql 中的日志</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.2 mysql 中的主从复制.html" class="sidebar-link">mysql 中的主从复制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.3 mysql 中的分库分表.html" class="sidebar-link">mysql 中的分库分表</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.4 mysql 中的读写分离.html" class="sidebar-link">mysql 中的读写分离</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="mysql-中索引语法以及分类"><a href="#mysql-中索引语法以及分类" class="header-anchor">#</a> mysql 中索引语法以及分类</h3> <h4 id="_1-索引概述"><a href="#_1-索引概述" class="header-anchor">#</a> 1. 索引概述</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>索引是帮助 MySQL 高效获取数据的数据结构（有序）。
+在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查询算法，这种数据结构就是索引。
+
+---------------------------------
+|   索引是一种数据结构           
+|   索引要短                     
+|   索引不是越多越好             
+|   索引可以提高查询效率         
+---------------------------------
+优点：
+    提高数据检索效率，降低数据库的IO成本
+    通过索引列对数据进行排序，降低数据排序的成本，降低CPU的消耗
+
+缺点：
+    索引列也是要占用空间的
+    索引大大提高了查询效率，但降低了更新的速度，比如 INSERT、UPDATE、DELETE
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h4 id="_2-索引分类"><a href="#_2-索引分类" class="header-anchor">#</a> 2. 索引分类</h4> <table><thead><tr><th style="text-align:center;">分类</th> <th style="text-align:center;">含义</th> <th style="text-align:center;">特点</th> <th style="text-align:center;">关键字</th></tr></thead> <tbody><tr><td style="text-align:center;">主键索引</td> <td style="text-align:center;">针对于表中主键创建的索引</td> <td style="text-align:center;">默认自动创建，只能有一个</td> <td style="text-align:center;">PRIMARY</td></tr> <tr><td style="text-align:center;">唯一索引</td> <td style="text-align:center;">避免同一个表中某数据列中的值重复</td> <td style="text-align:center;">可以有多个</td> <td style="text-align:center;">UNIQUE</td></tr> <tr><td style="text-align:center;">常规索引</td> <td style="text-align:center;">快速定位特定数据</td> <td style="text-align:center;">可以有多个</td> <td style="text-align:center;">-</td></tr> <tr><td style="text-align:center;">全文索引</td> <td style="text-align:center;">全文索引查找的是文本中的关键词，而不是比较索引中的值</td> <td style="text-align:center;">可以有多个</td> <td style="text-align:center;">FULLTEXT</td></tr></tbody></table> <ul><li>在 InnoDB 存储引擎中，根据索引的存储形式，又可以分为以下两种：</li></ul> <table><thead><tr><th style="text-align:center;">分类</th> <th style="text-align:center;">含义</th> <th style="text-align:center;">特点</th></tr></thead> <tbody><tr><td style="text-align:center;">聚集索引(Clustered Index)</td> <td style="text-align:center;">将数据存储与索引放一块，索引结构的叶子节点保存了行数据</td> <td style="text-align:center;">必须有，而且只有一个</td></tr> <tr><td style="text-align:center;">二级索引(Secondary Index)</td> <td style="text-align:center;">将数据与索引分开存储，索引结构的叶子节点关联的是对应的主键</td> <td style="text-align:center;">-</td></tr></tbody></table> <ul><li>聚集索引 / 二级索引(非聚集索引)</li></ul> <p><img src="/LearnDocsHtml/assets/img/索引分类.4ad99aac.png" alt="image"></p> <p><img src="/LearnDocsHtml/assets/img/索引分类原理.a5b46300.png" alt="image"></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 1) 根据name的索引查出聚集索引id</span>
+<span class="token comment">-- 2) 之后需要回表根据id查出所需要的内容</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> $table_name <span class="token keyword">where</span> name<span class="token operator">=</span><span class="token string">&quot;arm&quot;</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li>聚集索引选取规则：</li></ul> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 如果存在主键，主键索引就是聚集索引
+2) 如果不存在主键，将使用第一个唯一(UNIQUE)索引作为聚集索引
+3) 如果表没有主键或没有合适的唯一索引，则 InnoDB 会自动生成一个 rowid 作为隐藏的聚集索引
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="_3-索引语法"><a href="#_3-索引语法" class="header-anchor">#</a> 3. 索引语法</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 1) 创建索引</span>
+<span class="token keyword">CREATE</span> <span class="token punctuation">[</span> <span class="token keyword">UNIQUE</span> <span class="token operator">|</span> FULLTEXT <span class="token punctuation">]</span> <span class="token keyword">INDEX</span> $index_name <span class="token keyword">ON</span> $table_name <span class="token punctuation">(</span>$index_col_name<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 2) 查看索引</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">INDEX</span> <span class="token keyword">FROM</span> $table_name<span class="token punctuation">;</span>
+
+<span class="token comment">-- 3) 删除索引</span>
+<span class="token keyword">DROP</span> <span class="token keyword">INDEX</span> $index_name <span class="token keyword">ON</span> $table_name<span class="token punctuation">;</span>
+
+<span class="token comment">-- 4) case</span>
+
+<span class="token comment">-- name字段为姓名字段，该字段的值可能会重复，为该字段创建索引</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> idx_user_name <span class="token keyword">on</span> tb_user<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- phone手机号字段的值非空，且唯一，为该字段创建唯一索引</span>
+<span class="token keyword">create</span> <span class="token keyword">unique</span> <span class="token keyword">index</span> idx_user_phone <span class="token keyword">on</span> tb_user <span class="token punctuation">(</span>phone<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 为profession, age, status创建联合索引</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> idx_user_pro_age_stat <span class="token keyword">on</span> tb_user<span class="token punctuation">(</span>profession<span class="token punctuation">,</span> age<span class="token punctuation">,</span> <span class="token keyword">status</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 为email建立合适的索引来提升查询效率</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> idx_user_email <span class="token keyword">on</span> tb_user<span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 删除索引</span>
+<span class="token keyword">drop</span> <span class="token keyword">index</span> idx_user_email <span class="token keyword">on</span> tb_user<span class="token punctuation">;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><h4 id="_4-索引设计原则"><a href="#_4-索引设计原则" class="header-anchor">#</a> 4. 索引设计原则</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 对于数据量较大，且查询比较频繁的表建立索引
+
+2) 针对于常作为查询条件（where）、排序（order by）、分组（group by）操作的字段建立索引
+
+3) 尽量选择区分度高的列作为索引，尽量建立唯一索引，区分度越高，使用索引的效率越高
+
+4) 如果是字符串类型的字段，字段长度较长，可以针对于字段的特点，建立前缀索引
+
+5) 尽量使用联合索引，减少单列索引，查询时，联合索引很多时候可以覆盖索引，节省存储空间，避免回表，提高查询效率
+
+6) 要控制索引的数量，索引并不是多多益善，索引越多，维护索引结构的代价就越大，会影响增删改的效率
+
+7) 如果索引列不能存储NULL值，请在创建表时使用NOT NULL约束它。当优化器知道每列是否包含NULL值时，它可以更好地确定哪个索引最有效地用于查询
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/mysql/1.2 mysql 的存储引擎.html" class="prev">
+        1. 存储引擎
+      </a></span> <span class="next"><a href="/LearnDocsHtml/doc/mysql/2.2 mysql 中的索引结构.html">
+        mysql 中的索引结构
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/17.04907854.js" defer></script>
+  </body>
+</html>

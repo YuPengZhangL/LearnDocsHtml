@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nginx | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/26.722cab78.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link router-link-active">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link router-link-active">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/nginx/Nginx.html" aria-current="page" class="active sidebar-link">Nginx</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/nginx/Nginx.html#nginx" class="sidebar-link">Nginx</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/nginx/Nginx.html#_1-nginx-是什么" class="sidebar-link">1. Nginx 是什么？</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/nginx/Nginx.html#_2-nginx-的管理命令" class="sidebar-link">2. Nginx 的管理命令</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/nginx/Nginx.html#_3-nginx-配置解读" class="sidebar-link">3. Nginx 配置解读</a></li></ul></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="nginx"><a href="#nginx" class="header-anchor">#</a> Nginx</h2> <h3 id="_1-nginx-是什么"><a href="#_1-nginx-是什么" class="header-anchor">#</a> 1. Nginx 是什么？</h3> <blockquote><p>Nginx (engine x) 是一个高性能的HTTP和反向代理web服务器.</p> <p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，在BSD-like 协议下发行，其特点是占有内存少，并发能力强.</p></blockquote> <p><strong>反向代理</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><strong>正向代理</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端才能使用正向代理。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><strong>正向代理和反向代理区别？</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 正向代理，是在客户端,比如需要访问某些国外网站，我们可能需要购买vpn。并且vpn是在我们的用户浏览器端设置的(并不是在远端的服务器设置)。浏览器先访问vpn地址，vpn地址转发请求，并最后将请求结果原路返回来
+
+2) 反向代理是作用在服务器端的，是一个虚拟ip(VIP)。对于用户的一个请求，会转发到多个后端处理器中的一台来处理该具体请求
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="_1-1-开源版nginx"><a href="#_1-1-开源版nginx" class="header-anchor">#</a> 1.1 开源版Nginx？</h4> <h5 id="a-访问路由"><a href="#a-访问路由" class="header-anchor">#</a> A. 访问路由</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>现今大型网站的请求量早已不是单一 Web 服务器可以支撑的了。
+单一入口、访问请求被分配到不同的业务功能服务器集群，是目前大型网站的通用应用架构。
+Nginx 可以通过访问路径、URL 关键字、客户端 IP、灰度分流等多种手段实现访问路由分配。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h5 id="b-反向代理"><a href="#b-反向代理" class="header-anchor">#</a> B. 反向代理</h5> <div class="language- line-numbers-mode"><pre class="language-text"><code>Nginx 本身反向代理并不产生响应数据，只是应用自身的异步非阻塞事件驱动架构，高效、稳定地将请求反向代理给后端的目标应用服务器，并把响应数据返回给客户端。
+其不仅可以代理 HTTP 协议，还支持 HTTPS、HTTP/2、FastCGI、uWSGI、SCGI、gRPC 及 TCP/UDP 等目前大部分协议的反向代理。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="c-负载均衡"><a href="#c-负载均衡" class="header-anchor">#</a> C. 负载均衡</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Nginx 在反向代理的基础上集合自身的上游（upstream）模块支持多种负载均衡算法，使后端服务器可以非常方便地进行横向扩展，从而有效提升应用的处理能力，使整体应用架构可轻松应对高并发的应用场景。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h5 id="d-内容缓存"><a href="#d-内容缓存" class="header-anchor">#</a> D. 内容缓存</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>动态处理与静态内容分离是应用架构优化的主要手段之一，Nginx 的内容缓存技术不仅可以实现预置静态文件的高速缓存。
+还可以对应用响应的动态结果实现缓存，为响应结果变化不大的应用提供更高速的响应能力。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="e-可编程"><a href="#e-可编程" class="header-anchor">#</a> E. 可编程</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Nginx 模块化的代码架构方式为其提供了高度可定制的特性，但可以用C语言开发 Nginx 模块以满足自身使用需求的用户只是少数。
+Nginx 在开发之初就具备了使用 Perl 脚本语言实现功能增强的能力。
+Nginx 对 JavaScript 语言及第三方模块对 Lua 语言的支持，使得其可编程能力更强
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="_1-2-商业版-nginx"><a href="#_1-2-商业版-nginx" class="header-anchor">#</a> 1.2 商业版 Nginx</h4> <h5 id="a-负载均衡"><a href="#a-负载均衡" class="header-anchor">#</a> A. 负载均衡</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 基于 cookies 的会话保持功能。
+2) 基于响应状态码和响应体的主动健康监测。
+3) 支持 DNS 动态更新。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h5 id="b-动态管理"><a href="#b-动态管理" class="header-anchor">#</a> B. 动态管理</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 支持通过 API 清除内容缓存。
+2) 可通过 API 动态管理上游的后端服务器列表。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="c-安全控制"><a href="#c-安全控制" class="header-anchor">#</a> C. 安全控制</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 基于 API 和 OpenID 连接协议单点登录（SSO）的 JWT（JSON Web Token）认证支持。
+2) Nginx WAF 动态模块。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="d-状态监控"><a href="#d-状态监控" class="header-anchor">#</a> D. 状态监控</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 超过 90 个状态指标的扩展状态监控。
+2) 内置实时图形监控面板。
+3) 集成可用于自定义监控工具的 JSON 和 HTML 输出功能支持。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h5 id="e-kubernetes-ingress-controller"><a href="#e-kubernetes-ingress-controller" class="header-anchor">#</a> E. Kubernetes Ingress Controller</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 支持 Kubernetes 集群 Pod 的会话保持和主动健康监测。
+2) 支持 JWT 身份认证。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="f-流媒体"><a href="#f-流媒体" class="header-anchor">#</a> F. 流媒体</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 支持自适性串流（Adaptive Bitrate Streaming，ABS）媒体技术 HLS（Apple HTTP Live Streaming）和 HDS（Adobe HTTP Dynamic Streaming）。
+2) 支持对 MP4 媒体流进行带宽控制。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="_1-3-nginx-处理流程"><a href="#_1-3-nginx-处理流程" class="header-anchor">#</a> 1.3 Nginx 处理流程</h4> <p><img src="/LearnDocsHtml/assets/img/nginx工作流程.2fa5729c.png" alt="image"></p> <blockquote><ol><li>实际处理client请求的是worker进程</li> <li>master根据nginx.conf 配置worker的数量</li> <li>client请求时，worker之间相互竞争，获胜者和client连接并且处理请求</li> <li>接受client请求后，如果需要代理转发给后端，则后端处理完毕后接收处理结果，在响应给client</li> <li>接受并处理master发来的进程信号，例如启动、停止、 重启、重加载等等</li></ol></blockquote> <h3 id="_2-nginx-的管理命令"><a href="#_2-nginx-的管理命令" class="header-anchor">#</a> 2. Nginx 的管理命令</h3> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment">#　nginx安装</span>
+yum <span class="token function">install</span>  nginx <span class="token parameter variable">-y</span>
+
+<span class="token comment"># nginx 安装完成的可执行文件的路径</span>
+<span class="token function">which</span> nginx
+/usr/sbin/nginx
+
+<span class="token comment"># 检测nginx.conf 的语法</span>
+nginx <span class="token parameter variable">-t</span> 
+
+<span class="token comment"># 重新读取nginx.cong</span>
+nginx <span class="token parameter variable">-s</span> reload
+
+<span class="token comment"># 停止nginx，想到玉kill -15 </span>
+nginx <span class="token parameter variable">-s</span>  stop
+
+<span class="token comment"># 启动，多次执行会报错</span>
+nginx 
+
+<span class="token comment"># 通过yum命令安装推荐使用systemctl管理</span>
+
+<span class="token comment"># nginx -s reload 会给master进程发信号，重新读取nginx.conf配置信息，重新生成worker进程，因此worker进程的pid会发生变化</span>
+<span class="token comment"># 但是master进程的id不会变化</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p><strong>启动存在的坑</strong> <strong>用什么命令启动的，就需要使用什么工具去管理</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 使用nginx命令启动nginx</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># nginx</span>
+<span class="token comment"># 查看启动状态</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># ps -aux | grep nginx</span>
+root      <span class="token number">905155</span>  <span class="token number">0.0</span>  <span class="token number">0.0</span> <span class="token number">121288</span>  <span class="token number">2184</span> ?        Ss   <span class="token number">15</span>:32   <span class="token number">0</span>:00 nginx: master process nginx
+nginx     <span class="token number">905156</span>  <span class="token number">0.0</span>  <span class="token number">0.2</span> <span class="token number">151824</span>  <span class="token number">8208</span> ?        S    <span class="token number">15</span>:32   <span class="token number">0</span>:00 nginx: worker process
+nginx     <span class="token number">905157</span>  <span class="token number">0.0</span>  <span class="token number">0.2</span> <span class="token number">151824</span>  <span class="token number">8212</span> ?        S    <span class="token number">15</span>:32   <span class="token number">0</span>:00 nginx: worker process
+root      <span class="token number">905436</span>  <span class="token number">0.0</span>  <span class="token number">0.0</span>   <span class="token number">9208</span>  <span class="token number">1112</span> pts/0    S+   <span class="token number">15</span>:32   <span class="token number">0</span>:00 <span class="token function">grep</span> <span class="token parameter variable">--color</span><span class="token operator">=</span>auto nginx
+
+<span class="token comment"># 使用nginx启动的，但是使用systemctl管理，之后会导致命令报错</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># systemctl status nginx</span>
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded <span class="token punctuation">(</span>/usr/lib/systemd/system/nginx.service<span class="token punctuation">;</span> disabled<span class="token punctuation">;</span> vendor preset: disabled<span class="token punctuation">)</span>
+   Active: failed <span class="token punctuation">(</span>Result: exit-code<span class="token punctuation">)</span> since Wed <span class="token number">2022</span>-09-21 <span class="token number">17</span>:20:16 CST<span class="token punctuation">;</span> <span class="token number">1</span> day 22h ago
+
+Sep <span class="token number">21</span> <span class="token number">17</span>:20:16 iZ2ze58f53sxjm9z7mgn5xZ systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: Starting The nginx HTTP and reverse proxy server<span class="token punctuation">..</span>.
+Sep <span class="token number">21</span> <span class="token number">17</span>:20:16 iZ2ze58f53sxjm9z7mgn5xZ systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: nginx.service: Control process exited, <span class="token assign-left variable">code</span><span class="token operator">=</span>exited <span class="token assign-left variable">status</span><span class="token operator">=</span><span class="token number">203</span>
+Sep <span class="token number">21</span> <span class="token number">17</span>:20:16 iZ2ze58f53sxjm9z7mgn5xZ systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: nginx.service: Failed with result <span class="token string">'exit-code'</span><span class="token builtin class-name">.</span>
+Sep <span class="token number">21</span> <span class="token number">17</span>:20:16 iZ2ze58f53sxjm9z7mgn5xZ systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: Failed to start The nginx HTTP and reverse proxy server.
+
+<span class="token comment"># 报错</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart nginx</span>
+Job <span class="token keyword">for</span> nginx.service failed because the control process exited with error code.
+See <span class="token string">&quot;systemctl status nginx.service&quot;</span> and <span class="token string">&quot;journalctl -xe&quot;</span> <span class="token keyword">for</span> details.
+
+<span class="token comment"># 重新加载也报错</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># nginx -s reload</span>
+nginx: <span class="token punctuation">[</span>error<span class="token punctuation">]</span> open<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token string">&quot;/run/nginx.pid&quot;</span> failed <span class="token punctuation">(</span><span class="token number">2</span>: No such <span class="token function">file</span> or directory<span class="token punctuation">)</span>
+
+<span class="token comment"># 停止也会报错</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># nginx -s stop</span>
+nginx: <span class="token punctuation">[</span>error<span class="token punctuation">]</span> open<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token string">&quot;/run/nginx.pid&quot;</span> failed <span class="token punctuation">(</span><span class="token number">2</span>: No such <span class="token function">file</span> or directory<span class="token punctuation">)</span>
+
+<span class="token comment"># 查看对应的进程文件nginx.pid文件不存在，这是因为不是使用systemctl启动的，但是使用systemctl去管理导致的错误</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># cat /run/nginx.pid</span>
+cat: /run/nginx.pid: No such <span class="token function">file</span> or directory
+
+<span class="token comment"># 解决， 查询出nginx的master进程pid</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># ps -aux | grep nginx | grep master</span>
+root      <span class="token number">905155</span>  <span class="token number">0.0</span>  <span class="token number">0.0</span> <span class="token number">121288</span>  <span class="token number">2184</span> ?        Ss   <span class="token number">15</span>:32   <span class="token number">0</span>:00 nginx: master process nginx
+
+<span class="token comment"># 将进程pid写入进程管理文件，之后就可以正常停止nginx</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># echo 905155 &gt; /run/nginx.pid </span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># nginx -s stop</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># ps -aux | grep nginx</span>
+root      <span class="token number">921991</span>  <span class="token number">0.0</span>  <span class="token number">0.0</span>   <span class="token number">9208</span>  <span class="token number">1072</span> pts/0    S+   <span class="token number">15</span>:40   <span class="token number">0</span>:00 <span class="token function">grep</span> <span class="token parameter variable">--color</span><span class="token operator">=</span>auto nginx
+
+<span class="token comment"># 使用systemctl管理nginx</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># systemctl start nginx</span>
+<span class="token comment"># 查看状态正常运行</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># systemctl status nginx</span>
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded <span class="token punctuation">(</span>/usr/lib/systemd/system/nginx.service<span class="token punctuation">;</span> disabled<span class="token punctuation">;</span> vendor preset: disabled<span class="token punctuation">)</span>
+   Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Fri <span class="token number">2022</span>-09-23 <span class="token number">15</span>:40:36 CST<span class="token punctuation">;</span> 6s ago
+  Process: <span class="token number">922707</span> <span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/sbin/nginx <span class="token punctuation">(</span>code<span class="token operator">=</span>exited, <span class="token assign-left variable">status</span><span class="token operator">=</span><span class="token number">0</span>/SUCCESS<span class="token punctuation">)</span>
+  Process: <span class="token number">922705</span> <span class="token assign-left variable">ExecStartPre</span><span class="token operator">=</span>/usr/sbin/nginx <span class="token parameter variable">-t</span> <span class="token punctuation">(</span>code<span class="token operator">=</span>exited, <span class="token assign-left variable">status</span><span class="token operator">=</span><span class="token number">0</span>/SUCCESS<span class="token punctuation">)</span>
+  Process: <span class="token number">922703</span> <span class="token assign-left variable">ExecStartPre</span><span class="token operator">=</span>/usr/bin/rm <span class="token parameter variable">-f</span> /run/nginx.pid <span class="token punctuation">(</span>code<span class="token operator">=</span>exited, <span class="token assign-left variable">status</span><span class="token operator">=</span><span class="token number">0</span>/SUCCESS<span class="token punctuation">)</span>
+ Main PID: <span class="token number">922708</span> <span class="token punctuation">(</span>nginx<span class="token punctuation">)</span>
+    Tasks: <span class="token number">3</span> <span class="token punctuation">(</span>limit: <span class="token number">22997</span><span class="token punctuation">)</span>
+   Memory: <span class="token number">4</span>.9M
+   CGroup: /system.slice/nginx.service
+           ├─922708 nginx: master process /usr/sbin/nginx
+           ├─922709 nginx: worker process
+           └─922710 nginx: worker process
+
+Sep <span class="token number">23</span> <span class="token number">15</span>:40:36 iZ2ze58f53sxjm9z7mgn5xZ systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: Starting The nginx HTTP and reverse proxy server<span class="token punctuation">..</span>.
+Sep <span class="token number">23</span> <span class="token number">15</span>:40:36 iZ2ze58f53sxjm9z7mgn5xZ nginx<span class="token punctuation">[</span><span class="token number">922705</span><span class="token punctuation">]</span>: nginx: the configuration <span class="token function">file</span> /etc/nginx/nginx.conf syntax is ok
+Sep <span class="token number">23</span> <span class="token number">15</span>:40:36 iZ2ze58f53sxjm9z7mgn5xZ nginx<span class="token punctuation">[</span><span class="token number">922705</span><span class="token punctuation">]</span>: nginx: configuration <span class="token function">file</span> /etc/nginx/nginx.conf <span class="token builtin class-name">test</span> is successful
+Sep <span class="token number">23</span> <span class="token number">15</span>:40:36 iZ2ze58f53sxjm9z7mgn5xZ systemd<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>: Started The nginx HTTP and reverse proxy server.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br></div></div><h3 id="_3-nginx-配置解读"><a href="#_3-nginx-配置解读" class="header-anchor">#</a> 3. Nginx 配置解读</h3> <div class="language-nginx line-numbers-mode"><pre class="language-nginx"><code><span class="token comment"># 核心模块，nginx的全局配置</span>
+
+<span class="token comment"># 设置nginx的运行用户</span>
+<span class="token directive"><span class="token keyword">user</span> nginx</span><span class="token punctuation">;</span>
+
+<span class="token comment"># worker的数量</span>
+<span class="token directive"><span class="token keyword">worker_processes</span> auto</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 日志的参数设置，在全局参数中设置日志参数，后续所有的虚拟机都会生效</span>
+<span class="token directive"><span class="token keyword">error_log</span> /var/log/nginx/error.log</span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">pid</span> /run/nginx.pid</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 使用include导入外部配置文件</span>
+<span class="token directive"><span class="token keyword">include</span> /usr/share/nginx/modules/*.conf</span><span class="token punctuation">;</span>
+
+<span class="token comment"># nginx的性能设置，tcp的连接数等等</span>
+<span class="token directive"><span class="token keyword">events</span></span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">worker_connections</span> <span class="token number">1024</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># nginx的核心网站部署功能</span>
+<span class="token directive"><span class="token keyword">http</span></span> <span class="token punctuation">{</span>
+    .....
+    <span class="token comment"># nginx中关于请求与响应的参数，缓存，压缩，长链接超时等等</span>
+    <span class="token directive"><span class="token keyword">sendfile</span>            <span class="token boolean">on</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">tcp_nopush</span>          <span class="token boolean">on</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">tcp_nodelay</span>         <span class="token boolean">on</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">keepalive_timeout</span>   <span class="token number">65</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">types_hash_max_size</span> <span class="token number">2048</span></span><span class="token punctuation">;</span>
+
+    <span class="token comment"># nginx实现网站部署的虚拟主机设置，一个server代表一个网站站点</span>
+    <span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
+        
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/26.722cab78.js" defer></script>
+  </body>
+</html>

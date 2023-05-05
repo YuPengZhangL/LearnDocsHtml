@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>缓存技术(Cache) | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link router-link-active">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link router-link-active">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/redis/1. redis 的事务机制.html" class="sidebar-link">Redis 的事务机制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/2. redis 的主从复制.html" class="sidebar-link">Redis 的主从复制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/3. redis 哨兵模式.html" class="sidebar-link">Redis 哨兵架构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/4. redis 的集群搭建以及槽.html" class="sidebar-link">Redis 集群搭建以及槽</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html" class="sidebar-link">Redis 的「内存淘汰策略」和「过期删除策略」</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html#redis-的「内存淘汰策略」和「过期删除策略」" class="sidebar-link">Redis 的「内存淘汰策略」和「过期删除策略」</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html#_1-过期删除策略" class="sidebar-link">1. 过期删除策略</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html#_2-内存淘汰策略" class="sidebar-link">2. 内存淘汰策略</a></li></ul></li></ul></li><li><a href="/LearnDocsHtml/doc/redis/cache.html" aria-current="page" class="active sidebar-link">缓存技术(Cache)</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="缓存技术-cache"><a href="#缓存技术-cache" class="header-anchor">#</a> 缓存技术(Cache)</h3> <h4 id="_1-缓存的概念"><a href="#_1-缓存的概念" class="header-anchor">#</a> 1. 缓存的概念</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 缓存存是数据交互的缓冲区域，简称cache，当某一个硬件想要读取数据是，会首选从缓存中获取数据，有则直接执行，或者返回，如果没有，去内存中获取。缓存的数据比内存的数据快很多。所以缓存的作用就是让硬件更快速的运行缓存基本上都是RAM，即断电即掉的非永久性存储，所以一般使用完后后，会将数据写入内存中去。
+
+2) 缓存的作用是什么?
+    A) 操作系统磁盘缓存————》减少磁盘机械操作
+    B) 数据库缓存————》减少对数据库的查询
+    C) Web服务器缓存————》减少对应用服务器的请求。
+    D) 客户端浏览器缓存————》减少对网站的访问。
+
+3) 缓存的原理是什么？
+    A) 将数据副本存入速度更快的存储设备
+    B) 将数据存储到与使用者更接近的位置存储
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h4 id="_2-缓存击穿"><a href="#_2-缓存击穿" class="header-anchor">#</a> 2. 缓存击穿</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 缓存击穿的概念
+    如果我们为缓存中的大部分数据设置了相同的过期时间，则到了某一时刻，缓存中的数据就会批量过期。
+
+2) 产生缓存击穿的原因是什么？
+    如果缓存中的数据在某个时刻批量过期，导致大部分用户的请求都会直接落在数据库上，或者构成逻辑上不存在的数据，然后大量发送这个请求到数据库，每次都这样，导致数据库崩溃或者挂掉，这种现象就叫作缓存击穿
+
+3) 如何解决缓存击穿？
+    A) 对于热点数据分配比较合理的过期时间，避免同一时刻失效，确保热点期间key不会过期，或者设置热点数据永不过期
+    B) 使用分布式锁，保证对于每个 Key 同时只有一个线程去查询后端的服务，某个线程在查询后端服务的同时，其他线程没有获得分布式锁的权限，需要进行等待
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h4 id="_3-缓存雪崩"><a href="#_3-缓存雪崩" class="header-anchor">#</a> 3. 缓存雪崩</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 缓存雪崩
+    如果缓存系统出现故障，所有的并发流量就会直接到达数据库
+
+2) 产生雪崩原因是什么？
+    在某一时刻缓存集中失效，或者缓存系统出现故障，所有的并发流量就会直接到达数据库。数据存储层的调用量就会暴增，导致数据库被大流量压垮，这种级联式的服务故障，就叫作缓存雪崩
+
+3） 如何解决缓存雪崩？
+    A) 不同的热点key设置不同的过期时间(随机值)，缓存失效时间均匀分布
+    B) 使用高可用分布式集群，确保缓存的高可用(设置二级缓存，一级缓存失效，访问二级缓存，不会直接落到DB)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h4 id="_4-缓存穿透"><a href="#_4-缓存穿透" class="header-anchor">#</a> 4. 缓存穿透</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 缓存穿透
+    如果在请求数据时，在缓存层和数据库层都没有找到符合条件的数据，也就是说，在缓存层和数据库层都没有命中数据，那么，这种情况就叫作缓存穿透
+
+2) 产生缓存穿透原因是什么？
+    查询某个 Key 对应的数据，Redis 缓存中没有相应的数据，则直接到数据库中查询。
+    数据库中也不存在要查询的数据，则数据库会返回空，而 Redis 也不会缓存这个空结果。
+    这就造成每次通过这样的 Key 去查询数据都会直接到数据库中查询，Redis 不会缓存空结果。这就造成了缓存穿透的问题
+
+3） 如何解决缓存穿透？
+    A) 在业务层进行判断，不合法的请求直接返回
+    B) 把不合法对象缓存起来，当第一次从数据库中查询出来的结果为空时，我们就将这个空对象加载到缓存，并设置合理的过期时间
+    C) 使用布隆过滤器，布隆过滤器可以针对大数据量的、有规律的键值进行处理。一条记录是不是存在，本质上是一个 Bool 值，只需要使用 1bit 就可以存储
+    (布隆过滤器: 如果数据不存在，那可以判断出来一定不存在，如果判断数据存在，那么数据可能存在)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h4 id="_5-缓存一致性"><a href="#_5-缓存一致性" class="header-anchor">#</a> 5. 缓存一致性</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 缓存一致性
+    当数据实效性要求非常高的时候，需要保证缓存中的数据和数据库中的数据保持高度一致，需要保证缓存结点和缓存副本中的数据也是一致的，不能出现差异(集群同步)
+
+2) 产生缓存一致性原因是什么？
+    多个请求数据读写不一致，A 的写请求淘汰了cache，修改了数据库中的数据，B的读请求开始，当前cache为空，重新去数据库读取，这是A请求没有完成写，就会造成脏数据写入cache，下一次请求依旧是无效的数据.
+
+3） 如何解决缓存一致性？
+    在数据库发生更新时，主动更新缓存或者清除旧的缓存
+
+4) 缓存一致性协议(MESI),存行中数据具有四种状态
+    A) Modified（修改）：数据有效，数据被修改了，和内存中数据不一致，数据只存在于本Cache中。
+    
+    B) Exclusive（独享）：数据有效，数据和内存中的数据一致，数据只存在于本Cache中。
+    
+    C) Shared（共享）：数据有效，数据和内存中的数据一致，数据存在多个Cache中。
+    
+    D) Invalid（无效）：数据无效，一旦数据被标记为无效，那效果就等同于它从来没被加载到缓存中。
+
+5) 数据的四中读写操作
+    A) local read（从缓存中读取）
+    
+    B) local write（写入到缓存）
+    
+    C) remote read（读取其他 cpu 的缓存）
+    
+    D) remote write（写入到其他 cpu 的缓存中）
+    
+当内核需要访问的数据不在Cache中，而其它Cache有这份数据的备份时，当前Cache既可以从DB中导入数据，也可以从其它Cache中导入数据
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/redis/5. redis 过期策略.html" class="prev">
+        Redis 的「内存淘汰策略」和「过期删除策略」
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/68.a3f12ccf.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>虚拟机部署k8s集群 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link router-link-active">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link router-link-active">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/kubernetes/k8s 集群搭建.html" class="active sidebar-link">虚拟机部署k8s集群</a></li><li><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html" class="sidebar-link">kubernetes中的informer机制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#引言" class="sidebar-link">引言</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#一、informer介绍" class="sidebar-link">一、informer介绍</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_1-1-informer介绍" class="sidebar-link">1.1 informer介绍</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_1-2-informer架构说明" class="sidebar-link">1.2 informer架构说明</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_1-3-informer-demo" class="sidebar-link">1.3 informer demo</a></li></ul></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#二、各组件源码分析" class="sidebar-link">二、各组件源码分析</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_2-1-refactor" class="sidebar-link">2.1 Refactor</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_2-2-deltafifo" class="sidebar-link">2.2 DeltaFIFO</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_2-3-indexer" class="sidebar-link">2.3 Indexer</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_2-4-sharedinformer" class="sidebar-link">2.4 SharedInformer</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html#_2-5-workqueue" class="sidebar-link">2.5 Workqueue</a></li></ul></li></ul></li><li><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html" class="sidebar-link">Kubernetes设计架构</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_1-kubernetes节点架构" class="sidebar-link">1. Kubernetes节点架构</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_1-1-master-节点" class="sidebar-link">1.1 Master 节点</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_1-2-node-节点" class="sidebar-link">1.2 Node 节点</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_1-3-分层架构" class="sidebar-link">1.3 分层架构</a></li></ul></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-基础组件" class="sidebar-link">2. 基础组件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-1-kubelet" class="sidebar-link">2.1 kubelet</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-2-kube-proxy" class="sidebar-link">2.2 kube-proxy</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-3-kubernetes控制面板" class="sidebar-link">2.3 Kubernetes控制面板</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-4-etcd" class="sidebar-link">2.4 etcd</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-5-kubernetes-api-server" class="sidebar-link">2.5 Kubernetes API Server</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-6-scheduler" class="sidebar-link">2.6 Scheduler</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_2-7-kubernetes控制管理服务器" class="sidebar-link">2.7 Kubernetes控制管理服务器</a></li></ul></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-kubernetes-核心组件" class="sidebar-link">3. Kubernetes 核心组件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-1-pod" class="sidebar-link">3.1 pod</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-2-deployment-控制器" class="sidebar-link">3.2 Deployment 控制器</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-3-statefulset-控制器" class="sidebar-link">3.3 StatefulSet 控制器</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-4-daemonset-控制器" class="sidebar-link">3.4 DaemonSet 控制器</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-5-service" class="sidebar-link">3.5 Service</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-6-ingress" class="sidebar-link">3.6 Ingress</a></li><li class="sidebar-sub-header"><a href="/LearnDocsHtml/doc/kubernetes/kubernetes 核心.html#_3-7" class="sidebar-link">3.7</a></li></ul></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="虚拟机部署k8s集群"><a href="#虚拟机部署k8s集群" class="header-anchor">#</a> 虚拟机部署k8s集群</h1> <blockquote><p>[域名ip查询] https://ip.tool.chinaz.com/raw.githubusercontent.com</p></blockquote> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># 关闭防火墙</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl stop firewalld</span>
+<span class="token comment"># 禁用开机启动</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl disable firewalld</span>
+
+<span class="token comment"># 禁用交换分区</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># swapoff -a</span>
+
+<span class="token comment"># 禁用selinux</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># setenforce 0 </span>
+
+<span class="token comment"># 查看状态</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># getenforce 0      </span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/selinux/config</span>
+<span class="token comment">#永久关闭selinux，在文档最后加下面这句</span>
+<span class="token assign-left variable">SELINUX</span><span class="token operator">=</span>disabled
+
+<span class="token comment"># 更改hostname名称</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># hostnamectl set-hostname $hostname</span>
+
+<span class="token comment"># 建立IP与主机名的映射</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/hosts</span>
+
+<span class="token number">172.20</span>.73.73 k8s-master
+<span class="token number">172.20</span>.75.230 k8s-node1
+<span class="token number">172.20</span>.71.151 k8s-node2
+
+<span class="token comment"># 时间同步</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># yum -y install ntp</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl start ntpd</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl enable ntpd</span>
+
+<span class="token comment"># 将桥接的IPv4流量传递到iptables的链</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># touch /etc/sysctl.d/k8s.conf</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># cat &gt;&gt; /etc/sysctl.d/k8s.conf &lt;&lt;EOF     </span>
+net.bridge.bridge-nf-call-ip6tables<span class="token operator">=</span><span class="token number">1</span>                     
+net.bridge.bridge-nf-call-iptables<span class="token operator">=</span><span class="token number">1</span>                       
+<span class="token assign-left variable">net.ipv4.ip_forward</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">vm.swappiness</span><span class="token operator">=</span><span class="token number">0</span>
+EOF
+
+<span class="token comment"># 加载系统参数</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># sysctl --system</span>
+
+<span class="token comment"># 安装docker，k8s驱动</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># yum list docker-ce --showduplicates | sort -r</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># yum -y install docker-ce docker-ce-cli containerd.io</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl start docker</span>
+<span class="token comment"># 设置开机启动</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl enable docker</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/docker/daemon.json</span>
+
+<span class="token punctuation">{</span>
+    <span class="token string">&quot;registry-mirrors&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token string">&quot;https://b9pmyelo.mirror.aliyuncs.com&quot;</span><span class="token punctuation">]</span>,  
+    <span class="token string">&quot;exec-opts&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token string">&quot;native.cgroupdriver=systemd&quot;</span><span class="token punctuation">]</span>           
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart docker</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># docker info |tail -5</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># docker info | grep -i &quot;Cgroup Driver&quot;</span>
+
+<span class="token comment"># 使用kubeadm安装k8s及相关工具</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># cat &gt;/etc/yum.repos.d/kubernetes.repo &lt;&lt;EOF  </span>
+<span class="token punctuation">[</span>kubernetes<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>Kubernetes
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">repo_gpgcheck</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+
+<span class="token comment"># 查看可安装版本</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># yum list --showduplicates | grep  kubeadm</span>
+
+<span class="token comment"># 安装指定版本</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># yum -y install kubelet-1.22.6 kubeadm-1.22.6 kubectl-1.22.6</span>
+
+<span class="token comment"># 开机启动</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># systemctl enable kubelet   </span>
+
+<span class="token comment"># 初始化master节点(MASTER)</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># kubeadm init  --apiserver-advertise-address=8.141.175.100 --image-repository registry.aliyuncs.com/google_containers --kubernetes-version v1.22.6 --service-cidr=10.96.0.0/12 --pod-network-cidr=10.244.0.0/16</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># mkdir -p $HOME/.kube</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># chown $(id -u):$(id -g) $HOME/.kube/config</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># export KUBECONFIG=/etc/kubernetes/admin.conf</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># scp /etc/kubernetes/admin.conf k8s-node1:/etc/kubernetes/admin.conf</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># scp /etc/kubernetes/admin.conf k8s-node1:/etc/kubernetes/admin.conf</span>
+
+<span class="token comment"># 将node节点加入集群，要在node节点机器上执行，node结点需要安装k8s相关组件，即kubeadm init之前的操作都需要执行</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># kubeadm join 172.20.73.73:6443 --token 0416zv.g44s1xnloyi8xjvm --discovery-token-ca-cert-hash sha256:37349a9729af525fe5716148545561d447b0a06ff6f9e76c4bc8269c79748017 </span>
+  
+
+<span class="token comment"># 部署容器网络，CNI网络插件</span>
+
+<span class="token comment">#执行下面这条命令在线配置pod网络，因为是国外网站，所以可能报错，测试去http://ip.tool.chinaz.com/网站查到</span>
+<span class="token comment">#域名raw.githubusercontent.com对应的IP，把域名解析配置到/etc/hosts文件，然后执行在线配置pod网络，多尝试几次即可成功。</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># echo &quot;185.199.110.133 raw.githubusercontent.com&quot; &gt;&gt; /etc/hosts</span>
+
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml</span>
+
+<span class="token comment">#  查看运行状态          </span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pods -n kube-system</span>
+NAME                                 READY   STATUS    RESTARTS   AGE
+coredns-7f6cbbb7b8-2gwkr             <span class="token number">1</span>/1     Running   <span class="token number">0</span>          7m57s
+coredns-7f6cbbb7b8-lwx8s             <span class="token number">1</span>/1     Running   <span class="token number">0</span>          7m57s
+etcd-k8s-master                      <span class="token number">1</span>/1     Running   <span class="token number">1</span>          8m11s
+kube-apiserver-k8s-master            <span class="token number">1</span>/1     Running   <span class="token number">1</span>          8m12s
+kube-controller-manager-k8s-master   <span class="token number">1</span>/1     Running   <span class="token number">1</span>          8m11s
+kube-proxy-2wbds                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          4m37s
+kube-proxy-9lqxn                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          7m57s
+kube-proxy-jjbtr                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          4m47s
+kube-scheduler-k8s-master            <span class="token number">1</span>/1     Running   <span class="token number">1</span>          8m11s
+
+<span class="token comment"># 验证集群是否正常，要注意看对外暴露的端口号（自动生成的）</span>
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># kubectl create deployment httpd --image=httpd</span>
+deployment.apps/httpd created
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># kubectl expose deployment httpd --port=80 --type=NodePort</span>
+service/httpd exposed
+<span class="token punctuation">[</span>root@k8s-master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pod,svc</span>
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/httpd-757fb56c8d-zq2fj   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          17s
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>        AGE
+service/httpd        NodePort    <span class="token number">10.106</span>.137.56   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">80</span>:31537/TCP   7s
+service/kubernetes   ClusterIP   <span class="token number">10.96</span>.0.1       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">443</span>/TCP        9m9s
+
+<span class="token comment"># 安装kubeboard</span>
+<span class="token punctuation">[</span>root@k8s-master k8s-yaml<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f https://kuboard.cn/install-script/kuboard-beta.yaml</span>
+deployment.apps/kuboard created
+service/kuboard created
+serviceaccount/kuboard-user created
+clusterrolebinding.rbac.authorization.k8s.io/kuboard-user created
+serviceaccount/kuboard-viewer created
+clusterrolebinding.rbac.authorization.k8s.io/kuboard-viewer created
+<span class="token punctuation">[</span>root@k8s-master k8s-yaml<span class="token punctuation">]</span><span class="token comment"># kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kuboard-user | awk '{print $1}')</span>
+Name:         kuboard-user-token-6p88l
+Namespace:    kube-system
+Labels:       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations:  kubernetes.io/service-account.name: kuboard-user
+              kubernetes.io/service-account.uid: a980558e-fd23-4e0e-a757-c7bac989a34d
+
+Type:  kubernetes.io/service-account-token
+
+Data
+<span class="token operator">==</span><span class="token operator">==</span>
+ca.crt:     <span class="token number">1099</span> bytes
+namespace:  <span class="token number">11</span> bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IlM4cFhRbW9Yb25HdGxzSm9HUWQwXzlfeUxXZVZ5UWZ4VHVxQUxwSnl3UXcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJvYXJkLXVzZXItdG9rZW4tNnA4OGwiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoia3Vib2FyZC11c2VyIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYTk4MDU1OGUtZmQyMy00ZTBlLWE3NTctYzdiYWM5ODlhMzRkIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmt1Ym9hcmQtdXNlciJ9.q2fnZZN1-BN5QsLeoai1vQ3IkiuIeUTGt-lncgjFBZILxDoNRRQDlvIxPIvYu4PHGpbUf295vLRc5y0CvNizWAZqenb3exkuM4ahF0mNU68B2NYBnZ3No86GiFNj-pgrKpeaECHHERZn5I3h3aKupzYHlLgDes3-UATurf3UsgpUO7Gbp6xcT8OVDK_y81JnQLwXDIKEF09CbzgjF8EOn2_Gbi-zyapZQjVV3sDaRPs9-cXLRrD1n2FmRtYVb0fSCu_V0nnn_5gIy1OlI5wEHfUgrFOtEAg6B38AYyQamzQqPT6YIehpur1C7g9c5VCriOH1aAgj8WSAB31haeuvFw
+<span class="token punctuation">[</span>root@k8s-master k8s-yaml<span class="token punctuation">]</span><span class="token comment"># kubectl get svc -n kube-system</span>
+NAME       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>                  AGE
+kube-dns   ClusterIP   <span class="token number">10.96</span>.0.10       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">53</span>/UDP,53/TCP,9153/TCP   76m
+kuboard    NodePort    <span class="token number">10.102</span>.159.239   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">80</span>:32567/TCP             21s
+
+<span class="token comment"># 访问ip:32567</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br></div></div><h4 id="清除node结点环境"><a href="#清除node结点环境" class="header-anchor">#</a> 清除node结点环境</h4> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token shebang important">#!/bin/sh</span>
+ kubeadm reset
+ ​
+ systemctl stop kubelet
+ ​
+ systemctl stop <span class="token function">docker</span>
+ ​
+ <span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/lib/cni/
+ ​
+ <span class="token function">rm</span> <span class="token parameter variable">-rf</span> /var/lib/kubelet/*
+ ​
+ <span class="token function">rm</span> <span class="token parameter variable">-rf</span> /etc/cni/
+ ​
+ <span class="token function">ifconfig</span> cni0 down
+ ​
+ <span class="token function">ifconfig</span> flannel.1 down
+ ​
+ <span class="token function">ifconfig</span> docker0 down
+ ​
+ <span class="token function">ip</span> <span class="token function">link</span> delete cni0
+ ​
+ <span class="token function">ip</span> <span class="token function">link</span> delete flannel.1
+ ​
+ systemctl start <span class="token function">docker</span>
+ ​
+ systemctl start kubelet
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/LearnDocsHtml/doc/kubernetes/k8s中的Informer 机制.html">
+        kubernetes中的informer机制
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/46.c5ce7e98.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SQL 优化 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/52.c48b61d7.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/mysql/1.1 mysql 的系统结构.html" class="sidebar-link">mysql 体系结构图</a></li><li><a href="/LearnDocsHtml/doc/mysql/1.2 mysql 的存储引擎.html" class="sidebar-link">1. 存储引擎</a></li><li><a href="/LearnDocsHtml/doc/mysql/2.1 mysql 中的索引.html" class="sidebar-link">mysql 中索引语法以及分类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.2 mysql 中的索引结构.html" class="sidebar-link">mysql 中的索引结构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.3 sql 分析工具.html" class="sidebar-link">sql性能分析</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.4 索引使用原则.html" class="sidebar-link">索引使用原则</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/3.1 sql 优化.html" class="active sidebar-link">SQL 优化</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.1 mysql 中的视图.html" class="sidebar-link">mysql 中的视图</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.2 mysql 中的存储过程.html" class="sidebar-link">mysql 中的存储过程</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.3 mysql 中触发器.html" class="sidebar-link">mysql 中的触发器</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.1 mysql 锁的基本概念.html" class="sidebar-link">mysql 中的锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.2 mysql 中的表锁.html" class="sidebar-link">表级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.3 mysql 中的行锁.html" class="sidebar-link">行级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.1 mysql 中InnoDB的架构.html" class="sidebar-link">mysql 中InnoDB 架构详解</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.2 mysql 中的事务.html" class="sidebar-link">mysql 中事务</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.3 mysql 中事务的MVCC.html" class="sidebar-link">mysql 事务中的MVCC</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.1 mysql 中的日志.html" class="sidebar-link">mysql 中的日志</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.2 mysql 中的主从复制.html" class="sidebar-link">mysql 中的主从复制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.3 mysql 中的分库分表.html" class="sidebar-link">mysql 中的分库分表</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.4 mysql 中的读写分离.html" class="sidebar-link">mysql 中的读写分离</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="sql-优化"><a href="#sql-优化" class="header-anchor">#</a> SQL 优化</h3> <h4 id="_1-插入数据优化"><a href="#_1-插入数据优化" class="header-anchor">#</a> 1. 插入数据优化</h4> <h5 id="_1-1-普通插入"><a href="#_1-1-普通插入" class="header-anchor">#</a> 1.1 普通插入</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 采用批量插入（一次插入的数据不建议超过1000条）
+2) 手动提交事务
+3) 主键顺序插入
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h5 id="_1-2-大批量插入"><a href="#_1-2-大批量插入" class="header-anchor">#</a> 1.2 大批量插入</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>如果一次性需要插入大批量数据，使用insert语句插入性能较低，此时可以使用MySQL数据库提供的load指令插入。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 客户端连接服务端时，加上参数 --local-infile（这一行在bash/cmd界面输入）</span>
+mysql <span class="token comment">--local-infile -u root -p</span>
+
+<span class="token comment">-- 设置全局参数local_infile为1，开启从本地加载文件导入数据的开关</span>
+<span class="token keyword">set</span> <span class="token keyword">global</span> local_infile <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">select</span> @<span class="token variable">@local_infile</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 执行load指令将准备好的数据，加载到表结构中</span>
+<span class="token keyword">load</span> <span class="token keyword">data</span> <span class="token keyword">local</span> <span class="token keyword">infile</span> <span class="token string">'/root/sql1.log'</span> <span class="token keyword">into</span> <span class="token keyword">table</span> <span class="token string">'tb_user'</span> <span class="token keyword">fields</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">','</span> <span class="token keyword">lines</span> <span class="token keyword">terminated</span> <span class="token keyword">by</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h4 id="_2-主键优化"><a href="#_2-主键优化" class="header-anchor">#</a> 2. 主键优化</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>数据组织方式：
+    在InnoDB存储引擎中，表数据都是根据主键顺序组织存放的，这种存储方式的表称为索引组织表（Index organized table, IOT）
+
+页分裂：
+    页可以为空，也可以填一半，也可以填充100%，每个页包含了2-N行数据（如果一行数据过大，会行溢出），根据主键排列。
+
+页合并：
+    当删除一行记录时，实际上记录并没有被物理删除，只是记录被标记（flaged）为删除并且它的空间变得允许被其他记录声明使用。当页中删除的记录到达 MERGE_THRESHOLD（默认为页的50%），InnoDB会开始寻找最靠近的页（前后）看看是否可以将这两个页合并以优化空间使用。
+
+MERGE_THRESHOLD：
+    合并页的阈值，可以自己设置，在创建表或创建索引时指定
+
+主键设计原则：
+    满足业务需求的情况下，尽量降低主键的长度
+    插入数据时，尽量选择顺序插入，选择使用 AUTO_INCREMENT 自增主键
+    尽量不要使用 UUID 做主键或者是其他的自然主键，如身份证号
+    业务操作时，避免对主键的修改
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h4 id="_3-order-by-优化"><a href="#_3-order-by-优化" class="header-anchor">#</a> 3. order by 优化</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Using filesort：
+    通过表的索引或全表扫描，读取满足条件的数据行，然后在排序缓冲区 sort buffer 中完成排序操作，所有不是通过索引直接返回排序结果的排序都叫 FileSort 排序
+
+Using index：
+    通过有序索引顺序扫描直接返回有序数据，这种情况即为 using index，不需要额外排序，操作效率高
+如果order by字段全部使用升序排序或者降序排序，则都会走索引，但是如果一个字段升序排序，另一个字段降序排序，则不会走索引，explain的extra信息显示的是Using index, Using filesort，如果要优化掉Using filesort，则需要另外再创建一个索引，如：create index idx_user_age_phone_ad on tb_user(age asc, phone desc);，此时使用select id, age, phone from tb_user order by age asc, phone desc;会全部走索引
+
+总结：
+    1) 根据排序字段建立合适的索引，多字段排序时，也遵循最左前缀法则
+    2) 尽量使用覆盖索引
+    3) 多字段排序，一个升序一个降序，此时需要注意联合索引在创建时的规则（ASC/DESC）
+    4) 如果不可避免出现filesort，大数据量排序时，可以适当增大排序缓冲区大小 sort_buffer_size（默认256k）
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h4 id="_4-group-by-优化"><a href="#_4-group-by-优化" class="header-anchor">#</a> 4. group by 优化</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 在分组操作时，可以通过索引来提高效率
+
+2) 分组操作时，索引的使用也是满足最左前缀法则的
+
+3) 如索引为idx_user_pro_age_stat，则句式可以是select ... where profession order by age，这样也符合最左前缀法则
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="_5-limit-优化"><a href="#_5-limit-优化" class="header-anchor">#</a> 5. limit 优化</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>常见的问题如limit 2000000, 10，此时需要 MySQL 排序前2000000条记录，但仅仅返回2000000 - 2000010的记录，其他记录丢弃，查询排序的代价非常大。
+
+优化方案：
+    一般分页查询时，通过创建覆盖索引能够比较好地提高性能，可以通过覆盖索引加子查询形式进行优化
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><ul><li>case</li></ul> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 此语句耗时很长</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> tb_sku <span class="token keyword">limit</span> <span class="token number">9000000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 通过覆盖索引加快速度，直接通过主键索引进行排序及查询</span>
+<span class="token keyword">select</span> id <span class="token keyword">from</span> tb_sku <span class="token keyword">order</span> <span class="token keyword">by</span> id <span class="token keyword">limit</span> <span class="token number">9000000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 下面的语句是错误的，因为 MySQL 不支持 in 里面使用 limit</span>
+<span class="token comment">-- select * from tb_sku where id in (select id from tb_sku order by id limit 9000000, 10);</span>
+<span class="token comment">-- 通过连表查询即可实现第一句的效果，并且能达到第二句的速度</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> tb_sku <span class="token keyword">as</span> s<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">select</span> id <span class="token keyword">from</span> tb_sku <span class="token keyword">order</span> <span class="token keyword">by</span> id <span class="token keyword">limit</span> <span class="token number">9000000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">as</span> a <span class="token keyword">where</span> s<span class="token punctuation">.</span>id <span class="token operator">=</span> a<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h4 id="_6-count-优化"><a href="#_6-count-优化" class="header-anchor">#</a> 6. count 优化</h4> <h5 id="_6-1-不同引擎之间的count的原理"><a href="#_6-1-不同引擎之间的count的原理" class="header-anchor">#</a> 6.1 不同引擎之间的count的原理</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) MyISAM 引擎把一个表的总行数存在了磁盘上，因此执行 count(*) 的时候会直接返回这个数，效率很高（前提是不适用where）；
+
+2) InnoDB 在执行 count(*) 时，需要把数据一行一行地从引擎里面读出来，然后累计计数。
+
+3) 优化方案：自己计数，如创建key-value表存储在内存或硬盘，或者是用redis
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h5 id="_6-2-count的几种用法"><a href="#_6-2-count的几种用法" class="header-anchor">#</a> 6.2 count的几种用法</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) 如果count函数的参数（count里面写的那个字段）不是NULL（字段值不为NULL），累计值就加一，最后返回累计值
+
+2) 用法：count(*)、count(主键)、count(字段)、count(1)
+
+3) count(主键)跟count(*)一样，因为主键不能为空；count(字段)只计算字段值不为NULL的行；count(1)引擎会为每行添加一个1，然后就count这个1，返回结果也跟count(*)一样；count(null)返回0
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h5 id="_6-3-各种用法的性能"><a href="#_6-3-各种用法的性能" class="header-anchor">#</a> 6.3 各种用法的性能</h5> <p><strong>按效率排序：count(字段) &lt; count(主键) &lt; count(1) &lt; count(*)，所以尽量使用 count(*)</strong></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>1) count(主键)：InnoDB引擎会遍历整张表，把每行的主键id值都取出来，返回给服务层，服务层拿到主键后，直接按行进行累加（主键不可能为空）
+
+2) count(字段)：没有not null约束的话，InnoDB引擎会遍历整张表把每一行的字段值都取出来，返回给服务层，服务层判断是否为null，不为null，计数累加；有not null约束的话，InnoDB引擎会遍历整张表把每一行的字段值都取出来，返回给服务层，直接按行进行累加
+
+3) count(1)：InnoDB 引擎遍历整张表，但不取值。服务层对于返回的每一层，放一个数字 1 进去，直接按行进行累加
+
+4) count(*)：InnoDB 引擎并不会把全部字段取出来，而是专门做了优化，不取值，服务层直接按行进行累加
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h4 id="_7-update-优化-避免行锁升级为表锁"><a href="#_7-update-优化-避免行锁升级为表锁" class="header-anchor">#</a> 7. update 优化(避免行锁升级为表锁)</h4> <p><strong>InnoDB 的行锁是针对索引加的锁，不是针对记录加的锁，并且该索引不能失效，否则会从行锁升级为表锁.</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 由于id有主键索引，所以只会锁这一行；</span>
+<span class="token keyword">update</span> student <span class="token keyword">set</span> <span class="token keyword">no</span> <span class="token operator">=</span> <span class="token string">'123'</span> <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 由于name没有索引，所以会把整张表都锁住进行数据更新，解决方法是给name字段添加索引</span>
+<span class="token keyword">update</span> student <span class="token keyword">set</span> <span class="token keyword">no</span> <span class="token operator">=</span> <span class="token string">'123'</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'test'</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/mysql/2.4 索引使用原则.html" class="prev">
+        索引使用原则
+      </a></span> <span class="next"><a href="/LearnDocsHtml/doc/mysql/4.1 mysql 中的视图.html">
+        mysql 中的视图
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/52.c48b61d7.js" defer></script>
+  </body>
+</html>

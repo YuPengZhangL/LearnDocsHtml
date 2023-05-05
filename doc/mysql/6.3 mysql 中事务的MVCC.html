@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>mysql 事务中的MVCC | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/12.f0875641.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/mysql/1.1 mysql 的系统结构.html" class="sidebar-link">mysql 体系结构图</a></li><li><a href="/LearnDocsHtml/doc/mysql/1.2 mysql 的存储引擎.html" class="sidebar-link">1. 存储引擎</a></li><li><a href="/LearnDocsHtml/doc/mysql/2.1 mysql 中的索引.html" class="sidebar-link">mysql 中索引语法以及分类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.2 mysql 中的索引结构.html" class="sidebar-link">mysql 中的索引结构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.3 sql 分析工具.html" class="sidebar-link">sql性能分析</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.4 索引使用原则.html" class="sidebar-link">索引使用原则</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/3.1 sql 优化.html" class="sidebar-link">SQL 优化</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.1 mysql 中的视图.html" class="sidebar-link">mysql 中的视图</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.2 mysql 中的存储过程.html" class="sidebar-link">mysql 中的存储过程</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.3 mysql 中触发器.html" class="sidebar-link">mysql 中的触发器</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.1 mysql 锁的基本概念.html" class="sidebar-link">mysql 中的锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.2 mysql 中的表锁.html" class="sidebar-link">表级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.3 mysql 中的行锁.html" class="sidebar-link">行级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.1 mysql 中InnoDB的架构.html" class="sidebar-link">mysql 中InnoDB 架构详解</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.2 mysql 中的事务.html" class="sidebar-link">mysql 中事务</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.3 mysql 中事务的MVCC.html" class="active sidebar-link">mysql 事务中的MVCC</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.1 mysql 中的日志.html" class="sidebar-link">mysql 中的日志</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.2 mysql 中的主从复制.html" class="sidebar-link">mysql 中的主从复制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.3 mysql 中的分库分表.html" class="sidebar-link">mysql 中的分库分表</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.4 mysql 中的读写分离.html" class="sidebar-link">mysql 中的读写分离</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="mysql-事务中的mvcc"><a href="#mysql-事务中的mvcc" class="header-anchor">#</a> mysql 事务中的MVCC</h3> <h4 id="_1-mvcc-的基本介绍以及当前读、快照读"><a href="#_1-mvcc-的基本介绍以及当前读、快照读" class="header-anchor">#</a> 1.  MVCC 的基本介绍以及当前读、快照读</h4> <div class="language-text line-numbers-mode"><pre class="language-text"><code>全称 Multi-Version Concurrency Control，多版本并发控制。
+指维护一个数据的多个版本，使得读写操作没有冲突，快照读为MySQL实现MVCC提供了一个非阻塞读功能。MVCC的具体实现，还需要依赖于数据库记录中的三个隐式字段、undo log日志和readView。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="_1-1-当前读"><a href="#_1-1-当前读" class="header-anchor">#</a> 1.1 当前读</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+当前读读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。
+
+对于我们日常的操作，如：select … lock in share mode(共享锁)，select …for update、update、insert、delete(排他锁)都是一种当前读。
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><ul><li><strong>演示案例</strong> <strong>session1</strong></li></ul> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 开启一个事物</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">begin</span> <span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 查询当前数据</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> PHP    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 更新当前数据</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">update</span> course <span class="token keyword">set</span> name<span class="token operator">=</span><span class="token string">'JS'</span> <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+<span class="token keyword">Rows</span> <span class="token keyword">matched</span>: <span class="token number">1</span>  Changed: <span class="token number">1</span>  <span class="token keyword">Warnings</span>: <span class="token number">0</span>
+
+<span class="token comment">-- 当前会话更新成功</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> JS     <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 提交事务</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">commit</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div><p><strong>session2</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 会话2开启一个事物</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">begin</span> <span class="token punctuation">;</span>
+
+<span class="token comment">-- 会话1操作之前普通查询,session1事务就算提交了，当前会话也不会读到更新的数据，因为当前的隔离级别是可重复读。</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> PHP    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 会话1提交事务之后使用lock in share mode 进行当前读，发现已经更改</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course <span class="token keyword">lock</span> <span class="token operator">in</span> <span class="token keyword">share</span> <span class="token keyword">mode</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> JS     <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">/*
+    MySQL默认的事务隔离级别是Repeatable Read，在同一次事务中，多次读取到的数据应该是一致的才对。
+其实这就是因为我们当前读取数据的方式是当前读，即使是在默认的RR隔离级别下，使用当前读依然能够读取到其他事务最新提交的数据
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h5 id="_1-2-快照读"><a href="#_1-2-快照读" class="header-anchor">#</a> 1.2  快照读</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+简单的select（不加锁）就是快照读，快照读，读取的是记录数据的可见版本，有可能是历史数据，快照读是不加锁的，是非阻塞读。
+    A) 当我们的事务隔离级别是Read Committed时，每次select，都生成一个快照读。
+
+    B) 当我们的事务隔离级别是Repeatable Read时：开启事务后第一个select语句才是快照读的地方。
+
+    C) 当我们的事务隔离级别是Serializable时：快照读会退化为当前读。
+
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><ul><li><strong>演示案例</strong></li></ul> <p><strong>session1</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 当前会话开启事务</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">begin</span> <span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 更新之前查询</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> PHP    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 进行数据更新</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">update</span> course <span class="token keyword">set</span> name<span class="token operator">=</span><span class="token string">'C#'</span> <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+<span class="token keyword">Rows</span> <span class="token keyword">matched</span>: <span class="token number">1</span>  Changed: <span class="token number">1</span>  <span class="token keyword">Warnings</span>: <span class="token number">0</span>
+
+<span class="token comment">-- 更新成功</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> JS     <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 提交事务</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">commit</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div><p><strong>session2</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">-- 会话2 开启事务</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">begin</span> <span class="token punctuation">;</span>
+
+<span class="token comment">-- 查询</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> JS    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 快照读查询，数据依旧没有更改</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span> C<span class="token operator">+</span><span class="token operator">+</span>    <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span> JS     <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span> MySQL  <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span> Golang <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span> Python <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+--------+</span>
+<span class="token number">5</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">/*
+因为在Repeatable Read隔离级别下，开启事务后第一个select语句是快照读的地方，
+也就是说，在Repeatable Read隔离级别下，无论我们执行多少次查询操作，查询的结果都与第一次查询时的数据保持一致
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h4 id="_2-mvcc-的实现基础"><a href="#_2-mvcc-的实现基础" class="header-anchor">#</a> 2. MVCC 的实现基础</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+MVCC（Multi-Version Concurrency Control ，多版本并发控制）指的就是在使用read-committed、repeatable-read这两种隔离级别的事务，在执行普通的 SELECT 操作时，访问记录的版本链的过程.
+    1) 这样子可以使不同事务的读-写、写-读操作并发执行，从而提升系统性能。
+    2) read-committed、repeatable-read 这两个隔离级别的一个很大不同就是：生成ReadView 的时机不同
+    3) read-committed 在每一次进行普通 select 操作前都会生成一个 ReadView，而repeatable-read 只在第一次进行普通 select 操作前生成一个 ReadView，之后的查询操作都重复使用这个 ReadView 就好了
+
+MVCC最大的优势：读不加锁，读写不冲突。在读多写少的OLTP应用中，读写不冲突是非常重要的，极大的增加了系统的并发性能
+
+事务的隔离级别：读未提交(READ UNCOMMITED)-&gt;读已提交(READ COMMITTED)-&gt;可重复读(REPEATABLE READ)-&gt;序列化(SERIALIZABLE)。隔离级别依次增强，但是导致的问题是并发能力的减弱。
+
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><table><thead><tr><th style="text-align:center;">隔离级别</th> <th style="text-align:center;">脏读</th> <th style="text-align:center;">不可重复读</th> <th style="text-align:center;">幻读</th> <th style="text-align:center;">概念</th></tr></thead> <tbody><tr><td style="text-align:center;">READ UNCOMMITED</td> <td style="text-align:center;">√</td> <td style="text-align:center;">√</td> <td style="text-align:center;">√</td> <td style="text-align:center;">事务能够看到其他事务没有提交的修改，当另一个事务又回滚了修改后的情况，又被称为脏读dirty read</td></tr> <tr><td style="text-align:center;">READ COMMITTED</td> <td style="text-align:center;">×</td> <td style="text-align:center;">√</td> <td style="text-align:center;">√</td> <td style="text-align:center;">事务能够看到其他事务提交后的修改，这时会出现一个事务内两次读取数据可能因为其他事务提交的修改导致不一致的情况，称为不可重复读</td></tr> <tr><td style="text-align:center;">REPEATABLE READ</td> <td style="text-align:center;">×</td> <td style="text-align:center;">×</td> <td style="text-align:center;">√</td> <td style="text-align:center;">事务在两次读取时读取到的数据的状态是一致的</td></tr> <tr><td style="text-align:center;">SERIALIZABLE</td> <td style="text-align:center;">×</td> <td style="text-align:center;">×</td> <td style="text-align:center;">×</td> <td style="text-align:center;">可重复读中可能出现第二次读读到第一次没有读到的数据，也就是被其他事务插入的数据，这种情况称为幻读phantom read, 该级别中不能出现幻读</td></tr></tbody></table> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+大多数数据库系统的默认隔离级别都是READ COMMITTED（但MySQL不是)，InnoDB存储引擎默认隔离级别REPEATABLE READ，
+通过多版本并发控制（MVCC，Multiversion Concurrency Control）解决了幻读的问题
+
+MVCC 的实现流程流程如下：
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><img src="/LearnDocsHtml/assets/img/mvcc 实现原理.aa8b7641.png" alt="image"></p> <h5 id="_2-1-事务日志"><a href="#_2-1-事务日志" class="header-anchor">#</a> 2.1 事务日志</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+MySQL Innodb中跟数据持久性、一致性有关的日志，有以下几种：
+
+    Bin Log:是mysql服务层产生的日志，常用来进行数据恢复、数据库复制，常见的mysql主从架构，就是采用slave同步master的binlog实现的
+
+    Redo Log:记录了数据操作在物理层面的修改，mysql中使用了大量缓存，修改操作时会直接修改内存，而不是立刻修改磁盘，事务进行中时会不断的产生redo log，
+    在事务提交时进行一次flush操作，保存到磁盘中。当数据库或主机失效重启时，会根据redo log进行数据的恢复，如果redo log中有事务提交，则进行事务提交修改数据。
+    
+    Undo Log: 除了记录redo log外，当进行数据修改时还会记录undo log，undo log用于数据的撤回操作，它记录了修改的反向操作，
+    比如，插入对应删除，修改对应修改为原来的数据，通过undo log可以实现事务回滚，并且可以根据undo log回溯到某个特定的版本的数据，实现MVCC
+
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h5 id="_2-2-隐藏字段"><a href="#_2-2-隐藏字段" class="header-anchor">#</a> 2.2 隐藏字段</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+1) 我们在查看表结构的时候，就可以显式的看到这看到我们创建的字段。
+实际上除了这三个字段以外，InnoDB还会自动的给我们添加三个隐藏字段。
+
+2) 其中的前两个字段是是一定会被添加的， 而最后一个字段DB_ROW_ID添加与否需要根据当前表是否存在主键，如果存在主键，则不会添加该字段。
+
+3) MySQL的每行记录逻辑上其实是一个链表。
+
+4) 每次更新后，都会将旧值放到一条 undo log 中，就算是该记录的一个旧版本，随着更新次数的增多，所有的版本都会被roll_ptr 属性连接成一个链表，我们把这个链表称之为版本链，版本链的头节点就是当前记录最新的值。另外，每个版本中还包含生成该版本时对应的 事务id(trx_id）。
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><table><thead><tr><th style="text-align:center;">隐藏字段</th> <th style="text-align:center;">含义</th></tr></thead> <tbody><tr><td style="text-align:center;">db_trx_id</td> <td style="text-align:center;">最近修改事务ID，记录插入这条记录或最后一次，修改该记录的事务ID</td></tr> <tr><td style="text-align:center;">db_roll_ptr</td> <td style="text-align:center;">回滚指针，指向这条记录的上一个版本，用于配合undo log，指向上一个版本</td></tr> <tr><td style="text-align:center;">db_row_id</td> <td style="text-align:center;">隐藏主键，如果表结构没有指定主键，将会生成该隐藏字段</td></tr></tbody></table> <h5 id="_2-3-undolog"><a href="#_2-3-undolog" class="header-anchor">#</a> 2.3 undolog</h5> <p><strong>undo log 版本链形成过程</strong> <img src="/LearnDocsHtml/assets/img/undo log版本链1.b34699eb.png" alt="image"></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+最终，不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条记录版本链表，链表的头部是最新的旧记录，链表尾部是最早的旧记录
+
+1) 执行事务2的时候undo log会记录原有的数据记录，也就是上图undo log中0x00001的undo log,当事务发生回滚的时候就依据这一天undo log进行回滚
+
+2) 执行事务2的时候它的上一次事务记录是0x00001,所以它的db_rool_ptr会记录0x00001的地址，同时数据记录中的db_roll_ptr会指向最后一次事务操作的的id，也就是0x00002,这样就行程了一个版本链
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p><img src="/LearnDocsHtml/assets/img/undo log版本链.dfd0c80b.png" alt="image"></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+3) 多个事务执行多次事务之后就会形成这样一条版本链，从而在发生事务回滚的时候以及进行快照读的时候进行使用
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><strong>不同操作产生undo log的生命周期</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+1) undolog是回滚日志，在insert、update、delete的时候产生的便于数据回滚的日志。
+
+2) 当insert的时候，产生的undo log日志只在回滚时需要，在事务提交后，可被立即删除。 
+
+3) 而update、delete的时候，产生的undo log日志不仅在回滚时需要，在快照读时也需要，不会立即被删除。
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h5 id="_2-4-readview"><a href="#_2-4-readview" class="header-anchor">#</a> 2.4 readview</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+1) ReadView（读视图）是 快照读 SQL执行时MVCC提取数据的依据，ReadView中记录并维护系统当前活跃的事务（未提交的）id
+2) ReadView中包含了四个核心字段: m_ids, min_trx_id, max_trx_id, creator_trx_id
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><table><thead><tr><th style="text-align:center;">字段</th> <th style="text-align:center;">含义</th></tr></thead> <tbody><tr><td style="text-align:center;">m_ids</td> <td style="text-align:center;">当前活跃的事务ID集合</td></tr> <tr><td style="text-align:center;">min_trx_id</td> <td style="text-align:center;">最小活跃事务ID</td></tr> <tr><td style="text-align:center;">max_trx_id</td> <td style="text-align:center;">预分配事务ID，当前最大事务ID+1(因为事务ID是自增的)</td></tr> <tr><td style="text-align:center;">creator_trx_id</td> <td style="text-align:center;">ReadView创建者的事务ID</td></tr></tbody></table> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+3) ReadView中还规定了版本链数据的访问规则(trx_id 代表当前undolog版本链对应事务ID)
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><table><thead><tr><th style="text-align:center;">条件</th> <th style="text-align:center;">是否可以访问</th> <th style="text-align:center;">说明</th></tr></thead> <tbody><tr><td style="text-align:center;">trx_id == creator_trx_id</td> <td style="text-align:center;">可以访问该版本</td> <td style="text-align:center;">成立，说明数据是当前这个事务更改的</td></tr> <tr><td style="text-align:center;">trx_id &lt; min_trx_id</td> <td style="text-align:center;">可以访问该版本</td> <td style="text-align:center;">成立，说明数据已经提交了</td></tr> <tr><td style="text-align:center;">trx_id &gt; max_trx_id</td> <td style="text-align:center;">不可以访问该版本</td> <td style="text-align:center;">成立，说明该事务是在ReadView生成后才开启</td></tr> <tr><td style="text-align:center;">min_trx_id &lt;= trx_id&lt;= max_trx_id</td> <td style="text-align:center;">如果trx_id不在m_ids中，是可以访问该版本的</td> <td style="text-align:center;">成立，说明数据已经提交</td></tr></tbody></table> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+4) 不同的隔离级别，生成ReadView的时机不同
+    READ COMMITTED ：在事务中每一次执行快照读时生成ReadView。
+
+    REPEATABLE READ：仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView。
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h4 id="_3-mvcc实现原理"><a href="#_3-mvcc实现原理" class="header-anchor">#</a> 3. MVCC实现原理</h4> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+MVCC是通过在每行记录后面保存两个隐藏的列来实现的。这两个列，一个保存了行的创建时间，一个保存行的过期时间（或删除时间）。当然存储的并不是实际的时间值，而是系统版本号（system version number)。
+每开始一个新的事务，系统版本号都会自动递增。事务开始时刻的系统版本号会作为事务的版本号，用来和查询到的每行记录的版本号进行比较
+
+SELECT
+
+InnoDB会根据以下两个条件检查每行记录：
+
+InnoDB只查找版本早于当前事务版本的数据行（也就是，行的系统版本号小于或等于事务的系统版本号），这样可以确保事务读取的行，要么是在事务开始前已经存在的，要么是事务自身插入或者修改过的。
+行的删除版本要么未定义，要么大于当前事务版本号。这可以确保事务读取到的行，在事务开始之前未被删除。
+只有符合上述两个条件的记录，才能返回作为查询结果
+
+INSERT
+    InnoDB为新插入的每一行保存当前系统版本号作为行版本号。
+
+DELETE
+    InnoDB为删除的每一行保存当前系统版本号作为行删除标识。
+
+UPDATE
+    InnoDB为插入一行新记录，保存当前系统版本号作为行版本号，同时保存当前系统版本号到原来的行作为行删除标识。
+    
+保存这两个额外系统版本号，使大多数读操作都可以不用加锁。这样设计使得读数据操作很简单，性能很好，并且也能保证只会读取到符合标准的行，不足之处是每行记录都需要额外的存储空间，需要做更多的行检查工作，以及一些额外的维护工作
+
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h5 id="_3-1-rc隔离级别"><a href="#_3-1-rc隔离级别" class="header-anchor">#</a> 3.1 RC隔离级别</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+RC隔离级别下，在事务中每一次执行快照读时都会生成一个ReadView。
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><strong>read view RC级别访问事务版本链数据</strong> <img src="/LearnDocsHtml/assets/img/read view.fc710005.png" alt="image"></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+上图是在RC隔离级别下进行读的过程.
+上图第一次最终读取到的是事务id=2的数据：
+    当前事务id=5; 活跃的事务id集合={3,4,5};预分配的事务id=6;所以按照上述规则，不是当前事务修改的数据，事务3,4都还没有提交，只能找到事务id=2的数据.
+上图第二次最终读取到的是事务id=2的数据：
+    当前事务id=5; 活跃的事务id集合={4,5};预分配的事务id=6;所以按照上述规则，不是当前事务修改的数据，事务id=3小于当前最小的事务id=4，只能找到事务id=3的数据.
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h5 id="_3-2-rr隔离级"><a href="#_3-2-rr隔离级" class="header-anchor">#</a> 3.2 RR隔离级</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+1) RR 是可重复读，在一个事务中，执行两次相同的select语句，查询到的结果是一样的，在RR隔离级别下，仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView
+
+2) 在RR隔离级别下，只是在事务中第一次快照读时生成ReadView，后续都是复用该ReadView，那么既然ReadView都一样， ReadView的版本链匹配规则也一样， 那么最终快照读返回的结果也是一样的
+
+3) MVCC的实现原理就是通过 InnoDB表的隐藏字段、UndoLog 版本链、ReadView来实现的。而MVCC + 锁，则实现了事务的隔离性。 而一致性则是由redolog 与 undolog保证
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/mysql/6.2 mysql 中的事务.html" class="prev">
+        mysql 中事务
+      </a></span> <span class="next"><a href="/LearnDocsHtml/doc/mysql/7.1 mysql 中的日志.html">
+        mysql 中的日志
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/10.9deb6ef0.js" defer></script>
+  </body>
+</html>

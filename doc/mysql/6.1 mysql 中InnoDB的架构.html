@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>mysql 中InnoDB 架构详解 | YupengZ个人文档</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="开源技术资料整理">
+    
+    <link rel="preload" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css" as="style"><link rel="preload" href="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/3.67df8e7b.js" as="script"><link rel="preload" href="/LearnDocsHtml/assets/js/12.f0875641.js" as="script"><link rel="prefetch" href="/LearnDocsHtml/assets/js/10.9deb6ef0.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/11.3e7a30f5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/13.23510c83.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/14.1f896a53.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/15.a162b02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/16.82837904.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/17.04907854.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/18.6ec2e925.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/19.82048133.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/2.084dc933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/20.183aa861.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/21.33901b63.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/22.847aefdb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/23.74ed3a9b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/24.b6ba552b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/25.1b9d230d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/26.722cab78.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/27.1147dee1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/28.f2857d64.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/29.11c8e912.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/30.129c224b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/31.465857e6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/32.182268cf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/33.71679196.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/34.fe242440.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/35.8644ff0d.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/36.1f916d97.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/37.17fdfdba.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/38.7f72ddd5.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/39.048c9500.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/4.be19bd86.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/40.dd9db2e3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/41.a1ab8356.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/42.beb5e602.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/43.dc67e933.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/44.0af8c02a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/45.eb75ee6a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/46.c5ce7e98.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/47.f067c624.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/48.4bf4f48b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/49.f0a75c7f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/5.a338d993.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/50.03abd7d4.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/51.880e9109.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/52.c48b61d7.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/53.0059f21f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/54.c5125de3.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/55.23d722dd.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/56.4a2270bb.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/57.8c988ee6.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/58.3a86a376.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/59.9fcb676b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/6.9da9678c.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/60.24a5563f.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/61.3b2aaed9.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/62.339f6e71.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/63.1edaf49b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/64.65ae4ca8.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/65.5f0e8f08.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/66.cfc630d1.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/67.f63acc95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/68.a3f12ccf.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/69.88b6028b.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/7.c63f6924.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/70.ce51048a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/71.7b143a95.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/72.d736ae69.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/73.f4164019.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/74.fe5ebe4a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/8.3b044c8a.js"><link rel="prefetch" href="/LearnDocsHtml/assets/js/9.96e8b5d8.js">
+    <link rel="stylesheet" href="/LearnDocsHtml/assets/css/0.styles.0042faaf.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/LearnDocsHtml/" class="home-link router-link-active"><img src="/LearnDocsHtml/logo.jpg" alt="YupengZ个人文档" class="logo"> <span class="site-name can-hide">YupengZ个人文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow down"></span></button> <button type="button" aria-label="目录" class="mobile-dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/docker/" class="nav-link">
+  Docker
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/es/" class="nav-link">
+  ES
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/etcd/" class="nav-link">
+  Etcd
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kafka/" class="nav-link">
+  Kafka
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/kubernetes/" class="nav-link">
+  Kubernetes
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mongodb/" class="nav-link">
+  mongodb
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/mysql/" class="nav-link router-link-active">
+  Mysql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/network/" class="nav-link">
+  Network
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/nginx/" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/postgresql/" class="nav-link">
+  Postgresql
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/redis/" class="nav-link">
+  Redis
+</a></li><li class="dropdown-item"><!----> <a href="/LearnDocsHtml/doc/zookeeper/" class="nav-link">
+  Zookeeper
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/LearnDocsHtml/doc/mysql/1.1 mysql 的系统结构.html" class="sidebar-link">mysql 体系结构图</a></li><li><a href="/LearnDocsHtml/doc/mysql/1.2 mysql 的存储引擎.html" class="sidebar-link">1. 存储引擎</a></li><li><a href="/LearnDocsHtml/doc/mysql/2.1 mysql 中的索引.html" class="sidebar-link">mysql 中索引语法以及分类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.2 mysql 中的索引结构.html" class="sidebar-link">mysql 中的索引结构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.3 sql 分析工具.html" class="sidebar-link">sql性能分析</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/2.4 索引使用原则.html" class="sidebar-link">索引使用原则</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/3.1 sql 优化.html" class="sidebar-link">SQL 优化</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.1 mysql 中的视图.html" class="sidebar-link">mysql 中的视图</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.2 mysql 中的存储过程.html" class="sidebar-link">mysql 中的存储过程</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/4.3 mysql 中触发器.html" class="sidebar-link">mysql 中的触发器</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.1 mysql 锁的基本概念.html" class="sidebar-link">mysql 中的锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.2 mysql 中的表锁.html" class="sidebar-link">表级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/5.3 mysql 中的行锁.html" class="sidebar-link">行级锁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.1 mysql 中InnoDB的架构.html" class="active sidebar-link">mysql 中InnoDB 架构详解</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.2 mysql 中的事务.html" class="sidebar-link">mysql 中事务</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/6.3 mysql 中事务的MVCC.html" class="sidebar-link">mysql 事务中的MVCC</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.1 mysql 中的日志.html" class="sidebar-link">mysql 中的日志</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.2 mysql 中的主从复制.html" class="sidebar-link">mysql 中的主从复制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.3 mysql 中的分库分表.html" class="sidebar-link">mysql 中的分库分表</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/LearnDocsHtml/doc/mysql/7.4 mysql 中的读写分离.html" class="sidebar-link">mysql 中的读写分离</a><ul class="sidebar-sub-headers"></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="mysql-中innodb-架构详解"><a href="#mysql-中innodb-架构详解" class="header-anchor">#</a> mysql 中InnoDB 架构详解</h3> <p><strong>InnoDB 逻辑存储结构</strong> <img src="/LearnDocsHtml/assets/img/innodb存储结构.a5e08960.png" alt="iamge"></p> <p><strong>InnoDB 基本架构图</strong> <img src="/LearnDocsHtml/assets/img/innodb架构.2e94ad71.png" alt="image"></p> <h4 id="_1-内存架构"><a href="#_1-内存架构" class="header-anchor">#</a> 1 内存架构</h4> <p><strong>内存结构主要分为四大块： Buffer Pool、Change Buffer、AdaptiveHash Index、Log Buffer</strong></p> <h5 id="_1-1-buffer-pool-缓冲区"><a href="#_1-1-buffer-pool-缓冲区" class="header-anchor">#</a> 1.1 Buffer Pool(缓冲区)</h5> <ul><li><ol><li>InnoDB存储引擎基于磁盘文件存储，访问物理硬盘和在内存中进行访问，速度相差很大，为了尽可能弥补这两者之间的I/O效率的差值，就需要把经常使用的数据加载到缓冲池中，避免每次访问都进行磁盘I/O。</li></ol></li></ul> <div class="language-text line-numbers-mode"><pre class="language-text"><code>A) 缓冲池 Buffer Pool，是主内存中的一个区域，里面可以缓存磁盘上经常操作的真实数据，在执行增删改查操作时，先操作缓冲池中的数据（若缓冲池没有数据，则从磁盘加载并缓存），然后再以一定频率刷新到磁盘，从而减少磁盘IO，加快处理速度。
+如果没有缓冲池，就意味着我们每次增删查改都需要访问数据库，那么就会存在大量的磁盘IO，而且在业务比较复杂的情况下，这种磁盘IO还都是随机IO，是非常耗费性能的。
+
+B) 在InnoDB的缓冲池中不仅缓存了索引页和数据页，还包含了undo页、插入缓存、自适应哈希索引以及InnoDB的锁信息等等。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><ul><li><ol start="2"><li>缓冲池以Page页为单位，底层采用链表数据结构管理Page。根据状态，将Page分为三种类型：</li></ol></li></ul> <div class="language-text line-numbers-mode"><pre class="language-text"><code>A) free page：空闲page，即已经申请到了的page，但从未使用过。
+B) clean page：被使用page，数据没有被修改过。
+C) dirty page：脏页，被使用page，数据被修改过，但是还没有刷新到磁盘中，页中数据与磁盘的数据不一致。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li><ol start="3"><li>在专用服务器上，通常将多达80％的物理内存分配给缓冲池 。我们可以通过以下指令查看当前数据库中缓冲池的大小</li></ol></li></ul> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code>mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'innodb_buffer_pool_size'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+-----------+</span>
+<span class="token operator">|</span> Variable_name           <span class="token operator">|</span> <span class="token keyword">Value</span>     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+-----------+</span>
+<span class="token operator">|</span> innodb_buffer_pool_size <span class="token operator">|</span> <span class="token number">134217728</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+-----------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h5 id="_1-2-change-buffer"><a href="#_1-2-change-buffer" class="header-anchor">#</a> 1.2 Change Buffer</h5> <p><strong>注意: 这个缓冲区是MySQL8.0之后才出现的</strong></p> <ul><li><ol><li>change buffer 的概念</li></ol></li></ul> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Change Buffer，更改缓冲区（针对于非唯一二级索引页，对主键索引或唯一索引不会操作更改缓冲区），在执行DML语句时，如果这些数据Page此时还没有缓存在Buffer Pool中，那么InnoDB引擎并不会先操作磁盘，而是会将DML语句造成的数据变更缓存在 Change Buffer中，
+在未来这部分数据被读取并缓存在Buffer Pool之后，InnoDB引擎会通过Change Buffer中的变更记录去修改Buffer Pool中对应的数据（简称数据合并处理），再等待Buffer Pool的下一次刷新，将修改后的数据保存在磁盘中.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><ol start="2"><li>Change Buffer的意义是什么呢？</li></ol></li></ul> <div class="language-text line-numbers-mode"><pre class="language-text"><code>我们知道二级索引(非聚集索引) 与聚集索引不同，二级索引通常是非唯一的，并且以相对随机的顺序插入二级索引，同样，删除和更新可能会影响索引树中不相邻的二级索引页，如果每一次DML都操作磁盘，就会造成大量的磁盘IO。
+有了ChangeBuffer之后，我们可以在缓冲池中进行合并处理，减少磁盘IO，提高了效率。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="_1-3-adaptivehash-index"><a href="#_1-3-adaptivehash-index" class="header-anchor">#</a> 1.3 AdaptiveHash Index</h5> <p><strong>Adaptive Hash Index ，自适应hash索引，用于优化对Buffer Pool数据的查询</strong></p> <ul><li><ol><li>AdaptiveHash Index 基本概念</li></ol></li></ul> <div class="language-text line-numbers-mode"><pre class="language-text"><code>MySQL的InnoDB引擎中虽然没有直接支持hash索引，但是给我们提供了自适应hash索引的功能。
+hash索引在进行等值匹配时，一般性能是要高于B+树的，因为hash索引一般只需要一次IO即可，而B+树，可能需要几次匹配，所以hash索引的效率要高，但是hash索引又不适合做范围查询、模糊匹配等。
+
+InnoDB存储引擎会监控对表上各索引页的查询，如果观察到在特定的条件下hash索引可以提升速度，则建立hash索引，称之为自适应hash索引。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><ul><li><ol start="2"><li>自适应哈希索引，无需人工干预，是系统根据情况自动完成,以下方式查看</li></ol></li></ul> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code>mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'%adaptive_hash_index'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------------------+-------+</span>
+<span class="token operator">|</span> Variable_name              <span class="token operator">|</span> <span class="token keyword">Value</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------------+-------+</span>
+<span class="token operator">|</span> innodb_adaptive_hash_index <span class="token operator">|</span> <span class="token keyword">ON</span>    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------------+-------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h5 id="_1-4-log-buffer"><a href="#_1-4-log-buffer" class="header-anchor">#</a> 1.4 Log Buffer</h5> <ul><li><ol><li>什么是log buffer?</li></ol></li></ul> <div class="language-text line-numbers-mode"><pre class="language-text"><code>Log Buffer 日志缓冲区，用来保存要写入到磁盘中的log日志数据（redo log 、undo log），默认大小为 16MB，日志缓冲区的日志会定期刷新到磁盘中。
+如果需要更新、插入或删除许多行的事务，增加日志缓冲区的大小可以节省磁盘 I/O。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><ol start="2"><li>查看相关参数</li></ol></li></ul> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+与缓冲区有关的参数主要有以下两个：
+    innodb_log_buffer_size：缓冲区大小
+
+    innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包含以下三个：
+        0：每秒将日志写入并刷新到磁盘一次。
+        1：日志在每次事务提交时写入并刷新到磁盘，默认值。
+        2：日志在每次事务提交后写入，并每秒刷新到磁盘一次。
+*/</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'%log_buffer%'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------------------------+----------+</span>
+<span class="token operator">|</span> Variable_name          <span class="token operator">|</span> <span class="token keyword">Value</span>    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------------------+----------+</span>
+<span class="token operator">|</span> innodb_log_buffer_size <span class="token operator">|</span> <span class="token number">16777216</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------------------+----------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'%flush_log%'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------------------+-------+</span>
+<span class="token operator">|</span> Variable_name                  <span class="token operator">|</span> <span class="token keyword">Value</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------------------+-------+</span>
+<span class="token operator">|</span> innodb_flush_log_at_timeout    <span class="token operator">|</span> <span class="token number">1</span>     <span class="token operator">|</span>
+<span class="token operator">|</span> innodb_flush_log_at_trx_commit <span class="token operator">|</span> <span class="token number">1</span>     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------------------+-------+</span>
+<span class="token number">2</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><h4 id="_2-磁盘架构"><a href="#_2-磁盘架构" class="header-anchor">#</a> 2 磁盘架构</h4> <h5 id="_2-1-system-tablespace"><a href="#_2-1-system-tablespace" class="header-anchor">#</a> 2.1 System Tablespace</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>系统表空间是更改缓冲区的存储区域（这是在MySQL8.0之后重新规划的，在MySQL5.x版本中还包含InnoDB数据字典、undolog等），如果我们并未开启innodb_file_per_table选项（即每张表不具有自己独立的表空间）且创建表时并未使用通用表空间（通用表空间会在后文中讲解），那么系统表空间还会包含上述表和其索引数据。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><strong>我们可以通过参数innodb_data_file_path来查看系统表空间的相关信息</strong></p> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code>mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'%data_file%'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------------------+------------------------+</span>
+<span class="token operator">|</span> Variable_name              <span class="token operator">|</span> <span class="token keyword">Value</span>                  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------------+------------------------+</span>
+<span class="token operator">|</span> innodb_data_file_path      <span class="token operator">|</span> ibdata1:<span class="token number">12</span>M:autoextend <span class="token operator">|</span>
+<span class="token operator">|</span> innodb_temp_data_file_path <span class="token operator">|</span> ibtmp1:<span class="token number">12</span>M:autoextend  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------------+------------------------+</span>
+<span class="token number">2</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><strong>系统表空间的默认的文件名叫 ibdata1，默认大小为12M，我们可以通过以下指令进入mysql的文件存放路径，查看是否存在该文件</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ ~<span class="token punctuation">]</span><span class="token comment"># cd /var/lib/mysql</span>
+
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ mysql<span class="token punctuation">]</span><span class="token comment"># ll ibdata1 </span>
+-rw-r----- <span class="token number">1</span> mysql mysql <span class="token number">12582912</span> Sep <span class="token number">14</span> <span class="token number">21</span>:07 ibdata1
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h5 id="_2-2-file-per-table-tablespaces"><a href="#_2-2-file-per-table-tablespaces" class="header-anchor">#</a> 2.2 File-Per-Table Tablespaces</h5> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code>/*
+File-Per-Table Tablespaces，独立表空间文件，如果我们开启innodb_file_per_table开关（默认开启），则每创建一张InnoDB表都创建一个以’.ibd’结尾的表空间文件，这个表空间文件中会包含对应InnoDB表的数据和索引信息
+*/
+
+<span class="token comment"># 每一个ibd文件都对应着一张数据表，表空间文件的存放路径在/var/lib/mysql/数据库名</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ mysql<span class="token punctuation">]</span><span class="token comment"># cd my_test/</span>
+<span class="token punctuation">[</span>root@iZ2ze58f53sxjm9z7mgn5xZ my_test<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">480</span>
+-rw-r----- <span class="token number">1</span> mysql mysql <span class="token number">114688</span> Sep <span class="token number">14</span> <span class="token number">21</span>:06 course.ibd
+-rw-r----- <span class="token number">1</span> mysql mysql <span class="token number">114688</span> Sep <span class="token number">14</span> <span class="token number">19</span>:43 student.ibd
+-rw-r----- <span class="token number">1</span> mysql mysql <span class="token number">147456</span> Sep <span class="token number">14</span> <span class="token number">19</span>:43 student_course.ibd
+-rw-r----- <span class="token number">1</span> mysql mysql <span class="token number">114688</span> Sep <span class="token number">14</span> <span class="token number">18</span>:46 tb_user.ibd
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h5 id="_2-3-general-tablespaces"><a href="#_2-3-general-tablespaces" class="header-anchor">#</a> 2.3 General Tablespaces</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+General Tablespaces，通用表空间，我们可以将一些表的数据存放在通用表空间中，统一存储，方便管理。通用表空间需要我们手动创建，在创建表时，可以手动指定表空间作为数据存放位置.
+*/</span>
+
+<span class="token comment">/* 
+具体语法如下:
+    CREATE TABLESPACE 表空间名 ADD DATAFILE '文件名' ENGINE = 存储引擎名;
+
+    CREATE TABLE 表名(建表语句) TABLESPACE 表空间名;
+*/</span>
+
+<span class="token comment">-- case </span>
+<span class="token comment">-- 创建表空间</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">create</span> <span class="token keyword">tablespace</span> my_table_space <span class="token keyword">add</span> datafile <span class="token string">'my_table_space.ibd'</span> <span class="token keyword">engine</span><span class="token operator">=</span><span class="token keyword">innodb</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">-- 在创建表时手动指定表空间</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">create</span> <span class="token keyword">table</span> tb_test<span class="token punctuation">(</span>id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">auto_increment</span><span class="token punctuation">,</span>name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">tablespace</span> my_table_space<span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token comment">/*
+此时再次进入/var/lib/mysql
+[root@iZ2ze58f53sxjm9z7mgn5xZ mysql]# ll 
+-rw-r----- 1 mysql mysql   114688 Sep 15 13:25  my_table_space.ibd
+*/</span>
+
+<span class="token comment">-- 将其他表空间中的表移动到 file_per_table 表空间：</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">alter</span> <span class="token keyword">table</span> $table_name <span class="token keyword">tablespace</span><span class="token operator">=</span>my_table_space<span class="token punctuation">;</span>
+
+<span class="token comment">-- 删除表空间</span>
+<span class="token comment">-- DROP [UNDO] TABLESPACE tablespace_name [ENGINE [=] engine_name]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><h5 id="_2-4-undo-tablespaces"><a href="#_2-4-undo-tablespaces" class="header-anchor">#</a> 2.4 undo Tablespaces</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>撤销表空间，MySQL实例在初始化时会自动创建两个默认的undo表空间（初始大小16M），用于存储undo log日志。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h5 id="_2-5-temporary-tablespaces"><a href="#_2-5-temporary-tablespaces" class="header-anchor">#</a> 2.5 Temporary Tablespaces</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建的临时表等数据。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h5 id="_2-6-doublewrite-buffer-files"><a href="#_2-6-doublewrite-buffer-files" class="header-anchor">#</a> 2.6 Doublewrite Buffer Files</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>双写缓冲区，innoDB引擎将数据页从Buffer Pool刷新到磁盘前，先将数据页写入双写缓冲区文件中，便于系统异常时恢复数据。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h5 id="_2-7-redo-log"><a href="#_2-7-redo-log" class="header-anchor">#</a> 2.7 Redo Log</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+重做日志，是用来实现事务的持久性。该日志文件由两部分组成：重做日志缓冲（redo log buffer）以及重做日志文件（redo log）,
+前者是在内存中，后者在磁盘中。当事务提交之后会把所有修改信息都会存到该日志中，如果刷新脏页到磁盘时发生了错误， 那么就会利用redolog进行数据恢复使用.
+
+
+InooDB会将日志会以循环方式写入Redo Log，涉及两个文件:
+[root@iZ2ze58f53sxjm9z7mgn5xZ mysql]# ll /var/lib/mysql
+-rw-r----- 1 mysql mysql 16777216 Sep 15 13:25  undo_001
+-rw-r----- 1 mysql mysql 16777216 Sep 15 13:25  undo_002
+*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h4 id="_3-后台线程"><a href="#_3-后台线程" class="header-anchor">#</a> 3 后台线程</h4> <p><strong>后台线程结构</strong> <img src="/LearnDocsHtml/assets/img/后台线程结构.c1f8f6c1.png" alt="image"></p> <div class="language-text line-numbers-mode"><pre class="language-text"><code>后台线程的作用是负责将缓冲池中的数据刷新到磁盘文件中，
+InnoDB的后台线程主要分为4类，分别是：
+    1) Master Thread 
+    2) IO Thread
+    3) Purge Thread
+    4) Page Cleaner Thread。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h5 id="_3-1-master-thread"><a href="#_3-1-master-thread" class="header-anchor">#</a> 3.1 Master Thread</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>核心后台线程，负责调度其他线程，还负责将缓冲池中的数据异步刷新到磁盘中, 
+保持数据的一致性，还包括脏页的刷新、合并插入缓存、undo页的回收 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h5 id="_3-2-io-thread"><a href="#_3-2-io-thread" class="header-anchor">#</a> 3.2 IO Thread</h5> <div class="language-sql line-numbers-mode"><pre class="language-sql"><code><span class="token comment">/*
+在InnoDB存储引擎中大量使用了AIO来处理IO请求, 这样可以极大地提高数据库的性能，而IOThread主要负责这些IO请求的回调。
+*/</span>
+
+<span class="token comment">-- 可以通过以下的这条指令，查看到InnoDB的状态信息，其中就包含IO Thread信息</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> <span class="token keyword">engine</span> <span class="token keyword">innodb</span> <span class="token keyword">status</span>\G<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">FILE</span> I<span class="token operator">/</span>O
+<span class="token comment">--------</span>
+I<span class="token operator">/</span>O thread <span class="token number">0</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">insert</span> buffer thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">1</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span>log thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">2</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">read</span> thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">3</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">read</span> thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">4</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">read</span> thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">5</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">read</span> thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">6</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">write</span> thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">7</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">write</span> thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">8</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">write</span> thread<span class="token punctuation">)</span>
+I<span class="token operator">/</span>O thread <span class="token number">9</span> state: waiting <span class="token keyword">for</span> completed aio requests <span class="token punctuation">(</span><span class="token keyword">write</span> thread<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><table><thead><tr><th style="text-align:center;">线程类型</th> <th style="text-align:center;">默认个数</th> <th style="text-align:center;">职责</th></tr></thead> <tbody><tr><td style="text-align:center;">Read thread</td> <td style="text-align:center;">4</td> <td style="text-align:center;">负责读操作</td></tr> <tr><td style="text-align:center;">Write thread</td> <td style="text-align:center;">4</td> <td style="text-align:center;">负责写操作</td></tr> <tr><td style="text-align:center;">Log thread</td> <td style="text-align:center;">1</td> <td style="text-align:center;">负责将日志缓冲区刷新到磁盘</td></tr> <tr><td style="text-align:center;">Insert buffer</td> <td style="text-align:center;">thread</td> <td style="text-align:center;">1</td></tr></tbody></table> <h5 id="_3-3-purge-thread"><a href="#_3-3-purge-thread" class="header-anchor">#</a> 3.3 Purge Thread</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>主要用于回收事务已经提交了的undo log，在事务提交之后，undo log可能不用了，就用它来回收。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h5 id="_3-4-page-cleaner-thread"><a href="#_3-4-page-cleaner-thread" class="header-anchor">#</a> 3.4 Page Cleaner Thread</h5> <div class="language-text line-numbers-mode"><pre class="language-text"><code>协助master thread 刷新脏页到磁盘的线程，它可以减轻master thread的工作压力，减少阻塞。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/5/2023, 2:33:10 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/LearnDocsHtml/doc/mysql/5.3 mysql 中的行锁.html" class="prev">
+        行级锁
+      </a></span> <span class="next"><a href="/LearnDocsHtml/doc/mysql/6.2 mysql 中的事务.html">
+        mysql 中事务
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/LearnDocsHtml/assets/js/app.0f1bd8f2.js" defer></script><script src="/LearnDocsHtml/assets/js/3.67df8e7b.js" defer></script><script src="/LearnDocsHtml/assets/js/12.f0875641.js" defer></script>
+  </body>
+</html>
